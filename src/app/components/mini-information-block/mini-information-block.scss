@@ -1,0 +1,29 @@
+@use '../../../assets/_variables.scss' as vars;
+
+.block {
+    max-width: vars.$size-280;
+    // max-width: vars.$size-360;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    gap: vars.$size-16;
+    padding: vars.$size-4 vars.$size-12 vars.$size-4 vars.$size-4;
+    border-radius: vars.$radius-full;
+    @include vars.basicGradient;
+    
+    .main-information {
+        display: flex;
+        align-items: center;
+        gap: vars.$size-8;
+    }
+
+    h3 {
+        color: black;
+    }
+
+    .price {
+        justify-self: flex-end;
+    }
+}

@@ -1,0 +1,39 @@
+@use '../../../../assets/_variables.scss' as vars;
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    .content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        margin-top: vars.$size-40;
+        gap: vars.$size-40;
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            height: 100%;
+            gap: vars.$size-40;
+            
+            .subscribtions-container {
+                display: flex;
+                flex-direction: column;
+                gap: vars.$size-20;
+
+                .subscribtions {
+                    display: flex;
+                    flex-direction: column;
+                    gap: vars.$size-20;
+                }
+            }
+    
+            .controls {
+                // display: flex;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,66 @@
+@use '../../../assets/_variables.scss' as vars;
+
+.subscribtion-block {
+    min-height: vars.$size-100;
+
+    display: flex;
+    gap: vars.$size-20;
+    background-color: vars.$color-surface;
+
+    border-radius: vars.$radius-lg;
+    padding: vars.$size-20;
+
+    .image-container {
+        display: flex;
+
+        .image {
+            img {
+                width: vars.$size-40;
+                height: vars.$size-40;
+            }
+        }
+    }
+
+    .information {
+        width: 100%;
+        
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size-12;
+
+            .paid-container {
+                display: flex;
+                align-items: center;
+                gap: vars.$size-12;
+                
+                .icon-block {
+                    width: vars.$size-24;
+                    height: vars.$size-24;
+                    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: vars.$radius-full;
+                    
+                    .icon {
+                        width: 80%;
+                        height: 80%;
+                    }
+                }
+
+                .paid-icon {
+                    background: vars.$color-green;
+                }
+                .unpaid-icon {
+                    background: vars.$color-red;
+                }
+            }
+        }
+        
+        .price {
+            align-self: flex-end;
+            justify-self: flex-end;
+        }
+    }
+}

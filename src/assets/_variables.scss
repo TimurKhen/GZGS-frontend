@@ -1,0 +1,40 @@
+$color-background: #222222;
+$color-surface: #333333;
+$color-black: #181818;
+$color-white: #ffffff;
+$color-yellow: #FFDD2D;
+$color-green: #44C596;
+$color-red: #FF8C67;
+$color-gray: #CFCFCF;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-full: 9999px;
+
+$size-4: 4px;
+$size-8: 8px;
+$size-12: 12px;
+$size-16: 16px;
+$size-20: 20px;
+$size-24: 24px;
+$size-28: 28px;
+$size-32: 32px;
+$size-40: 40px;
+$size-60: 60px;
+$size-80: 80px;
+$size-100: 100px;
+$size-120: 120px;
+$size-240: 240px;
+$size-280: 280px;
+$size-360: 360px;
+$size-400: 400px;
+
+$font-md: 16px;
+$font-lg: 24px;
+
+@mixin basicGradient {
+  background: 
+    linear-gradient( rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72) ), /* Белая вуаль */
+    radial-gradient(at left top, #5059de, #b243c3 50%, #f6a429 100%); /* Ваш градиент */
+}

@@ -1,0 +1,69 @@
+@use '../../../../assets/_variables.scss' as vars;
+
+
+.navigation {
+    width: 100%;
+    height: vars.$size-80;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: vars.$color-black;
+
+    nav {
+        width: 50%;
+
+        display: flex;
+        justify-content: space-between;
+
+        .links {
+            display: flex;
+            justify-content: space-around;
+            gap: vars.$size-20;
+
+            font-size: vars.$font-lg;
+
+            img {
+                height: 100%;
+            }
+
+            .link-span {
+                a {
+                    position: relative;
+                    padding-bottom: vars.$size-4; 
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 50%; 
+                        bottom: calc(vars.$size-4 * -1);
+                        width: 100%;
+                        height: calc(vars.$size-4 / 2);
+                        background-color: vars.$color-yellow;
+                        border-radius: vars.$radius-lg;
+                        
+                        transform: translateX(-50%) scaleX(0);
+                        opacity: 0;
+                        
+                        transition: transform 0.3s ease, opacity 0.3s ease;
+                    }
+                }
+                
+                &.active a::after {
+                    transform: translateX(-50%) scaleX(1);
+                    opacity: 1;
+                }
+            }
+        }
+
+        .account {
+            display: flex;
+
+            span {
+                height: 100%;
+                font-size: vars.$font-lg;
+            }
+        }
+    }
+}

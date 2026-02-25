@@ -1,0 +1,34 @@
+<div class="spending-block">
+    <div class="information">
+        <div class="title">
+            <h2>Оплата в феврале:</h2>
+            <div class="buttons">
+                <button 
+                    [ngClass]="{'active': activeButtonIndex() === 0}"
+                    (click)="changeActiveButtonIndex(0)"
+                    >Оплачено</button>
+                <button 
+                    [ngClass]="{'active': activeButtonIndex() === 1}"
+                    (click)="changeActiveButtonIndex(1)"
+                    >Запланированные</button>
+            </div>
+        </div>
+        <div class="subscribtions">
+            @for (item of smalledSubscribtions(); track item) {
+                <app-mini-information-block
+                    [information]="item"
+                ></app-mini-information-block>
+            }
+        </div>
+    </div>
+    <div class="ring">
+        <tui-ring-chart
+            [value]="value"
+            [(activeItemIndex)]="index"
+            size="xl"
+        >
+            <h2>{{ sum | tuiAmount: 'RUB' | async }}</h2>
+            <h3>{{ label }}</h3>
+        </tui-ring-chart>
+    </div>
+</div>

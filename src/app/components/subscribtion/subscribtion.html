@@ -1,0 +1,28 @@
+<div class="subscribtion-block">
+    <div class="image-container">
+        <span class="image">
+            <img width="100" height="100" [src]="subscribtionData()?.imageURL">
+        </span>
+    </div>
+    <div class="information">
+        <div class="main">
+            <h3>{{subscribtionData()?.name}}</h3>
+            <div class="paid-container">
+                @if (subscribtionData()?.isPaid) {
+                    <span class="paid-icon icon-block">
+                        <tui-icon class="icon" icon="@tui.check"></tui-icon>
+                    </span>
+                    <p>Оплачено</p>
+                } @else {
+                    <span class="unpaid-icon icon-block">
+                        <tui-icon class="icon" icon="@tui.x"></tui-icon>
+                    </span>
+                    <p>Оплачено</p>
+                }
+            </div>
+        </div>
+        <div class="price">
+            <h3>{{subscribtionData()?.pricePerMonth}}₽/мес.</h3>
+        </div>
+    </div>
+</div>
