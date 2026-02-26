@@ -4,7 +4,7 @@ import {TuiAmountPipe} from '@taiga-ui/addon-commerce';
 import {tuiSum} from '@taiga-ui/cdk';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { MiniInformationBlock } from "../../../components/mini-information-block/mini-information-block";
-import { MiniBlockInterface } from '../../../interfaces/subscribtions/mini-block-interface';
+import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 
 @Component({
   selector: 'app-spending',
@@ -13,7 +13,7 @@ import { MiniBlockInterface } from '../../../interfaces/subscribtions/mini-block
   styleUrl: './spending.scss',
 })
 export class Spending {
-  subscriptions = input<MiniBlockInterface[]>()
+  subscriptions = input<SubscriptionInterface[]>()
   smalledSubscribtions = computed(() => {
     const subscribtionLen = this.subscriptions()?.length
     if (!subscribtionLen) return []

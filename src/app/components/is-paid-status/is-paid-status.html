@@ -1,0 +1,13 @@
+<div class="paid-container">
+    @if (isPaid()) {
+        <span class="paid-icon icon-block">
+            <tui-icon class="icon" icon="@tui.check"></tui-icon>
+        </span>
+        <p>Оплачено</p>
+    } @else {
+        <span class="unpaid-icon icon-block">
+            <tui-icon class="icon" icon="@tui.x"></tui-icon>
+        </span>
+        <p>Не оплачено</p>
+    }
+</div>

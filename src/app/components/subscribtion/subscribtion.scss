@@ -9,6 +9,7 @@
 
     border-radius: vars.$radius-lg;
     padding: vars.$size-20;
+    @include vars.shadow;
 
     .image-container {
         display: flex;
@@ -29,33 +30,7 @@
             flex-direction: column;
             gap: vars.$size-12;
 
-            .paid-container {
-                display: flex;
-                align-items: center;
-                gap: vars.$size-12;
-                
-                .icon-block {
-                    width: vars.$size-24;
-                    height: vars.$size-24;
-                    
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: vars.$radius-full;
-                    
-                    .icon {
-                        width: 80%;
-                        height: 80%;
-                    }
-                }
-
-                .paid-icon {
-                    background: vars.$color-green;
-                }
-                .unpaid-icon {
-                    background: vars.$color-red;
-                }
-            }
+            
         }
         
         .price {

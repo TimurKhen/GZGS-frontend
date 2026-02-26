@@ -1,13 +1,13 @@
 import { Component, input } from '@angular/core';
-import { SubscribtionBlockInterface } from '../../interfaces/subscribtions/subscribtion-block-interface';
-import { TuiIcon } from '@taiga-ui/core';
+import { IsPaidStatus } from "../is-paid-status/is-paid-status";
+import { SubscriptionInterface } from '../../interfaces/subscribtions/subscription-interface';
 
 @Component({
   selector: 'assets-subscribtion',
-  imports: [TuiIcon],
+  imports: [IsPaidStatus],
   templateUrl: './subscribtion.html',
   styleUrl: './subscribtion.scss',
 })
 export class Subscribtion {
-  subscribtionData = input<SubscribtionBlockInterface>()
+  subscribtionData = input<SubscriptionInterface>()
 }

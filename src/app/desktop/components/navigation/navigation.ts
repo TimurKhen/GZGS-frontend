@@ -37,9 +37,14 @@ export class Navigation {
     ).subscribe((event: NavigationEnd) => {
       const url = event.url
 
-      this.activePageIndex.set(urls.findIndex((val) => {
+      const findedIndex = urls.findIndex((val) => {
         return val.address == url
-      }))
+      })
+
+      if (findedIndex !== -1) {
+        this.activePageIndex.set(findedIndex)
+      }
+
     })
   }
 

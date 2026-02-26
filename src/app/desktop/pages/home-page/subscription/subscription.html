@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="content">
+        <span class="back">
+            <tui-icon class="arrow-left" icon="@tui.arrow-left"></tui-icon>
+            <h2>Назад</h2>
+        </span>
+        <div class="information">
+            <div class="main">
+                <div class="left">
+                    <div class="text">
+                        <h1>Яндекс плюс</h1>
+                        <is-paid-status [isPaid]="true"></is-paid-status>
+                    </div>
+                    <div class="image">
+                        <img width="40" [src]="subscriptionData()?.subscription_avatar_url">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="price-and-date">
+                        <h3>{{subscriptionData()?.cost}}₽ в месяц</h3>
+                        <div class="bottom">
+                            <h3>списание:</h3>
+                            <h3>{{parseDate(subscriptionData()?.next_billind) | date:'longDate'}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="statuses">
+            
+        </div>
+    </div>
+</div>

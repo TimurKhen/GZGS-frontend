@@ -1,0 +1,32 @@
+@use '../../../../assets/_variables.scss' as vars;
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    .content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        margin-top: vars.$size-40;
+        gap: vars.$size-40;
+
+        .back {
+            display: flex;
+            align-items: center;
+            gap: vars.$size-4;
+            
+            .arrow-left {
+                color: vars.$color-white;
+            }
+        }
+
+        .information {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size-12;
+        }
+    }
+
+}

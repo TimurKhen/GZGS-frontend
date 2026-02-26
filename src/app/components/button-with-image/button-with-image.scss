@@ -1,0 +1,25 @@
+@use '../../../assets/_variables.scss' as vars;
+
+.button {
+    display: flex;
+    align-items: center;
+    height: vars.$size-80;
+    
+    gap: vars.$size-20;
+    padding: vars.$size-20;
+    
+    border: none;
+    border-radius: vars.$radius-lg;
+
+    background: vars.$color-surface;
+
+    .image {
+        display: flex;
+        align-items: center;
+    }
+
+    h2 {
+        color: vars.$color-white;
+    }
+
+}

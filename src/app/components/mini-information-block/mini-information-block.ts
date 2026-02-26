@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { MiniBlockInterface } from '../../interfaces/subscribtions/mini-block-interface';
+import { SubscriptionInterface } from '../../interfaces/subscribtions/subscription-interface';
 
 @Component({
   selector: 'app-mini-information-block',
@@ -8,5 +8,5 @@ import { MiniBlockInterface } from '../../interfaces/subscribtions/mini-block-in
   styleUrl: './mini-information-block.scss',
 })
 export class MiniInformationBlock {
-  information = input<MiniBlockInterface>()
+  information = input<SubscriptionInterface>()
 }

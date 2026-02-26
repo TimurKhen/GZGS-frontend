@@ -1,0 +1,93 @@
+@use '../../../../../assets/_variables.scss' as vars;
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    .content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        margin-top: vars.$size-40;
+        gap: vars.$size-40;
+
+        .back {
+            display: flex;
+            align-items: center;
+            gap: vars.$size-4;
+            
+            .arrow-left {
+                color: vars.$color-white;
+            }
+        }
+
+        .information {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size-12;
+
+            .main {
+                width: 100%;
+                height: vars.$size-160;
+
+                display: flex;
+                justify-content: space-between;
+                
+                padding: vars.$size-12;
+                border-radius: vars.$radius-lg;
+                @include vars.basicGradient;
+                
+
+                .left {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    
+                    .text {
+                        height: vars.$size-40;
+
+                        display: flex;
+                        align-items: center;
+                        gap: vars.$size-20;
+
+                        h1 {
+                            color: vars.$color-black;
+                        }
+                    }
+
+                    .image {
+                        justify-self: flex-end;
+                        width: vars.$size-60;
+                        height: vars.$size-60;
+
+                        img {
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+
+                    background: vars.$color-background;
+                    border-radius: vars.$radius-lg;
+                    padding: 0 vars.$size-40;
+
+                    .price-and-date {
+                        height: 80%;
+
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                    }
+                }
+            }
+        }
+    }
+
+}

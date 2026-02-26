@@ -10,6 +10,7 @@
     background: vars.$color-surface;
     border-radius: vars.$radius-lg;
     padding: vars.$size-12;
+    @include vars.shadow;
 
     .information {
         display: flex;

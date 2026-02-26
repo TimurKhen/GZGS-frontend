@@ -4,6 +4,7 @@ import { inject } from '@angular/core';
 import { HomePage } from './desktop/pages/home-page/home-page';
 import { SubscriptionsPage } from './desktop/pages/subscriptions-page/subscriptions-page';
 import { AnalyticsPage } from './desktop/pages/analytics-page/analytics-page';
+import { Subscription } from './desktop/pages/home-page/subscription/subscription';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,14 @@ export const routes: Routes = [
             {
                 path: '',
                 component: HomePage
+            },
+            {
+                path: 'subscription',
+                component: Subscription
+            },
+            {
+                path: 'subscription/:id',
+                component: Subscription
             },
             {
                 path: 'subscriptions',

@@ -5,17 +5,32 @@
             <div class="subscribtions-container">
                 <h2>Ваши подписки:</h2>
                 <div class="subscribtions">
-                    @for (item of subscribtions; track item) {
+                    @for (item of realSubscriptions; track item) {
                         <assets-subscribtion
+                            [routerLink]="['subscription', item.subscription_id]"
                             [subscribtionData]="item"
                         ></assets-subscribtion>
                     }
+                    <button>
+                        Добавить подписку
+                    </button>
                 </div>
             </div>
             <div class="controls">
                 <app-spending
-                    [subscriptions]="forRingsubscribtions"
+                    [subscriptions]="realSubscriptions"
                 ></app-spending>
+
+                <div class="buttons">
+                    <button-with-image 
+                        [imageURL]="'icons/subscribtionImage.svg'" 
+                        label="Добавить подписку"
+                    ></button-with-image>
+                    <button-with-image
+                        [imageURL]="'icons/ymoney.svg'"
+                        label="Подключить юmoney"
+                    ></button-with-image>
+                </div>
             </div>
         </div>
     </div>

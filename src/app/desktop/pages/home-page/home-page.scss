@@ -27,11 +27,28 @@
                     display: flex;
                     flex-direction: column;
                     gap: vars.$size-20;
+
+                    button {
+                        border: none;
+                        padding: vars.$size-20;
+                        border-radius: vars.$radius-lg;
+                        background: vars.$color-yellow;
+                        font-size: vars.$font-md;
+                    
+                        @include vars.textSettings;
+                    }
                 }
             }
     
             .controls {
-                // display: flex;
+                display: flex;
+                flex-direction: column;
+                gap: vars.$size-20;
+                
+                .buttons {
+                    display: flex;
+                    gap: vars.$size-20;
+                }
             }
         }
     }

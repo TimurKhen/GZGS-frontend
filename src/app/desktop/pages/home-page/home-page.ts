@@ -1,40 +1,41 @@
 import { Component } from '@angular/core';
 import { Subscribtion } from "../../../components/subscribtion/subscribtion";
-import { SubscribtionBlockInterface } from '../../../interfaces/subscribtions/subscribtion-block-interface';
 import { Spending } from "../../components/spending/spending";
-import { MiniBlockInterface } from '../../../interfaces/subscribtions/mini-block-interface';
+import { ButtonWithImage } from "../../../components/button-with-image/button-with-image";
+import { Router, RouterLink } from "@angular/router";
+import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 
 @Component({
   selector: 'app-home-page',
-  imports: [Subscribtion, Spending],
+  imports: [Subscribtion, Spending, ButtonWithImage, RouterLink],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
 export class HomePage {
-  subscribtions: SubscribtionBlockInterface[] = [
+  constructor(private router: Router) {}
+
+  realSubscriptions: SubscriptionInterface[] = [
     {
       name: 'Яндекс плюс',
-      imageURL: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
+      subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
       isPaid: true,
-      pricePerMonth: 300
+      cost: 300,
+      next_billind: '2025-05-26',
+      category: 'Технологии',
+      url_service: '',
+      use_in_this_month: false,
+      subscription_id: '1'
     },
-    {
-      name: 'Яндекс плюс 2',
-      imageURL: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
-      isPaid: false,
-      pricePerMonth: 1300
-    }
-  ]
-  forRingsubscribtions: MiniBlockInterface[] = [
     {
       name: 'Яндекс плюс',
-      imageURL: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
-      price: 300
-    },
-    {
-      name: 'Яндекс плюс 2',
-      imageURL: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
-      price: 1300
+      subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
+      isPaid: false,
+      cost: 1300,
+      next_billind: '2025-01-26',
+      category: 'Технологии',
+      url_service: '',
+      use_in_this_month: true,
+      subscription_id: '2'
     }
   ]
 }

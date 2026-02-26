@@ -1,0 +1,33 @@
+@use '../../../assets/_variables.scss' as vars;
+
+.paid-container {
+    display: flex;
+    align-items: center;
+    gap: vars.$size-8;
+    
+    p {
+        color: vars.$color-black;
+    }
+
+    .icon-block {
+        width: vars.$size-24;
+        height: vars.$size-24;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: vars.$radius-full;
+        
+        .icon {
+            width: 80%;
+            height: 80%;
+        }
+    }
+
+    .paid-icon {
+        background: vars.$color-green;
+    }
+    .unpaid-icon {
+        background: vars.$color-red;
+    }
+}

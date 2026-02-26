@@ -9,7 +9,7 @@
     justify-content: space-between;
     
     gap: vars.$size-16;
-    padding: vars.$size-4 vars.$size-12 vars.$size-4 vars.$size-4;
+    padding: vars.$size-4 vars.$size-12 vars.$size-4 vars.$size-8;
     border-radius: vars.$radius-full;
     @include vars.basicGradient;
     
