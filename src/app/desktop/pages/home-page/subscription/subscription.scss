@@ -88,6 +88,25 @@
                 }
             }
         }
-    }
 
+        .statuses {
+            display: flex;
+            gap: vars.$size-20
+        }
+        
+        .actions-buttons {
+            display: flex;
+            gap: vars.$size-20;
+
+            .action-button {
+                background: vars.$color-yellow;
+                font-weight: 700;
+                padding: vars.$size-8 vars.$size-20;
+                font-size: vars.$font-md;
+                border: none;
+                border-radius: vars.$radius-full;
+                cursor: pointer;
+            }
+        }
+    }
 }

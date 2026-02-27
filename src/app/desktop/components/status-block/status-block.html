@@ -1,5 +1,27 @@
 <div class="status">
-    <span class="image">
-        <img [src]="icon()">
+    <span class="image" [ngClass]="{'inactive': !blockData()?.isActive}">
+        @if (blockData()?.isActive) {
+            @if (blockData()?.icon) {
+                <tui-icon height="80px" class="icon" [icon]="'@tui.' + blockData()?.icon" [style.color]="'white'"></tui-icon>
+            } @else {
+                <tui-icon height="80px" class="icon" icon="@tui.check" [style.color]="'white'"></tui-icon>
+            }
+        } @else {
+            <tui-icon height="80px" class="icon" icon="@tui.x" [style.color]="'white'"></tui-icon>
+        }
+    </span>
+    <span class="interactive">
+        @if (blockData()?.isActive) {
+            <h3>{{blockData()?.text}}</h3>
+        } @else {
+            <h3>{{blockData()?.secondText}}</h3>
+        }
+        <button class="change-status-button" (click)="changeStatus()"> 
+            @if (blockData()?.isActive) {
+                {{blockData()?.buttonText}}
+            } @else {
+                {{blockData()?.secondButtonText}}
+            }
+        </button>
     </span>
 </div>

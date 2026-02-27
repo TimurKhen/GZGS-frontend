@@ -27,7 +27,27 @@
             </div>
         </div>
         <div class="statuses">
-            
+  <!-- // TODO
+  //  Сделать это циклом!!!!!!!!!!! -->
+            <status-block
+                [blockData]="isPaidStatusBlock()"
+                (statusChange)="changeStatus(isPaidStatusBlock)"
+            ></status-block>
+            <status-block
+                [blockData]="notificationsStatusBlock()"
+                (statusChange)="changeStatus(notificationsStatusBlock)"
+            ></status-block>
+            <status-block
+                [blockData]="usedStatusBlock()"
+                (statusChange)="changeStatus(usedStatusBlock)"
+            ></status-block>
+        </div>
+        <div class="actions-buttons">
+            @for (item of actionButtons(); track item) {
+                <button class="action-button" (click)="item.action()">
+                    {{item.name}}
+                </button>
+            }
         </div>
     </div>
 </div>

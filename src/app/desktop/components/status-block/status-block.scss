@@ -1,0 +1,73 @@
+@use '../../../../assets/_variables.scss' as vars;
+
+.status {
+    padding: vars.$size-20;
+    
+    display: flex;
+    align-items: center;
+    
+    gap: vars.$size-24;
+    border-radius: vars.$radius-lg;
+    background-color: vars.$color-surface;
+    height: vars.$size-120;
+
+    .image {
+        width: vars.$size-60;
+        min-width: vars.$size-60;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: vars.$size-8;
+        border-radius: vars.$radius-full;
+        
+        background: vars.$color-green;
+
+        transition: background-color 0.5s;
+
+        &.inactive {
+            background: vars.$color-red; 
+        }
+
+        tui-icon {
+            width: 90%;
+            height: 90%;
+        }
+    }
+    .interactive {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        gap: vars.$size-8;
+
+        h3 {
+            width: 100%;
+            font-size: vars.$font-lg;
+            margin: 0;
+            white-space: nowrap;
+        }
+        
+        button {
+            width: max-content;
+            padding: vars.$size-8 vars.$size-20;
+            
+            align-self: flex-end;
+            
+            border-radius: vars.$radius-sm;
+            border: 2px solid vars.$color-yellow;
+            background: none;
+            color: vars.$color-white;
+            
+            transition: background-color 0.3s;
+
+            &:hover {   
+                background: vars.$color-black;
+            }
+        }
+    }
+
+}

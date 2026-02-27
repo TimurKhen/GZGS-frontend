@@ -23,6 +23,7 @@ export class HomePage {
       next_billind: '2025-05-26',
       category: 'Технологии',
       url_service: '',
+      cancellation_link: '',
       use_in_this_month: false,
       subscription_id: '1'
     },
@@ -35,6 +36,7 @@ export class HomePage {
       category: 'Технологии',
       url_service: '',
       use_in_this_month: true,
+      cancellation_link: '',
       subscription_id: '2'
     }
   ]
