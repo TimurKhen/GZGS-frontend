@@ -20,7 +20,7 @@
                         <h3>{{subscriptionData()?.cost}}₽ в месяц</h3>
                         <div class="bottom">
                             <h3>списание:</h3>
-                            <h3>{{parseDate(subscriptionData()?.next_billind) | date:'longDate'}}</h3>
+                            <h3>{{dateConverter.parseDate(subscriptionData()?.next_billind) | date:'longDate'}}</h3>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,46 @@
+import { Component, computed, effect, input, signal } from '@angular/core';
+import { TuiRingChart } from "@taiga-ui/addon-charts";
+import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
+import { AsyncPipe } from '@angular/common';
+import { SubscriptionInterface } from '../../interfaces/subscribtions/subscription-interface';
+
+@Component({
+  selector: 'spending-block',
+  imports: [AsyncPipe, TuiAmountPipe, TuiRingChart],
+  templateUrl: './spending-block.html',
+  styleUrl: './spending-block.scss',
+})
+export class SpendingBlock {
+  subscriptions = input<SubscriptionInterface[]>([])
+  names = signal<string[]>([])
+  prices = signal<number[]>([])
+
+  constructor() {
+    effect(() => {
+      let names: string[] = []
+      let prices: number[] = []
+      this.subscriptions().forEach(element => {
+        names.push(element.name)
+        prices.push(element.cost)
+      })
+      this.names.set(names)
+      this.prices.set(prices)
+    })
+  }
+
+  total = computed(() => {
+    let sumValue = 0
+    this.prices().forEach(val => sumValue += val)
+    return sumValue
+  })
+
+  protected index = NaN
+
+  protected get sum(): number {
+    return (Number.isNaN(this.index) ? this.total() : this.prices()[this.index]) ?? 0
+  }
+
+  protected get label(): string {
+    return (Number.isNaN(this.index) ? 'Total' : this.names()[this.index]) ?? ''
+  }
+}

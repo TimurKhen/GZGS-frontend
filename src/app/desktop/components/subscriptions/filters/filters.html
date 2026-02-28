@@ -1,0 +1,39 @@
+<div
+    tuiItemGroup
+    [horizontal]="true" 
+    [attr.tuiTheme]="'dark'"
+>
+    @if (isMultiple()) {
+        <label
+            *ngFor="let filter of filters(); let i = index"
+            tuiChip
+            [appearance]="checked[i] ? 'accent' : 'neutral'"
+        >
+            {{ filter }}
+            <input
+                appearance=""
+                tuiChip
+                type="checkbox"
+                [(ngModel)]="checked[i]"
+                (click)="changeFilters()"
+            />
+        </label>
+    } @else {
+        <label
+            *ngFor="let filter of filters(); let i = index"
+            tuiChip
+            [appearance]="filter === checked ? 'accent' : 'neutral'"
+        >
+            {{ filter }}
+            <input
+                appearance=""
+                name="radio"
+                tuiChip
+                type="radio"
+                [value]="filter"
+                [(ngModel)]="checked"
+                (click)="changeFilters()"
+            />
+        </label>
+    }
+</div>

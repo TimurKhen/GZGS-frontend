@@ -12,15 +12,17 @@ import { FileInput } from "../../../components/form/inputs/file-input/file-input
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TextInput } from "../../../components/form/inputs/text-input/text-input";
 import { DateInput } from "../../../components/form/inputs/date-input/date-input";
+import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
 
 
 @Component({
   selector: 'app-subscription',
-  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, JsonPipe, TextInput, DateInput],
+  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput],
   templateUrl: './subscription.html',
   styleUrl: './subscription.scss',
 })
 export class Subscription implements OnInit {
+  readonly dateConverter = inject(DateConverter)
   private readonly alerts = inject(TuiAlertService)
   
   subscriptionData = signal<any>(null)
@@ -119,14 +121,6 @@ export class Subscription implements OnInit {
       cancellation_link: 'https://www.gosuslugi.ru/',
       use_in_this_month: false,
       subscription_id: '1'
-    }
-  }
-
-  parseDate(dateString: string | undefined) {
-    if (dateString) {
-      return new Date(dateString)
-    } else {
-      return ''
     }
   }
 

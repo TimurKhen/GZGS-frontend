@@ -1,0 +1,12 @@
+<div class="block" [attr.tuiTheme]="'dark'">
+    <tui-ring-chart
+        [value]="prices()"
+        [(activeItemIndex)]="index"
+        class="ring"
+    >
+        <h2>{{ sum | tuiAmount: 'RUB' | async }}</h2>
+        <p>{{ label }}</p>
+    </tui-ring-chart>
+
+    <h3>Текст</h3>
+</div>

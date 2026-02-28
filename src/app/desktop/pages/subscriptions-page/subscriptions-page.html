@@ -1,16 +1,19 @@
 <div class="container">
     <div class="content">
         <span class="back">
-            <tui-icon class="arrow-left" icon="@tui.arrow-left"></tui-icon>
-            <h2>Назад</h2>
+            <h2>Подписки</h2>
         </span>
-        <div class="information">
-            <div class="main">
-                <div class="text">
-                    <h1>Яндекс плюс</h1>
-                    <is-paid-status [isPaid]="true"></is-paid-status>
-                </div>
-            </div>
+        <div class="filters">
+            <filters [filters]="['Оплаченные', 'Не оплаченные']" (changedFilters)="changeFilter($event)"></filters>
+        </div>
+        <div class="subscriptions">
+            @for (item of filteredSubscriptions(); track item) {
+                <subscription-big 
+                    [subscribtionData]="item"
+                    animate.enter="appear"
+                    [routerLink]="['subscription', item.subscription_id]"
+                ></subscription-big>
+            }
         </div>
     </div>
 </div>

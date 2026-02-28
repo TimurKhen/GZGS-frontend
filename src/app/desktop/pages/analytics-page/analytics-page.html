@@ -1,1 +1,27 @@
-<p>analytics-page works!</p>
+<div class="container">
+    <div class="content">
+        <span class="back">
+            <h2>Подписки</h2>
+        </span>
+        <div class="spending-container">
+            <div class="spending">
+                <spending-block [subscriptions]="realSubscriptions()"></spending-block>
+                <spending-block [subscriptions]="realSubscriptions()"></spending-block>
+                <spending-block [subscriptions]="realSubscriptions()"></spending-block>
+                <spending-block [subscriptions]="realSubscriptions()"></spending-block>
+            </div>
+        </div>
+        <div class="subscriptions">
+            <div class="filters">
+                <filters [isMultiple]="false" [filters]="['Категории', 'Сервисы']" (changedFilters)="changeFilter($event)"></filters>
+            </div>
+            @for (item of realSubscriptions(); track item) {
+                <subscription-big 
+                    [subscribtionData]="item"
+                    animate.enter="appear"
+                    [routerLink]="['subscription', item.subscription_id]"
+                ></subscription-big>
+            }
+        </div>
+    </div>
+</div>

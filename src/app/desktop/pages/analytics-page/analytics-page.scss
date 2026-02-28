@@ -1,0 +1,57 @@
+@use '../../../../assets/_variables.scss' as vars;
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    .content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        margin-top: vars.$size-40;
+        gap: vars.$size-40;
+
+        .back {
+            display: flex;
+            align-items: center;
+            gap: vars.$size-4;
+            
+            .arrow-left {
+                color: vars.$color-white;
+            }
+        }
+
+        .spending-container {
+            display: flex;
+            justify-content: center;
+            
+            .spending {
+                display: flex;
+                // justify-content: space-between;
+                gap: vars.$size-20
+            }
+        }
+
+        .subscriptions {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size-12;
+        }
+    }
+}
+
+.appear {
+    animation: show 0.3s;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

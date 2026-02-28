@@ -1,0 +1,17 @@
+@use '../../../assets/_variables.scss' as vars;
+
+.block {
+    display: flex;
+    flex-direction: column;
+    padding: vars.$size-20;
+    color: white;
+    background: vars.$color-surface;
+    gap: vars.$size-12;
+    border-radius: vars.$radius-lg;
+
+    .ring {
+        h2 {
+            color: white;
+        }
+    }
+}

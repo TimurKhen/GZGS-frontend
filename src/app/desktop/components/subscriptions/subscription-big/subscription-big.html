@@ -1,0 +1,22 @@
+<div class="subscribtion-block">
+    <div class="image-container">
+        <span class="image">
+            <img width="100" height="100" [src]="subscribtionData()?.subscription_avatar_url">
+        </span>
+    </div>
+    <div class="information">
+        <div class="main">
+            <h3>{{subscribtionData()?.name}}</h3>
+            <div class="paid-container">
+                <is-paid-status [isPaid]="subscribtionData()?.isPaid"></is-paid-status>
+                @if (subscribtionData()?.isPaid) {
+                    <p>до {{dateConverter.parseDate(subscribtionData()?.next_billind) | date:'longDate'}}</p>
+                }
+            </div>
+        </div>
+        <div class="price">
+            <h3>{{subscribtionData()?.cost}}₽/мес.</h3>
+            <h3 class="perYear">{{getCostForYear(subscribtionData()?.cost)}}₽/год.</h3>
+        </div>
+    </div>
+</div>
