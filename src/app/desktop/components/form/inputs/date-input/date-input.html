@@ -1,0 +1,9 @@
+<tui-textfield class="date-container" [attr.tuiTheme]="'dark'">
+    <label tuiLabel>{{placeholderText()}}</label>
+    <input
+        tuiInputDate
+        [(ngModel)]="dateValue"
+        [min]="today"
+    />
+    <tui-calendar *tuiTextfieldDropdown />
+</tui-textfield>

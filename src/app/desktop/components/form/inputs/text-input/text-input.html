@@ -1,0 +1,33 @@
+@if (isRequred()) {
+    <tui-textfield 
+        iconEnd="@tui.badge-alert" 
+        class="textfield-container" 
+        [attr.tuiTheme]="'dark'"
+        [ngClass]="{'error': !control().valid}"
+    > 
+        <label
+            tuiLabel
+        >{{placeholderText()}}</label>
+        <input
+            tuiTextfield
+            [formControl]="control()"
+        />
+    </tui-textfield>
+} @else {
+    <tui-textfield 
+        class="textfield-container" 
+        [attr.tuiTheme]="'dark'"
+        [ngClass]="{'error': !control().valid}"
+    >
+        <label
+            tuiLabel
+        >{{placeholderText()}}</label>
+        <input
+            tuiTextfield
+            [formControl]="control()"
+        />
+    </tui-textfield>
+} 
+@if (!control().valid) {
+    <tui-error [error]="'Обязательно'" />
+}

@@ -1,0 +1,13 @@
+@use '../../../../../../assets/_variables.scss' as vars;
+
+@mixin input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: vars.$color-surface !important;
+
+    gap: 1rem;
+    color: vars.$color-white;
+    border: 3px dashed vars.$color-yellow;
+    border-radius: vars.$radius-lg;    
+}

@@ -1,0 +1,31 @@
+@use '../styles/input-styles.scss' as input-styles;
+@use '../../../../../../assets/_variables.scss' as vars;
+
+.textfield-container {
+    @include input-styles.input;
+    max-width: vars.$size-280;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+
+    transition: border 0.3s;
+
+    input {
+        width: 100%;
+        color: white;
+        background: vars.$color-surface;
+    }
+
+    label {
+        color: white !important;
+        user-select: none;        
+    }
+}
+
+.error {
+   border: 3px dashed vars.$color-red;
+}
+
+.error-message {
+    color: vars.$color-red;
+}

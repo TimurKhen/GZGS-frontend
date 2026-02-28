@@ -1,0 +1,76 @@
+@use '../../../../../../assets/_variables.scss' as vars;
+@use '../styles/input-styles.scss' as input-styles;
+
+.content {
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1/1;
+    // block-size: 10rem;
+    flex-direction: column;
+    
+    @include input-styles.input;
+
+    ng-component {
+        a {
+            color: white !important;
+        }
+    }
+}
+
+.image-shower {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    aspect-ratio: 1/1;
+    gap: 1rem;
+    border: 3px dashed vars.$color-yellow;
+    border-radius: vars.$radius-lg;
+    
+    .image {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        border-radius: vars.$radius-lg;
+        overflow: hidden;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: vars.$size-8;
+        border-radius: vars.$radius-lg;
+        border: 1px solid vars.$color-black;
+        background: vars.$color-yellow;
+    }
+}
+
+.enter-animation {
+  animation: slide-fade 0.3s;
+}
+
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

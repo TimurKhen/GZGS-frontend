@@ -108,5 +108,37 @@
                 cursor: pointer;
             }
         }
+
+        .edit {
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: vars.$size-20;
+                
+                .inputs {
+                    display: flex;
+                    gap: vars.$size-20;
+                    height: 16em;
+                    
+                    .other-inputs {
+                        display: grid;
+                        grid-template-columns: repeat(3, 300px);
+                        grid-auto-flow: dense;
+                        gap: 0;
+                        align-items: center;
+                    }
+                }
+
+                button {
+                    align-self: flex-start;
+                    padding: vars.$size-12 vars.$size-24;
+                    border: none;
+                    border-radius: vars.$radius-sm;
+                    background: vars.$color-yellow;
+                    font-weight: 700;
+                    font-size: vars.$font-md;
+                }
+            }
+        }
     }
 }

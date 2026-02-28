@@ -1,0 +1,14 @@
+@use '../styles/input-styles.scss' as input-styles;
+@use '../../../../../../assets/_variables.scss' as vars;
+
+.date-container {
+    @include input-styles.input;
+    max-width: vars.$size-280;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+
+    input {
+        background: vars.$color-surface;
+    }
+}

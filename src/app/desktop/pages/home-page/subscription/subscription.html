@@ -49,5 +49,49 @@
                 </button>
             }
         </div>
+
+        <div class="edit">
+            <h2>Измененить информацию:</h2>
+            <form>
+                <div class="inputs">
+                    <file-input 
+                        [control]="editForm.get('subscription_avatar_url')"
+                    ></file-input>
+                    <div class="other-inputs">
+                        <text-input 
+                            [control]="editForm.get('name')"
+                            [placeholderText]="'Название сервиса'"
+                            [isRequred]="true"
+                            ></text-input>
+                        <text-input 
+                            [control]="editForm.get('cost')"
+                            [placeholderText]="'Цена в месяц'"
+                            [isRequred]="true"
+                        ></text-input>
+                            
+                        <date-input
+                            [control]="editForm.get('next_billing')"
+                            [placeholderText]="'Дата списания'"
+                        ></date-input>
+
+                        <text-input 
+                            [control]="editForm.get('url_service')"
+                            [placeholderText]="'Ссылка на сервис'"
+                        ></text-input>
+                        <text-input 
+                            [control]="editForm.get('cancellation_link')"
+                            [placeholderText]="'Ссылка на отмену'"
+                        ></text-input>
+                        <text-input 
+                            [control]="editForm.get('category')"
+                            [placeholderText]="'Категория'"
+                        ></text-input>
+                    </div>
+                </div>
+
+                <button (click)="saveChanges($event)">Подтвердить изменения</button>
+                <h1>{{ editForm.value | json }}</h1>
+            </form>
+        </div>
     </div>
 </div>

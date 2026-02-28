@@ -1,17 +1,22 @@
-import { Component, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { TuiAlertService, TuiIcon } from "@taiga-ui/core";
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
 import { ActionButtonInterface } from '../../../../interfaces/action-button/action-button-interface';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { FileInput } from "../../../components/form/inputs/file-input/file-input";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TextInput } from "../../../components/form/inputs/text-input/text-input";
+import { DateInput } from "../../../components/form/inputs/date-input/date-input";
+
 
 @Component({
   selector: 'app-subscription',
-  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock],
+  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, JsonPipe, TextInput, DateInput],
   templateUrl: './subscription.html',
   styleUrl: './subscription.scss',
 })
@@ -70,13 +75,22 @@ export class Subscription implements OnInit {
         this.clipboard.copy('Текст для копирования')
 
         this.alerts
-            .open('Крутое письмо')
+            .open('<strong>Письмо было скопированно</strong>')
             .subscribe()
-
-        // TODO - копирование письма в clipboard + уведомление через Taiga Alert
       }
     }
   ])
+  
+  editForm = new FormGroup({
+    subscription_avatar_url: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    cost: new FormControl(0, [Validators.required]),
+    next_billing: new FormControl('', [Validators.required]),
+    url_service: new FormControl(''),
+    cancellation_link: new FormControl(''),
+    category: new FormControl('', [Validators.required])
+  })
+
   
   constructor(
     private route: ActivatedRoute,
@@ -121,5 +135,11 @@ export class Subscription implements OnInit {
       ...currentData, 
       isActive: !currentData.isActive   
     }))
+  }
+
+  saveChanges($event: Event) {
+    $event.preventDefault()
+
+
   }
 }

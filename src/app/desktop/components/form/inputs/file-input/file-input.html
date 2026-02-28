@@ -1,0 +1,27 @@
+@if (!control().value || control().value == '') {
+    <label
+        *ngIf="!control().value"
+        tuiInputFiles
+        class="content"
+    >
+        <input
+            accept="image/*"
+            tuiInputFiles
+            [formControl]="control()"
+            (change)="onFileChange($event)"
+            class="input"
+        />
+    </label>
+} @else {
+    <div class="image-shower"> 
+        <span class="image">
+            <img width="100" height="100" [src]="this.previewUrl()">
+        </span>
+        <button 
+            animate.enter="enter-animation" 
+            (click)="removeFile($event)" 
+            class="remove"
+        ><tui-icon icon="@tui.x"></tui-icon>
+        </button>
+    </div>
+}
