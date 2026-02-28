@@ -1,0 +1,102 @@
+@use '../../../../../assets/_variables.scss' as vars;
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    .content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: vars.$size-40;
+        gap: vars.$size-40;
+
+        form {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: vars.$size-40;
+            background: vars.$color-surface;
+            padding: vars.$size-20;
+            border-radius: vars.$radius-lg;
+            
+            .image {
+                width: 40%;
+            }
+            
+            .inputs {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+
+                label { 
+                    display: flex;
+                    flex-direction: column;
+                    width: 60%;
+                    padding: vars.$size-8 vars.$size-12;
+                    color: vars.$color-white;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: vars.$size-12;
+                    
+                    p {
+                        align-self: flex-start;
+                    }
+
+                    input {
+                        width: 100%;
+                        border: none;
+                        border-radius: vars.$radius-lg;
+                        color: vars.$color-white;
+                        padding: vars.$size-8;
+                        background: vars.$color-black;
+                    }
+                }
+            }
+
+            button {
+                width: 60%;
+                padding: vars.$size-12;
+                border-radius: vars.$radius-lg;
+                color: vars.$color-white;
+                border: none;
+                background: vars.$color-yellow;
+                color: vars.$color-black;
+                font-weight: 800;
+
+                transition: background-color 0.3s, color 0.3s, font-size 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                font-size: vars.$font-md;
+                
+                &:disabled {
+                    background: vars.$color-black;
+                    color: vars.$color-gray;
+                    font-weight: normal;
+                    font-size: vars.$font-sm;
+                }
+            }
+        }
+    }
+}
+
+.enter {
+    animation: show 0.3s;
+}
+
+.leave {
+    animation: show 0.2s reverse;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

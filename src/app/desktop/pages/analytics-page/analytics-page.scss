@@ -37,6 +37,40 @@
             display: flex;
             flex-direction: column;
             gap: vars.$size-12;
+
+            .filters {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .subscription-container {
+                width: 100%;
+                display: flex;
+                gap: vars.$size-20;
+
+                .block {
+                    display: flex;
+                    width: 100%;
+                }
+
+                .checkbox {
+                    width: 6%;
+                    background: vars.$color-surface;
+                    border-radius: vars.$radius-lg;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    input {
+                        width: 40%;
+                        height: auto;
+                        aspect-ratio: 1/1;
+                        cursor: pointer;
+                        border: 1px solid white;
+                    }
+                }
+            }
         }
     }
 }

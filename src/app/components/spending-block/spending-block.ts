@@ -12,6 +12,9 @@ import { SubscriptionInterface } from '../../interfaces/subscribtions/subscripti
 })
 export class SpendingBlock {
   subscriptions = input<SubscriptionInterface[]>([])
+  descriptionText = input<string>('')
+  monthsToCalc = input<number>(1)
+
   names = signal<string[]>([])
   prices = signal<number[]>([])
 
@@ -21,7 +24,7 @@ export class SpendingBlock {
       let prices: number[] = []
       this.subscriptions().forEach(element => {
         names.push(element.name)
-        prices.push(element.cost)
+        prices.push(element.cost * this.monthsToCalc())
       })
       this.names.set(names)
       this.prices.set(prices)
@@ -41,6 +44,6 @@ export class SpendingBlock {
   }
 
   protected get label(): string {
-    return (Number.isNaN(this.index) ? 'Total' : this.names()[this.index]) ?? ''
+    return (Number.isNaN(this.index) ? 'В сумме' : this.names()[this.index]) ?? ''
   }
 }

@@ -1,17 +1,20 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, OnInit, signal } from '@angular/core';
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { SubscriptionBig } from "../../components/subscriptions/subscription-big/subscription-big";
 import { RouterLink } from '@angular/router';
 import { Filters } from "../../components/subscriptions/filters/filters";
 import { SpendingBlock } from "../../../components/spending-block/spending-block";
+import { TuiCheckbox } from '@taiga-ui/kit';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-analytics-page',
-  imports: [SubscriptionBig, RouterLink, Filters, SpendingBlock],
+  imports: [SubscriptionBig, RouterLink, Filters, SpendingBlock, TuiCheckbox, FormsModule],
   templateUrl: './analytics-page.html',
   styleUrl: './analytics-page.scss',
 })
-export class AnalyticsPage {
+export class AnalyticsPage implements OnInit {
+  checkboxStates = signal<boolean[]>([])
   realSubscriptions = signal<SubscriptionInterface[]>([
     {
       name: 'Яндекс плюс',
@@ -38,11 +41,27 @@ export class AnalyticsPage {
       subscription_id: '2'
     }
   ])
+  usingForAnalityics = signal<SubscriptionInterface[]>(this.realSubscriptions())
 
-  usingForAnalityics = signal<SubscriptionInterface[]>([])
+  ngOnInit(): void {
+    this.checkboxStates.set(new Array(this.realSubscriptions().length).fill(true))
+  }
 
-  updateChecked() {
+  onCheckboxChange(checked: boolean, index: number) {
+    this.checkboxStates()[index] = checked
+    this.recalculateAnalitycs()
+  }
 
+  recalculateAnalitycs() {
+    const currentStates = this.checkboxStates()
+    const array = this.realSubscriptions()
+    let filtered: SubscriptionInterface[] = []
+    array.forEach((element: SubscriptionInterface, index: number) => {
+      if (currentStates[index]) {
+        filtered.push(element)
+      }
+    })
+    this.usingForAnalityics.set(filtered)
   }
 
   changeFilter($event: boolean[]) {

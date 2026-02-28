@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="content">
+        <h2>Вход в аккаунт</h2>
+        <form [formGroup]="signInForm">
+            <div class="inputs">
+                <label>
+                    <p>Почта:</p>
+                    <input formControlName="email">
+                </label>
+                <label>
+                    <p>Пароль:</p>
+                    <input formControlName="password">
+                </label>
+            </div>
+            <button 
+                (click)="signIn($event)" 
+                class="registrate"
+                [disabled]="!signInForm.valid"
+                >Зарегистрироваться</button>
+        </form>
+        <a [routerLink]="['../reg']">Зарегистрироваться</a>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import { TuiIcon } from "@taiga-ui/core";
 })
 export class FileInput {
   control = input<any>()
+  text = input<string>('Выберите фото')
   previewUrl = signal<string | ArrayBuffer | null>(null)
 
   removeFile($event: Event): void {

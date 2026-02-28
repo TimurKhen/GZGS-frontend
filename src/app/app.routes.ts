@@ -5,6 +5,8 @@ import { HomePage } from './desktop/pages/home-page/home-page';
 import { SubscriptionsPage } from './desktop/pages/subscriptions-page/subscriptions-page';
 import { AnalyticsPage } from './desktop/pages/analytics-page/analytics-page';
 import { Subscription } from './desktop/pages/home-page/subscription/subscription';
+import { Registration } from './desktop/pages/profile/registration/registration';
+import { SignIn } from './desktop/pages/profile/sign-in/sign-in';
 
 export const routes: Routes = [
     {
@@ -30,6 +32,14 @@ export const routes: Routes = [
             {
                 path: 'analytics',
                 component: AnalyticsPage
+            },
+            {
+                path: 'reg',
+                component: Registration
+            },
+            {
+                path: 'sign',
+                component: SignIn
             }
         ]
     },

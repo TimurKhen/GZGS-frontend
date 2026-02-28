@@ -3,10 +3,11 @@
 .block {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: vars.$size-20;
     color: white;
     background: vars.$color-surface;
-    gap: vars.$size-12;
+    gap: vars.$size-20;
     border-radius: vars.$radius-lg;
 
     .ring {

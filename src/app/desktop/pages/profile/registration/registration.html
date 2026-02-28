@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="content">
+        <h2>Регистрация</h2>
+        <form [formGroup]="registrationForm">
+            <div class="image">
+                <file-input 
+                    [text]="'Выберите аватар'"
+                    [control]="registrationForm.get('user_avatar_url')"
+                ></file-input>
+            </div>
+            <div class="inputs">
+                <label>
+                    <p>Имя:</p>
+                    <input formControlName="name">
+
+                    <div animate.enter="enter" animate.leave="leave" *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+                        <p *ngIf="registrationForm.get('name')?.errors?.['required']">
+                            Имя обязательно.
+                        </p>
+                    </div>
+                </label>
+                <label>
+                    <p>Фамилия:</p>
+                    <input formControlName="surname">
+
+                    <div animate.enter="enter" animate.leave="leave" *ngIf="registrationForm.get('surname')?.invalid && (registrationForm.get('surname')?.dirty || registrationForm.get('surname')?.touched)">
+                        <p *ngIf="registrationForm.get('surname')?.errors?.['required']">
+                        Фамилия обязательна.
+                        </p>
+                    </div>
+                </label>
+                <label>
+                    <p>Почта:</p>
+                    <input formControlName="email">
+
+                    <div animate.enter="enter" animate.leave="leave" *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+                        <p *ngIf="registrationForm.get('email')?.errors?.['required']">
+                            Почта обязательна.
+                        </p>
+                        <p *ngIf="registrationForm.get('email')?.errors?.['email']">
+                            Email неверен.
+                        </p>
+                    </div>
+                </label>
+                <label>
+                    <p>Пароль:</p>
+                    <input formControlName="password">
+
+                    <div animate.enter="enter" animate.leave="leave" *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
+                        <p *ngIf="registrationForm.get('password')?.errors?.['required']">
+                            Пароль обязателен.
+                        </p>
+                        <p *ngIf="registrationForm.get('password')?.errors?.['minlength']">
+                            Длина пароля минимум 8
+                        </p>
+                    </div>
+                </label>
+            </div>
+            <button 
+                (click)="registrate($event)" 
+                class="registrate"
+                [disabled]="!registrationForm.valid"
+                >Зарегистрироваться</button>
+        </form>
+        <a [routerLink]="['../sign']">Войти</a>
+    </div>
+</div>

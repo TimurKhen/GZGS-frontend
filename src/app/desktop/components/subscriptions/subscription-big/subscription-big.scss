@@ -1,6 +1,7 @@
 @use '../../../../../assets/_variables.scss' as vars;
 
 .subscribtion-block {
+    width: 100%;
     min-height: vars.$size-100;
 
     display: flex;
