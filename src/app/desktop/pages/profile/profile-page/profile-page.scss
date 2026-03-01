@@ -1,0 +1,62 @@
+@use '../../../../../assets/_variables.scss' as vars;
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    .content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: vars.$size-40;
+        gap: vars.$size-40;
+
+        .form {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: vars.$size-40;
+            background: vars.$color-surface;
+            padding: vars.$size-20;
+            border-radius: vars.$radius-lg;
+            min-height: 50%;
+            justify-content: space-between;
+            
+
+            button {
+                width: 60%;
+                padding: vars.$size-12;
+                border-radius: vars.$radius-lg;
+                border: none;
+                color: vars.$color-black;
+                font-weight: 800;
+
+                transition: background-color 0.3s, color 0.3s, font-size 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                font-size: vars.$font-md;
+                background: vars.$color-black;
+                color: vars.$color-gray;                
+            }
+        }
+    }
+}
+
+.enter {
+    animation: show 0.3s;
+}
+
+.leave {
+    animation: show 0.2s reverse;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

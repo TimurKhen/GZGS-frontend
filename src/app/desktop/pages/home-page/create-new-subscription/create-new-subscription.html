@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="content">
+        <span class="back" routerLink="/">
+            <tui-icon class="arrow-left" icon="@tui.arrow-left"></tui-icon>
+            <h2>Назад</h2>
+        </span>
+
+        <div class="create">
+            <h2>Создать подписку:</h2>
+            <form>
+                <div class="inputs">
+                    <file-input 
+                        [control]="subscriptionForm.get('subscription_avatar_url')"
+                    ></file-input>
+                    <div class="other-inputs">
+                        <text-input 
+                            [control]="subscriptionForm.get('name')"
+                            [placeholderText]="'Название сервиса'"
+                            [isRequred]="true"
+                            ></text-input>
+                        <number-input 
+                            [control]="subscriptionForm.get('cost')"
+                            [placeholderText]="'Цена в месяц'"
+                            [isRequred]="true"
+                        ></number-input>
+                            
+                        <date-input
+                            [control]="subscriptionForm.get('next_billing')"
+                            [placeholderText]="'Дата списания'"
+                        ></date-input>
+
+                        <text-input 
+                            [control]="subscriptionForm.get('url_service')"
+                            [placeholderText]="'Ссылка на сервис'"
+                            [isRequred]="true"
+                        ></text-input>
+                        <text-input 
+                            [control]="subscriptionForm.get('cancellation_link')"
+                            [placeholderText]="'Ссылка на отмену'"
+                            [isRequred]="true"
+                        ></text-input>
+                        <text-input 
+                            [control]="subscriptionForm.get('category')"
+                            [placeholderText]="'Категория'"
+                            [isRequred]="true"
+                        ></text-input>
+                    </div>
+                </div>
+
+                <button 
+                    class="create-button" 
+                    (click)="createSubscription($event)"
+                    [disabled]="!subscriptionForm.valid || isLoading()"
+                >Создать</button>
+            </form>
+        </div>
+    </div>
+</div>

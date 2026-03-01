@@ -9,7 +9,7 @@
             tuiLabel
         >{{placeholderText()}}</label>
         <input
-            tuiTextfield
+            tuiInputNumber
             [formControl]="control()"
         />
     </tui-textfield>
@@ -23,11 +23,15 @@
             tuiLabel
         >{{placeholderText()}}</label>
         <input
-            tuiTextfield
+            tuiInputNumber
             [formControl]="control()"
         />
     </tui-textfield>
 } 
 @if (!control().valid && control().touched) {
-    <tui-error [error]="'Обязательно'" />
+    @if (control().errors['min']) {
+        <tui-error [error]="'Минимальное значение - 1'" />
+    } @else {
+        <tui-error [error]="'Обязательно'" />
+    }
 }

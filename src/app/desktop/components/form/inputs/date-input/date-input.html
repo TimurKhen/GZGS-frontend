@@ -1,9 +1,18 @@
-<tui-textfield class="date-container" [attr.tuiTheme]="'dark'">
+<tui-textfield 
+    class="date-container" 
+    [attr.tuiTheme]="'dark'"
+    [ngClass]="{'error': !control().valid && control().touched}"
+>
     <label tuiLabel>{{placeholderText()}}</label>
     <input
         tuiInputDate
-        [(ngModel)]="dateValue"
+        [ngModel]="dateValue"
+        (ngModelChange)="dateValue = $event; onDateChange()"
         [min]="today"
     />
     <tui-calendar *tuiTextfieldDropdown />
 </tui-textfield>
+
+@if (!control().valid && control().touched) {
+    <tui-error [error]="'Обязательно'" />
+}

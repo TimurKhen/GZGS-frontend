@@ -6,6 +6,7 @@
                 <file-input 
                     [text]="'Выберите аватар'"
                     [control]="registrationForm.get('user_avatar_url')"
+                    (fileSelect)="setFile($event)"
                 ></file-input>
             </div>
             <div class="inputs">
@@ -26,6 +27,16 @@
                     <div animate.enter="enter" animate.leave="leave" *ngIf="registrationForm.get('surname')?.invalid && (registrationForm.get('surname')?.dirty || registrationForm.get('surname')?.touched)">
                         <p *ngIf="registrationForm.get('surname')?.errors?.['required']">
                         Фамилия обязательна.
+                        </p>
+                    </div>
+                </label>
+                <label>
+                    <p>Username:</p>
+                    <input formControlName="username">
+
+                    <div animate.enter="enter" animate.leave="leave" *ngIf="registrationForm.get('username')?.invalid && (registrationForm.get('username')?.dirty || registrationForm.get('username')?.touched)">
+                        <p *ngIf="registrationForm.get('username')?.errors?.['required']">
+                            Username обязательн.
                         </p>
                     </div>
                 </label>
@@ -59,7 +70,7 @@
             <button 
                 (click)="registrate($event)" 
                 class="registrate"
-                [disabled]="!registrationForm.valid"
+                [disabled]="!registrationForm.valid || isLoading()"
                 >Зарегистрироваться</button>
         </form>
         <a [routerLink]="['../sign']">Войти</a>

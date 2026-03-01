@@ -1,5 +1,5 @@
 import {NgIf} from '@angular/common';
-import {ChangeDetectionStrategy, Component, input, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input, output, signal} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiFiles } from '@taiga-ui/kit';
 import { TuiIcon } from "@taiga-ui/core";
@@ -15,6 +15,7 @@ export class FileInput {
   control = input<any>()
   text = input<string>('Выберите фото')
   previewUrl = signal<string | ArrayBuffer | null>(null)
+  fileSelect = output<File>()
 
   removeFile($event: Event): void {
     $event.preventDefault()
@@ -38,6 +39,7 @@ export class FileInput {
         this.previewUrl.set(e.target?.result || null)
       }
       reader.readAsDataURL(file)
+      this.fileSelect.emit(file)
     }
   }
 }
