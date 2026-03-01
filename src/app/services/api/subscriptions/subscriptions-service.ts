@@ -10,7 +10,6 @@ import { UuidService } from '../../uuid/uuid-service';
 })
 export class SubscriptionsService {
   private http = inject(HttpClient)
-  private router = inject(Router)  
   private uuidService = inject(UuidService)
   private mainUrl = masterURL + 'api/subscriptions/'
 
@@ -28,7 +27,7 @@ export class SubscriptionsService {
       //   "use_in_this_month": false,
       //   "cancellation_link": "link to cancellation service"
       // }
-      
+
     const formData = new FormData()
     formData.append('subscription_id', this.uuidService.generateUUID())
     formData.append('user_id', this.uuidService.generateUUID())
