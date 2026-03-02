@@ -18,6 +18,10 @@
         align-items: center;
         gap: vars.$size-8;
         
+        img {
+            border-radius: vars.$radius-full;
+        }
+
         .icon-block {
             border-radius: vars.$radius-full;
         }

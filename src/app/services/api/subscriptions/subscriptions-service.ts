@@ -34,6 +34,32 @@ export class SubscriptionsService {
       cancellation_link: '',
       subscription_id: '2',
       user_id: '1'
+    },
+    {
+      name: 'Яндекс музыка',
+      subscription_avatar_url: 'https://img.freepik.com/premium-vector/yandex-music-logo_578229-242.jpg?w=360',
+      isPaid: true,
+      cost: 400,
+      next_billind: '2025-01-26',
+      category: 'Музыка',
+      url_service: '',
+      use_in_this_month: true,
+      cancellation_link: '',
+      subscription_id: '3',
+      user_id: '1'
+    },
+    {
+      name: 'Тбанк',
+      subscription_avatar_url: 'https://cdnn21.img.ria.ru/images/07e8/02/0f/1927608429_0:0:640:640_1920x0_80_0_0_ae1300a0f202fd1faf907e77f424e55b.jpg',
+      isPaid: false,
+      cost: 2000,
+      next_billind: '2025-01-26',
+      category: 'Музыка',
+      url_service: '',
+      use_in_this_month: false,
+      cancellation_link: '',
+      subscription_id: '4',
+      user_id: '1'
     }
   ]
 

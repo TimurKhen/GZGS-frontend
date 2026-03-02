@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { TuiAlertService, TuiDialogService, TuiIcon } from "@taiga-ui/core";
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
 import { DatePipe, JsonPipe } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, isActive, Router } from '@angular/router';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
 import { ActionButtonInterface } from '../../../../interfaces/action-button/action-button-interface';
@@ -129,6 +129,10 @@ export class Subscription implements OnInit {
     })
   }
 
+  returnBack() {
+    this.router.navigate(['/'])
+  }
+
   loadSubscriptionById(id: string) {
     this.subscriptionsService.userSubscriptions.subscribe((data) => {
       let finded = data.findIndex((value) => {
@@ -137,7 +141,16 @@ export class Subscription implements OnInit {
       if (finded === -1) {
         this.subscriptionData.set(null)
       } else {
-        this.subscriptionData.set(data[finded])
+        const findedData = data[finded]
+        this.subscriptionData.set(findedData)
+        this.isPaidStatusBlock.update(currentData => ({
+          ...currentData, 
+          isActive: findedData.isPaid
+        }))
+        this.usedStatusBlock.update(currentData => ({
+          ...currentData, 
+          isActive: findedData.use_in_this_month
+        }))
       }
     })
   }
