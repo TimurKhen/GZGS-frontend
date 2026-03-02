@@ -23,7 +23,7 @@ export class SubscriptionsService {
       user_id: '1'
     },
     {
-      name: 'Яндекс плюс',
+      name: 'Яндекс плюс 2',
       subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
       isPaid: false,
       cost: 1300,

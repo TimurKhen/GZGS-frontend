@@ -44,7 +44,7 @@
                 justify-content: space-between;
             }
 
-            .subscription-container {
+            .subscription-container, .categories-container {
                 width: 100%;
                 display: flex;
                 gap: vars.$size-20;

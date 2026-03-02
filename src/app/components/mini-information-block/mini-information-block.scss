@@ -17,6 +17,16 @@
         display: flex;
         align-items: center;
         gap: vars.$size-8;
+        
+        .icon-block {
+            border-radius: vars.$radius-full;
+        }
+        .paid-icon {
+            background: vars.$color-green;
+        }
+        .unpaid-icon {
+            background: vars.$color-red;
+        }
     }
 
     h3 {

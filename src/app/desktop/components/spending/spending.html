@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="subscribtions">
-            @for (item of smalledSubscribtions(); track item) {
+            @for (item of currentSmalledSubscribtions(); track item) {
                 <app-mini-information-block
                     [information]="item"
                 ></app-mini-information-block>
@@ -23,7 +23,7 @@
     </div>
     <div class="ring">
         <tui-ring-chart
-            [value]="value"
+            [value]="prices()"
             [(activeItemIndex)]="index"
             size="xl"
         >

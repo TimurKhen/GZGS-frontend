@@ -1,7 +1,7 @@
 <div class="container">
     <div class="content">
         <span class="back">
-            <h2>Подписки</h2>
+            <h2>Аналитика</h2>
         </span>
         <div class="spending-container">
             <div class="spending">
@@ -13,30 +13,52 @@
         </div>
         <div class="subscriptions">
             <div class="filters">
-                <filters [isMultiple]="false" [filters]="['Категории', 'Сервисы']" (changedFilters)="changeFilter($event)"></filters>
+                <filters [isMultiple]="false" [filters]="types" (changedFilters)="changeFilter($event)"></filters>
                 <p>Использовать в прогнозе:</p>
             </div>
-            @for (item of realSubscriptions(); track item; let i = $index) {
-                <div class="subscription-container">
-                    <subscription-big 
-                        [subscribtionData]="item"
-                        animate.enter="appear"
-                        [routerLink]="['../subscription', item.subscription_id]"
-                        class="block"
-                    ></subscription-big>
-                    <label 
-                        class="checkbox"
-                        animate.enter="appear"
-                    >
-                        <input
-                            tuiCheckbox
-                            type="checkbox"
-                            [ngModel]="checkboxStates()[i]"
-                            (ngModelChange)="onCheckboxChange($event, i)"
-                        />
-                    </label>
-                </div>
+            @if (this.selectedGroup() === this.types[0]) {
+                <ng-container *ngTemplateOutlet="services"></ng-container>
+            } @else if (this.selectedGroup() === this.types[1]) {
+                <ng-container *ngTemplateOutlet="categoryBlock"></ng-container>
             }
         </div>
     </div>
 </div>
+
+
+<ng-template #services>
+    @for (item of realSubscriptions(); track item; let i = $index) {
+        <div class="subscription-container">
+            <subscription-big 
+                [subscribtionData]="item"
+                animate.enter="appear"
+                [routerLink]="['../subscription', item.subscription_id]"
+                class="block"
+            ></subscription-big>
+            <label 
+                class="checkbox"
+                animate.enter="appear"
+            >
+                <input
+                    tuiCheckbox
+                    type="checkbox"
+                    [ngModel]="checkboxStates()[i]"
+                    (ngModelChange)="onCheckboxChange($event, i)"
+                />
+            </label>
+        </div>
+    }
+</ng-template>
+
+<ng-template #categoryBlock>
+    @for (item of categories(); track item; let i = $index) {
+        <div class="categories-container">
+            <subscription-category
+                [category]="item"
+                animate.enter="appear"
+                class="block"
+            >
+            </subscription-category>
+        </div>
+    }
+</ng-template>

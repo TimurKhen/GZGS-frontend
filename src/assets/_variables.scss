@@ -29,6 +29,7 @@ $size-160: 160px;
 $size-200: 200px;
 $size-240: 240px;
 $size-280: 280px;
+$size-320: 320px;
 $size-360: 360px;
 $size-400: 400px;
 
@@ -44,7 +45,7 @@ $font-lg: 24px;
 }
 
 @mixin shadow {
-  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 12px 0 rgba(19, 19, 19, 0.1);
 }
 
 @mixin textSettings {

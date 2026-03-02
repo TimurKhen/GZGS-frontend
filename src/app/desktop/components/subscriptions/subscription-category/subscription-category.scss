@@ -1,0 +1,44 @@
+@use '../../../../../assets/_variables.scss' as vars;
+
+.category-block {
+    width: 100%;
+    min-height: vars.$size-100;
+
+    display: flex;
+    flex-direction: column;
+    gap: vars.$size-20;
+    background-color: vars.$color-surface;
+
+    border-radius: vars.$radius-lg;
+    padding: vars.$size-20;
+    @include vars.shadow;
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$size-12;
+        
+        .naming {
+            display: flex;
+            gap: vars.$size-8;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: vars.$size-12;
+            justify-self: flex-end;
+            font-size: vars.$font-sm;
+            
+            .perYear {
+                color: vars.$color-gray;
+            }
+        }
+    }
+
+    .subscribes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(vars.$size-160, vars.$size-320));
+        gap: vars.$size-12;
+    }
+}

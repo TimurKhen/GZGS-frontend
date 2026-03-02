@@ -9,6 +9,7 @@
     background: vars.$color-surface;
     gap: vars.$size-20;
     border-radius: vars.$radius-lg;
+    @include vars.shadow;
 
     .ring {
         h2 {

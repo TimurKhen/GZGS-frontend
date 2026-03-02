@@ -46,9 +46,6 @@ export class Subscription implements OnInit {
     secondButtonText: 'Использована',
     isActive: false
   })
-  
-  // TODO ^^^^^^^^^^^^^^^^^^^^^^^
-  //  Сделать это как массив лучше будет!!!!!!!!!!!
 
   actionButtons = signal<ActionButtonInterface[]>([
     {
@@ -125,7 +122,5 @@ export class Subscription implements OnInit {
 
   saveChanges($event: Event) {
     $event.preventDefault()
-
-
   }
 }

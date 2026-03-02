@@ -31,6 +31,18 @@
             flex-direction: column;
             gap: vars.$size-12;
             
+            .naming {
+                display: flex;
+                gap: vars.$size-8;
+
+                .category {
+                    border-radius: vars.$radius-lg;
+                    @include vars.basicGradient;
+                    padding: 0 vars.$size-20;
+                    color: vars.$color-black;
+                }
+            }
+
             .paid-container {
                 display: flex;
                 align-items: center;

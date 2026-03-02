@@ -6,7 +6,11 @@
     </div>
     <div class="information">
         <div class="main">
-            <h3>{{subscribtionData()?.name}}</h3>
+            <span class="naming">
+                <h3>{{subscribtionData()?.name}}</h3>
+                <h3>·</h3>
+                <h3 class="category">{{subscribtionData()?.category}}</h3>
+            </span>
             <div class="paid-container">
                 <is-paid-status [isPaid]="subscribtionData()?.isPaid"></is-paid-status>
                 @if (subscribtionData()?.isPaid) {

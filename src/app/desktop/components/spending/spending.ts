@@ -1,7 +1,6 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, effect, input, OnChanges, OnInit, signal } from '@angular/core';
 import {TuiRingChart} from '@taiga-ui/addon-charts';
 import {TuiAmountPipe} from '@taiga-ui/addon-commerce';
-import {tuiSum} from '@taiga-ui/cdk';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { MiniInformationBlock } from "../../../components/mini-information-block/mini-information-block";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
@@ -12,8 +11,11 @@ import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscri
   templateUrl: './spending.html',
   styleUrl: './spending.scss',
 })
-export class Spending {
-  subscriptions = input<SubscriptionInterface[]>()
+export class Spending implements OnChanges {
+  subscriptions = input<SubscriptionInterface[]>([])
+  names = signal<string[]>([])
+  prices = signal<number[]>([])
+  
   smalledSubscribtions = computed(() => {
     const subscribtionLen = this.subscriptions()?.length
     if (!subscribtionLen) return []
@@ -24,23 +26,63 @@ export class Spending {
       return this.subscriptions()
     }
   })
+  currentSmalledSubscribtions = signal<SubscriptionInterface[]>(
+    this.smalledSubscribtions().filter((value: SubscriptionInterface) => {
+      return value.isPaid
+    }))
   activeButtonIndex = signal<number>(0)
+
+  constructor() {
+    effect(() => {
+      let names: string[] = []
+      let prices: number[] = []
+      this.currentSmalledSubscribtions().forEach(element => {
+        names.push(element.name)
+        prices.push(element.cost)
+      })
+      this.names.set(names)
+      this.prices.set(prices)
+    })
+  }
+
+  ngOnChanges(): void {
+    this.recalculateCurrentSubscriptions()
+  }
 
   changeActiveButtonIndex(value: number) {
     this.activeButtonIndex.set(value)
+    this.recalculateCurrentSubscriptions()
   }
 
-  private readonly labels = ['Food', 'Cafe', 'Open Source', 'Taxi', 'other'];
-  protected readonly value = [13769, 12367, 10172, 3018, 2592];
-  protected readonly total = tuiSum(...this.value);
+  recalculateCurrentSubscriptions() {
+    let isinvert = 0
+    if (this.activeButtonIndex() === 1) {
+      isinvert = 1
+    }
 
-  protected index = NaN;
+    this.currentSmalledSubscribtions.set(
+      this.smalledSubscribtions().filter(
+        (value: SubscriptionInterface) => {
+          const isPaid = Number(value.isPaid) 
+          return isPaid - isinvert
+        }
+      )
+    )
+  }
+
+  total = computed(() => {
+    let sumValue = 0
+    this.prices().forEach(val => sumValue += val)
+    return sumValue
+  })
+
+  protected index = NaN
 
   protected get sum(): number {
-      return (Number.isNaN(this.index) ? this.total : this.value[this.index]) ?? 0;
+    return (Number.isNaN(this.index) ? this.total() : this.prices()[this.index]) ?? 0
   }
 
   protected get label(): string {
-      return (Number.isNaN(this.index) ? 'Total' : this.labels[this.index]) ?? '';
+    return (Number.isNaN(this.index) ? 'В сумме' : this.names()[this.index]) ?? ''
   }
 }

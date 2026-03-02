@@ -1,0 +1,19 @@
+<div class="category-block">
+    <div class="main">
+        <span class="naming">
+            <h2>{{category()?.name}}</h2>
+        </span>
+
+        <div class="price">
+            <h3>{{category()?.cost}}₽/мес.</h3>
+            <h3 class="perYear">{{getCostForYear(category()?.cost)}}₽/год.</h3>
+        </div>
+    </div>
+    <div class="subscribes">
+        @for (item of smalledSubscribtions(); track item) {
+            <app-mini-information-block
+                [information]="item"
+            ></app-mini-information-block>
+        }
+    </div>
+</div>
