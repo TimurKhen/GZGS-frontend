@@ -1,33 +1,64 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { inject, Injectable, signal } from '@angular/core';
 import { masterURL } from '../masterURL';
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { UuidService } from '../../uuid/uuid-service';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SubscriptionsService {
+  basic = [{
+      name: 'Яндекс плюс',
+      subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
+      isPaid: true,
+      cost: 300,
+      next_billind: '2025-05-26',
+      category: 'Технологии',
+      url_service: '',
+      cancellation_link: '',
+      use_in_this_month: false,
+      subscription_id: '1',
+      user_id: '1'
+    },
+    {
+      name: 'Яндекс плюс',
+      subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
+      isPaid: false,
+      cost: 1300,
+      next_billind: '2025-01-26',
+      category: 'Технологии',
+      url_service: '',
+      use_in_this_month: true,
+      cancellation_link: '',
+      subscription_id: '2',
+      user_id: '1'
+    }
+  ]
+
+
   private http = inject(HttpClient)
   private uuidService = inject(UuidService)
   private mainUrl = masterURL + 'api/subscriptions/'
+  private currentUserSubscriptions = signal<SubscriptionInterface[]>([])
+  
+  get userSubscriptions(): Observable<SubscriptionInterface[]> {
+    if (this.currentUserSubscriptions().length === 0) {
+      return this.getSubscriptions().pipe(
+        catchError((err) => {
+          if (err.status !== 200) {
+            return of(this.basic);
+          }
+          return throwError(() => err);
+        })
+      )
+    }
+
+    return of(this.currentUserSubscriptions())
+  }
 
   createSubscription(subscriptionData: SubscriptionInterface) {
-      // {
-      //   "subscription_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-      //   "user_id": "550e8400-e29b-41d4-a716-446655440000",
-      //   "name": "yandex plus",
-      //   "cost": 150.54,
-      //   "next_billing": "2026-03-01T12:25:19.454Z",
-      //   "status": "unpaid",
-      //   "subscription_avatar_url": "url/url/url/avatar.png",
-      //   "category": "music",
-      //   "url_service": "url for some service",
-      //   "use_in_this_month": false,
-      //   "cancellation_link": "link to cancellation service"
-      // }
-
     const formData = new FormData()
     formData.append('subscription_id', this.uuidService.generateUUID())
     formData.append('user_id', this.uuidService.generateUUID())
@@ -44,6 +75,23 @@ export class SubscriptionsService {
     return this.http.post(
       this.mainUrl + 'create',
       formData
+    )
+  }
+
+  getSubscriptions() {
+    return this.http.get<SubscriptionInterface[]>(
+      this.mainUrl + 'get/subscriptions'
+    ).pipe(
+      tap(val => {
+        this.currentUserSubscriptions.set(val)
+      })
+    )
+  }
+
+  updateSubscription(id: string, changes: SubscriptionInterface) {
+    return this.http.patch(
+      this.mainUrl + `update/${id}`,
+      changes
     )
   }
 }

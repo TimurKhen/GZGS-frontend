@@ -13,6 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TextInput } from "../../../components/form/inputs/text-input/text-input";
 import { DateInput } from "../../../components/form/inputs/date-input/date-input";
 import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
+import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { DateConverter } from '../../../../services/converters/date-converter/da
 })
 export class Subscription implements OnInit {
   readonly dateConverter = inject(DateConverter)
+  private subscriptionsService = inject(SubscriptionsService)
   private readonly alerts = inject(TuiAlertService)
   
   subscriptionData = signal<any>(null)
@@ -35,14 +37,6 @@ export class Subscription implements OnInit {
     buttonText: 'Поменять',
     secondButtonText: 'Оплачена',
     isActive: true
-  })
-  notificationsStatusBlock = signal<StatusBlockInterface>({
-    icon: 'bell',
-    text: 'Уведомления включены',
-    secondText: 'Уведомления отключены',
-    buttonText: 'Отключить',
-    secondButtonText: 'Включить',
-    isActive: false
   })
   usedStatusBlock = signal<StatusBlockInterface>({
     icon: null,
@@ -104,24 +98,22 @@ export class Subscription implements OnInit {
       const id = params.get('id')
       if (id) {
         this.subscriptionId.set(id)
-        this.subscriptionData.set(this.loadSubscriptionById(id))
+        this.loadSubscriptionById(id)
       }
     })
   }
 
-  loadSubscriptionById(id: string): SubscriptionInterface {
-    return {
-      name: 'Яндекс плюс',
-      subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
-      isPaid: true,
-      cost: 300,
-      next_billind: '2025-05-26',
-      category: 'Технологии',
-      url_service: 'https://plus.yandex.ru/',
-      cancellation_link: 'https://www.gosuslugi.ru/',
-      use_in_this_month: false,
-      subscription_id: '1'
-    }
+  loadSubscriptionById(id: string) {
+    this.subscriptionsService.userSubscriptions.subscribe((data) => {
+      let finded = data.findIndex((value) => {
+        return value.subscription_id === id
+      }) 
+      if (finded === -1) {
+        this.subscriptionData.set(null)
+      } else {
+        this.subscriptionData.set(data[finded])
+      }
+    })
   }
 
   changeStatus(changingSignal: WritableSignal<StatusBlockInterface>) {

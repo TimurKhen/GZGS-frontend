@@ -10,4 +10,5 @@ export interface SubscriptionInterface {
     url_service: string,
     use_in_this_month: boolean,
     subscription_id: string
+    user_id: string
 }

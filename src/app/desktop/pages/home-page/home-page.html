@@ -5,7 +5,7 @@
             <div class="subscribtions-container">
                 <h2>Ваши подписки:</h2>
                 <div class="subscribtions">
-                    @for (item of realSubscriptions; track item) {
+                    @for (item of realSubscriptions(); track item) {
                         <assets-subscribtion
                             [routerLink]="['subscription', item.subscription_id]"
                             [subscribtionData]="item"
@@ -18,7 +18,7 @@
             </div>
             <div class="controls">
                 <app-spending
-                    [subscriptions]="realSubscriptions"
+                    [subscriptions]="realSubscriptions()"
                 ></app-spending>
 
                 <div class="buttons">

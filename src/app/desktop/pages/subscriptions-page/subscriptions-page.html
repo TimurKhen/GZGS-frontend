@@ -4,7 +4,11 @@
             <h2>Подписки</h2>
         </span>
         <div class="filters">
-            <filters [filters]="['Оплаченные', 'Не оплаченные']" (changedFilters)="changeFilter($event)"></filters>
+            <filters 
+                [filters]="['Оплаченные', 'Не оплаченные']" 
+                (changedFilters)="changeFilter($event)"
+                [isMultiple]="true"
+                ></filters>
         </div>
         <div class="subscriptions">
             @for (item of filteredSubscriptions(); track item) {
