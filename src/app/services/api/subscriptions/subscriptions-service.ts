@@ -88,10 +88,16 @@ export class SubscriptionsService {
     )
   }
 
-  updateSubscription(id: string, changes: SubscriptionInterface) {
+  updateSubscription(currentData: SubscriptionInterface, changes: SubscriptionInterface) {
     return this.http.patch(
-      this.mainUrl + `update/${id}`,
+      this.mainUrl + `update/${currentData.subscription_id}`,
       changes
+    )
+  }
+
+  deleteSubscription(currentData: SubscriptionInterface) {
+    return this.http.delete(
+      this.mainUrl + `delete/${currentData.subscription_id}`
     )
   }
 }

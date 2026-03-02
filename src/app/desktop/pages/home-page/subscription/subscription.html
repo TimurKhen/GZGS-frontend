@@ -27,8 +27,6 @@
             </div>
         </div>
         <div class="statuses">
-  <!-- // TODO
-  //  Сделать это циклом!!!!!!!!!!! -->
             <status-block
                 [blockData]="isPaidStatusBlock()"
                 (statusChange)="changeStatus(isPaidStatusBlock)"
@@ -73,19 +71,25 @@
                         <text-input 
                             [control]="editForm.get('url_service')"
                             [placeholderText]="'Ссылка на сервис'"
+                            [isRequred]="true"
                         ></text-input>
                         <text-input 
                             [control]="editForm.get('cancellation_link')"
                             [placeholderText]="'Ссылка на отмену'"
+                            [isRequred]="true"
                         ></text-input>
                         <text-input 
                             [control]="editForm.get('category')"
                             [placeholderText]="'Категория'"
+                            [isRequred]="true"
                         ></text-input>
                     </div>
                 </div>
 
-                <button (click)="saveChanges($event)">Подтвердить изменения</button>
+                <div class="buttons">
+                    <button (click)="saveChanges($event)">Подтвердить изменения</button>
+                    <button class="delete-button" (click)="deleteSubscription($event)">Удалить подписку</button>
+                </div>
             </form>
         </div>
     </div>

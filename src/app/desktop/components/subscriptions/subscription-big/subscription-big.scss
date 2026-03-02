@@ -39,7 +39,7 @@
                     border-radius: vars.$radius-lg;
                     @include vars.basicGradient;
                     padding: 0 vars.$size-20;
-                    color: vars.$color-black;
+                    color: vars.$color-black !important;
                 }
             }
 

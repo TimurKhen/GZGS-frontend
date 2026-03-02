@@ -53,7 +53,7 @@
                         gap: vars.$size-20;
 
                         h1 {
-                            color: vars.$color-black;
+                            color: vars.$color-black !important;
                         }
                     }
 
@@ -129,14 +129,28 @@
                     }
                 }
 
-                button {
-                    align-self: flex-start;
-                    padding: vars.$size-12 vars.$size-24;
-                    border: none;
-                    border-radius: vars.$radius-sm;
-                    background: vars.$color-yellow;
-                    font-weight: 700;
-                    font-size: vars.$font-md;
+                .buttons {
+                    display: flex;
+                    justify-content: space-between;
+
+                    button {
+                        align-self: flex-start;
+                        padding: vars.$size-12 vars.$size-24;
+                        border: none;
+                        border-radius: vars.$radius-sm;
+                        background: vars.$color-yellow;
+                        font-weight: 700;
+                        font-size: vars.$font-md;
+                    }
+
+                    .delete-button {
+                        padding: vars.$size-12 vars.$size-24;
+                        border: none;
+                        border-radius: vars.$radius-sm;
+                        background: vars.$color-red;
+                        font-weight: 600;
+                        font-size: vars.$font-md;
+                    }
                 }
             }
         }

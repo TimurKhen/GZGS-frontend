@@ -1,9 +1,8 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { TuiAlertService, TuiIcon } from "@taiga-ui/core";
+import { TuiAlertService, TuiDialogService, TuiIcon } from "@taiga-ui/core";
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
 import { DatePipe, JsonPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
 import { ActionButtonInterface } from '../../../../interfaces/action-button/action-button-interface';
@@ -14,6 +13,8 @@ import { TextInput } from "../../../components/form/inputs/text-input/text-input
 import { DateInput } from "../../../components/form/inputs/date-input/date-input";
 import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
 import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
+import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
+import { catchError, throwError } from 'rxjs';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class Subscription implements OnInit {
   readonly dateConverter = inject(DateConverter)
   private subscriptionsService = inject(SubscriptionsService)
   private readonly alerts = inject(TuiAlertService)
+  private readonly dialogs = inject(TuiDialogService)
   
   subscriptionData = signal<any>(null)
   subscriptionId = signal<string | null>(null)
@@ -77,7 +79,7 @@ export class Subscription implements OnInit {
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    cost: new FormControl(0, [Validators.required]),
+    cost: new FormControl(0, [Validators.required, Validators.min(1)]),
     next_billing: new FormControl('', [Validators.required]),
     url_service: new FormControl(''),
     cancellation_link: new FormControl(''),
@@ -86,6 +88,7 @@ export class Subscription implements OnInit {
 
   
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private clipboard: Clipboard
   ) {}
@@ -122,5 +125,61 @@ export class Subscription implements OnInit {
 
   saveChanges($event: Event) {
     $event.preventDefault()
+    
+    this.subscriptionsService.updateSubscription(
+      this.subscriptionData(), 
+      this.editForm.value as SubscriptionInterface)
+      .pipe(
+        catchError((err) => {
+          this.showError(`${err.statusText}: ${err.status}`)
+          return throwError(err)
+        })
+      ).subscribe((data) => {
+        this.showDialog('Изменения сохранены')
+      }
+    )
+  }
+  
+  deleteSubscription($event: Event) {
+    $event.preventDefault()
+    
+    this.subscriptionsService.deleteSubscription(
+      this.subscriptionData())
+      .pipe(
+        catchError((err) => {
+          this.showError(`${err.statusText}: ${err.status}`)
+          return throwError(err)
+        })
+      ).subscribe(() => {
+        this.router.navigate(['/'])
+      }
+    )
+  }
+
+  protected showDialog(message: string): void {
+        this.alerts
+            .open(
+                `${message}`,
+                {
+                  data: {
+                    theme: 'dark'
+                  }
+                }
+            )
+            .subscribe()
+  }
+
+  protected showError(message: string): void {
+        this.alerts
+            .open(
+                `${message}`,
+                {
+                  appearance: 'negative',
+                  data: {
+                    theme: 'dark'
+                  }
+                }
+            )
+            .subscribe()  
   }
 }
