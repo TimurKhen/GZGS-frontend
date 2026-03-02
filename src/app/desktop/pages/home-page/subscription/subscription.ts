@@ -14,7 +14,7 @@ import { DateInput } from "../../../components/form/inputs/date-input/date-input
 import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
 import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
-import { catchError, throwError } from 'rxjs';
+import { catchError, debounceTime, delay, Observable, of, Subject, switchMap, throwError } from 'rxjs';
 
 
 @Component({
@@ -27,8 +27,9 @@ export class Subscription implements OnInit {
   readonly dateConverter = inject(DateConverter)
   private subscriptionsService = inject(SubscriptionsService)
   private readonly alerts = inject(TuiAlertService)
-  private readonly dialogs = inject(TuiDialogService)
-  
+  paidStatusSubject = new Subject<any>()
+  usedStatusSubject = new Subject<any>()
+
   subscriptionData = signal<any>(null)
   subscriptionId = signal<string | null>(null)
   
@@ -38,7 +39,8 @@ export class Subscription implements OnInit {
     secondText: 'Подписка не оплачена',
     buttonText: 'Поменять',
     secondButtonText: 'Оплачена',
-    isActive: true
+    isActive: true,
+    subject: this.paidStatusSubject,
   })
   usedStatusBlock = signal<StatusBlockInterface>({
     icon: null,
@@ -46,7 +48,8 @@ export class Subscription implements OnInit {
     secondText: 'Подписка не использована',
     buttonText: 'Поменять',
     secondButtonText: 'Использована',
-    isActive: false
+    isActive: false,
+    subject: this.usedStatusSubject,
   })
 
   actionButtons = signal<ActionButtonInterface[]>([
@@ -91,7 +94,30 @@ export class Subscription implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private clipboard: Clipboard
-  ) {}
+  ) {
+    this.paidStatusSubject
+      .pipe(
+        debounceTime(500),
+        switchMap((val) => {
+          return val
+        })
+      )
+      .subscribe((data) => {  
+        console.log(data)
+      }
+    )
+
+    this.usedStatusSubject.pipe(
+        debounceTime(500),
+        switchMap((val) => {
+          return val
+        })
+      )
+      .subscribe((data) => {  
+        console.log(data)
+      }
+    )
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -117,10 +143,12 @@ export class Subscription implements OnInit {
   }
 
   changeStatus(changingSignal: WritableSignal<StatusBlockInterface>) {
+    let value = !changingSignal().isActive
     changingSignal.update(currentData => ({
       ...currentData, 
-      isActive: !currentData.isActive   
+      isActive: value
     }))
+    changingSignal().subject.next(of([value]))
   }
 
   saveChanges($event: Event) {
