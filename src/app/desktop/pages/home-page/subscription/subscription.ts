@@ -16,11 +16,12 @@ import { SubscriptionsService } from '../../../../services/api/subscriptions/sub
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { catchError, debounceTime, delay, Observable, of, Subject, switchMap, throwError } from 'rxjs';
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
+import { NumberInput } from '../../../components/form/inputs/number-input/number-input';
 
 
 @Component({
   selector: 'app-subscription',
-  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput],
+  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput],
   templateUrl: './subscription.html',
   styleUrl: './subscription.scss',
 })
@@ -85,7 +86,7 @@ export class Subscription implements OnInit {
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    cost: new FormControl(0, [Validators.required, Validators.min(1)]),
+    cost: new FormControl(0, [Validators.required, Validators.min(0)]),
     next_billing: new FormControl('', [Validators.required]),
     url_service: new FormControl(''),
     cancellation_link: new FormControl(''),

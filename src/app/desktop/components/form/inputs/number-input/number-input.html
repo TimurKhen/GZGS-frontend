@@ -30,7 +30,7 @@
 } 
 @if (!control().valid && control().touched) {
     @if (control().errors['min']) {
-        <tui-error [error]="'Минимальное значение - 1'" />
+        <tui-error [error]="'Минимальное значение - 0'" />
     } @else {
         <tui-error [error]="'Обязательно'" />
     }
