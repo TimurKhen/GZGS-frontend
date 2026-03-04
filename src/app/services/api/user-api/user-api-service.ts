@@ -19,7 +19,7 @@ export class UserApiService {
   private cookieService = inject(CookieService)
   private uuidService = inject(UuidService)
    
-  private mainUrl = masterURL + 'api/user/'
+  private mainUrl = masterURL + '/' + 'api/user/'
   token: string | null = null
   refreshToken: string | null = null
 

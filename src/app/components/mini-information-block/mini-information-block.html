@@ -2,7 +2,7 @@
     <span class="main-information">
         <img [src]="information()?.subscription_avatar_url" height="20">
         <h3 class="name">{{information()?.name}}</h3>
-        @if (information()?.isPaid) {
+        @if (information()?.status) {
             <span class="paid-icon icon-block">
                 <tui-icon class="icon" icon="@tui.check"></tui-icon>
             </span>
