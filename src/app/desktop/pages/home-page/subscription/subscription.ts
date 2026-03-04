@@ -148,7 +148,7 @@ export class Subscription implements OnInit {
         this.subscriptionData.set(findedData)
         this.isPaidStatusBlock.update(currentData => ({
           ...currentData, 
-          isActive: findedData.isPaid
+          isActive: findedData.status
         }))
         this.usedStatusBlock.update(currentData => ({
           ...currentData, 

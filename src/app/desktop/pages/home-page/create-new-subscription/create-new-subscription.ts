@@ -42,6 +42,7 @@ export class CreateNewSubscription {
       .pipe(
         catchError((err) => {
           this.showError(`${err.statusText}: ${err.status}`)
+          this.isLoading.set(false)
           return throwError(err)
         })
       )

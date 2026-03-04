@@ -21,8 +21,8 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.subscriptionsService.userSubscriptions.subscribe((data: SubscriptionInterface[]) => {
-      console.log(data)
       this.realSubscriptions.set(data)
+      console.log(this.realSubscriptions())
     })
   }
 }

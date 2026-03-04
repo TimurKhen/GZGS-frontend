@@ -37,7 +37,7 @@
                         display: grid;
                         grid-template-columns: repeat(3, 300px);
                         grid-auto-flow: dense;
-                        gap: 0;
+                        gap: vars.$size-20;
                         align-items: center;
                     }
                 }

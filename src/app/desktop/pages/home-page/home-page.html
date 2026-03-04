@@ -5,11 +5,13 @@
             <div class="subscribtions-container">
                 <h2>Ваши подписки:</h2>
                 <div class="subscribtions">
-                    @for (item of realSubscriptions(); track item) {
-                        <assets-subscribtion
-                            [routerLink]="['subscription', item.subscription_id]"
-                            [subscribtionData]="item"
-                        ></assets-subscribtion>
+                    @for (item of realSubscriptions(); track item; let i = $index) {
+                        @if (i < 6) {
+                            <assets-subscribtion
+                                [routerLink]="['subscription', item.subscription_id]"
+                                [subscribtionData]="item"
+                            ></assets-subscribtion>
+                        }
                     }
                     <button routerLink="add">
                         Добавить подписку

@@ -14,7 +14,7 @@
             <div class="paid-container">
                 <is-paid-status [isPaid]="subscribtionData()?.isPaid"></is-paid-status>
                 @if (subscribtionData()?.isPaid) {
-                    <p>до {{dateConverter.parseDate(subscribtionData()?.next_billind) | date:'longDate'}}</p>
+                    <p>до {{dateConverter.parseDate(subscribtionData()?.next_billing) | date:'longDate'}}</p>
                 }
             </div>
         </div>

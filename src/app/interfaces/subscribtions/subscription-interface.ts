@@ -1,10 +1,10 @@
 export interface SubscriptionInterface {
     name: string,
     cost: number,
-    next_billind: string,
+    next_billing: string,
     // status: 'paid' | 'unpaid',
     cancellation_link: string,
-    isPaid: boolean
+    status: boolean
     subscription_avatar_url: string,
     category: string,
     url_service: string,

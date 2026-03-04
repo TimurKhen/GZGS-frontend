@@ -33,7 +33,7 @@ export class SubscriptionsPage implements OnInit {
     } else {
       this.filteredSubscriptions.set(this.realSubscriptions().filter(
         (value: SubscriptionInterface) => {
-          const isPaid = value.isPaid
+          const isPaid = value.status
           if (isPaid) {
             if (filters[0]) {
               return true

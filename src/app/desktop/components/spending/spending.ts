@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, OnChanges, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, OnChanges, OnInit, signal, SimpleChange, SimpleChanges } from '@angular/core';
 import {TuiRingChart} from '@taiga-ui/addon-charts';
 import {TuiAmountPipe} from '@taiga-ui/addon-commerce';
 import { AsyncPipe, NgClass } from '@angular/common';
@@ -10,25 +10,16 @@ import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscri
   imports: [AsyncPipe, TuiAmountPipe, TuiRingChart, MiniInformationBlock, NgClass],
   templateUrl: './spending.html',
   styleUrl: './spending.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Spending implements OnChanges {
   subscriptions = input<SubscriptionInterface[]>([])
   names = signal<string[]>([])
   prices = signal<number[]>([])
   
-  smalledSubscribtions = computed(() => {
-    const subscribtionLen = this.subscriptions()?.length
-    if (!subscribtionLen) return []
-    if (subscribtionLen > 6) {
-      let spliced = this.subscriptions()?.splice(0, 5)
-      return spliced
-    } else {
-      return this.subscriptions()
-    }
-  })
   currentSmalledSubscribtions = signal<SubscriptionInterface[]>(
-    this.smalledSubscribtions().filter((value: SubscriptionInterface) => {
-      return value.isPaid
+    this.subscriptions().filter((value: SubscriptionInterface) => {
+      return value.status
     }))
   activeButtonIndex = signal<number>(0)
 
@@ -45,7 +36,7 @@ export class Spending implements OnChanges {
     })
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.recalculateCurrentSubscriptions()
   }
 
@@ -60,10 +51,16 @@ export class Spending implements OnChanges {
       isinvert = 1
     }
 
+    console.log(this.subscriptions())
+    console.log(this.currentSmalledSubscribtions())
+    console.log(isinvert)
+
     this.currentSmalledSubscribtions.set(
-      this.smalledSubscribtions().filter(
+      this.subscriptions().filter(
         (value: SubscriptionInterface) => {
-          const isPaid = Number(value.isPaid) 
+          console.log(value)
+          const isPaid = Number(value.status) 
+          console.log(isPaid - isinvert)
           return isPaid - isinvert
         }
       )

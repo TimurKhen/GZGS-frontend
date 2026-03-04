@@ -12,9 +12,9 @@ export class SubscriptionsService {
   basic = [{
       name: 'Яндекс плюс',
       subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
-      isPaid: true,
+      status: true,
       cost: 300,
-      next_billind: '2025-05-26',
+      next_billing: '2025-05-26',
       category: 'Технологии',
       url_service: '',
       cancellation_link: '',
@@ -25,9 +25,9 @@ export class SubscriptionsService {
     {
       name: 'Яндекс плюс 2',
       subscription_avatar_url: 'https://logo-teka.com/wp-content/uploads/2026/02/yandex-plus-icon-logo.png',
-      isPaid: false,
+      status: false,
       cost: 1300,
-      next_billind: '2025-01-26',
+      next_billing: '2025-01-26',
       category: 'Технологии',
       url_service: '',
       use_in_this_month: true,
@@ -38,9 +38,9 @@ export class SubscriptionsService {
     {
       name: 'Яндекс музыка',
       subscription_avatar_url: 'https://img.freepik.com/premium-vector/yandex-music-logo_578229-242.jpg?w=360',
-      isPaid: true,
+      status: true,
       cost: 400,
-      next_billind: '2025-01-26',
+      next_billing: '2025-01-26',
       category: 'Музыка',
       url_service: '',
       use_in_this_month: true,
@@ -51,9 +51,9 @@ export class SubscriptionsService {
     {
       name: 'Тбанк',
       subscription_avatar_url: 'https://cdnn21.img.ria.ru/images/07e8/02/0f/1927608429_0:0:640:640_1920x0_80_0_0_ae1300a0f202fd1faf907e77f424e55b.jpg',
-      isPaid: false,
+      status: false,
       cost: 2000,
-      next_billind: '2025-01-26',
+      next_billing: '2025-01-26',
       category: 'Музыка',
       url_service: '',
       use_in_this_month: false,
@@ -74,9 +74,9 @@ export class SubscriptionsService {
       return this.getSubscriptions().pipe(
         catchError((err) => {
           if (err.status !== 200) {
-            return of(this.basic);
+            return of(this.basic)
           }
-          return throwError(() => err);
+          return throwError(() => err)
         })
       )
     }
@@ -85,12 +85,14 @@ export class SubscriptionsService {
   }
 
   createSubscription(subscriptionData: SubscriptionInterface) {
+    console.log(subscriptionData)
+    
     const formData = new FormData()
     formData.append('subscription_id', this.uuidService.generateUUID())
     formData.append('user_id', this.uuidService.generateUUID())
     formData.append('name', subscriptionData.name)
     formData.append('cost', String(subscriptionData.cost))
-    formData.append('next_billing', subscriptionData.next_billind)
+    formData.append('next_billing', subscriptionData.next_billing)
     formData.append('status', 'false')
     formData.append('subscription_avatar_url', subscriptionData.subscription_avatar_url)
     formData.append('category', subscriptionData.category)
