@@ -15,7 +15,7 @@
             <button 
                 (click)="signIn($event)" 
                 class="registrate"
-                [disabled]="!signInForm.valid"
+                [disabled]="!signInForm.valid || isLoading()"
                 >Войти</button>
         </form>
         <a [routerLink]="['../reg']">Зарегистрироваться</a>

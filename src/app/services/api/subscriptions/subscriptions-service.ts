@@ -106,7 +106,7 @@ export class SubscriptionsService {
 
   getSubscriptions() {
     return this.http.get<SubscriptionInterface[]>(
-      this.mainUrl + 'get/subscriptions'
+      this.mainUrl + 'all'
     ).pipe(
       tap(val => {
         this.currentUserSubscriptions.set(val)

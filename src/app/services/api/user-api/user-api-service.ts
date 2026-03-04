@@ -52,15 +52,16 @@ export class UserApiService {
   
   login(userLoginInformation: LoginUserInterface) {
     let headers = new HttpHeaders()
-
     headers = headers.set('Content-Type', 'application/json')
 
-    return this.http.post(
+    return this.http.post<RegistrationResponseInterface>(
       this.mainUrl + 'login',
       userLoginInformation,
       {
         headers: headers
       }
+    ).pipe(
+      tap(val => this.saveTokens(val.tokens))
     )
   }
 

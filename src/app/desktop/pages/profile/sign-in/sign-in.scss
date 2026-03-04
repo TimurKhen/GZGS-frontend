@@ -14,7 +14,7 @@
         gap: vars.$size-40;
 
         form {
-            width: 30%;
+            width: 50%;;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -63,12 +63,11 @@
                 width: 60%;
                 padding: vars.$size-12;
                 border-radius: vars.$radius-lg;
-                color: vars.$color-white;
                 border: none;
                 background: vars.$color-yellow;
-                color: vars.$color-black !important;
+                color: vars.$color-black;
                 font-weight: 800;
-
+                
                 transition: background-color 0.3s, color 0.3s, font-size 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 font-size: vars.$font-md;
                 
@@ -82,6 +81,28 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+
+    .content {
+        width: 100%;
+
+        form {
+            width: calc(100% - vars.$size-20);
+        
+            
+            .inputs {
+                label {
+                    width: 100%;
+                }
+            }
+        }
+    }
+  }
+}
+
 
 .enter {
     animation: show 0.3s;

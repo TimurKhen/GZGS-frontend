@@ -36,7 +36,7 @@
         }
     }
     .interactive {
-        height: 100%;
+        height: auto;
 
         display: flex;
         flex-direction: column;
@@ -69,5 +69,26 @@
             }
         }
     }
+}
 
+@media (max-width: 768px) {
+    .status {
+        height: auto;
+
+        .interactive {
+            h3 {
+                font-size: vars.$font-md;
+            }
+            
+            button {
+                font-size: vars.$font-sm;
+                
+                align-self: flex-start;
+            
+                &:hover {   
+                    background: transparent;
+                }
+            }
+        }
+    }
 }

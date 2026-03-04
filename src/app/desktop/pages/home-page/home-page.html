@@ -1,6 +1,6 @@
 <div class="container">
     <div class="content">
-        <h1>Добрый день, Илья Романыч</h1>
+        <h1 class="hello">Добрый день, Илья Романыч</h1>
         <div class="grid">
             <div class="subscribtions-container">
                 <h2>Ваши подписки:</h2>
@@ -18,6 +18,7 @@
             </div>
             <div class="controls">
                 <app-spending
+                    [attr.tuiTheme]="'dark'"
                     [subscriptions]="realSubscriptions()"
                 ></app-spending>
 

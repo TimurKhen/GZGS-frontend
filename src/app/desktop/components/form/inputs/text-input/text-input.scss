@@ -3,7 +3,7 @@
 
 .textfield-container {
     @include input-styles.input;
-    max-width: vars.$size-280;
+    // max-width: vars.$size-280;
     flex-direction: row;
     height: 100%;
     width: 100%;

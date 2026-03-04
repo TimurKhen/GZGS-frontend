@@ -15,6 +15,7 @@ import { DateConverter } from '../../../../services/converters/date-converter/da
 import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { catchError, debounceTime, delay, Observable, of, Subject, switchMap, throwError } from 'rxjs';
+import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class Subscription implements OnInit {
   readonly dateConverter = inject(DateConverter)
   private subscriptionsService = inject(SubscriptionsService)
   private readonly alerts = inject(TuiAlertService)
+  private readonly errorHandler = inject(ErrorCatcherService)
   paidStatusSubject = new Subject<any>()
   usedStatusSubject = new Subject<any>()
 
@@ -72,9 +74,10 @@ export class Subscription implements OnInit {
       action: () => {
         this.clipboard.copy('Текст для копирования')
 
-        this.alerts
-            .open('<strong>Письмо было скопированно</strong>')
-            .subscribe()
+        this.errorHandler.showAlert(
+          '<strong>Письмо было скопированно</strong>',
+          {}
+        )
       }
     }
   ])
@@ -198,29 +201,25 @@ export class Subscription implements OnInit {
   }
 
   protected showDialog(message: string): void {
-        this.alerts
-            .open(
-                `${message}`,
-                {
-                  data: {
-                    theme: 'dark'
-                  }
-                }
-            )
-            .subscribe()
+    this.errorHandler.showAlert(
+      `${message}`,
+      {
+        data: {
+          theme: 'dark'
+        }
+      }
+    )
   }
 
   protected showError(message: string): void {
-        this.alerts
-            .open(
-                `${message}`,
-                {
-                  appearance: 'negative',
-                  data: {
-                    theme: 'dark'
-                  }
-                }
-            )
-            .subscribe()  
+    this.errorHandler.showAlert(
+      `${message}`,
+      {
+        appearance: 'negative',
+        data: {
+          theme: 'dark'
+        }
+      }
+    )
   }
 }

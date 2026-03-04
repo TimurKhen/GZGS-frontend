@@ -9,6 +9,8 @@ import { Router, RouterLink } from "@angular/router";
 import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
 import { Subscribtion } from '../../../../components/subscribtion/subscribtion';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
+import { catchError, throwError } from 'rxjs';
+import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
 
 @Component({
   selector: 'app-create-new-subscription',
@@ -18,6 +20,7 @@ import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subs
 })
 export class CreateNewSubscription {
   subcsriptionService = inject(SubscriptionsService)
+  errorHandler = inject(ErrorCatcherService)
 
   subscriptionForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
@@ -35,10 +38,28 @@ export class CreateNewSubscription {
   createSubscription($event: Event) {
     $event.preventDefault()
     this.isLoading.set(true)
-    this.subcsriptionService.createSubscription(this.subscriptionForm.value as SubscriptionInterface).subscribe((data) => {
-      console.log(data)
-      this.isLoading.set(false)
-      this.router.navigate(['/'])
-    })
+    this.subcsriptionService.createSubscription(this.subscriptionForm.value as SubscriptionInterface)
+      .pipe(
+        catchError((err) => {
+          this.showError(`${err.statusText}: ${err.status}`)
+          return throwError(err)
+        })
+      )
+      .subscribe((data) => {
+        console.log(data)
+        this.isLoading.set(false)
+        this.router.navigate(['/'])
+      })
   }  
+  showError(message: string) {
+    this.errorHandler.showAlert(
+            `${message}`,
+            {
+              appearance: 'negative',
+              data: {
+                theme: 'dark'
+              }
+            }
+          )
+  }
 }

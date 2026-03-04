@@ -163,3 +163,142 @@
         }
     }
 }
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+
+    .content {
+        width: calc(100% - vars.$size-20);
+
+        .information {
+            .main {
+                height: auto;
+                display: flex;
+                flex-direction: column; 
+                gap: vars.$size-40;
+
+                .left {
+                    display: flex;
+                    flex-direction: row;
+                    gap: vars.$size-12;
+                    height: auto;
+
+                    .image {
+                        height: 100%;
+                    }
+
+                    .text {
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0;
+
+                        .is-paid-container {
+                            align-self: flex-start;
+                        }
+                    }
+                }
+
+                .right {
+                    display: flex;
+
+                    .price-and-date {
+                        width: 100%;
+                        justify-content: space-between;
+                        flex-direction: row;
+                        align-items: center;
+                        font-size: vars.$font-sm;
+                        padding: vars.$size-12;
+                    }
+                }
+            }
+        }
+
+        .statuses {
+            flex-direction: column;
+        }
+
+        .actions-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size-20;
+
+            .action-button {
+                background: vars.$color-yellow;
+                font-weight: 700;
+                padding: vars.$size-8 vars.$size-20;
+                font-size: vars.$font-md;
+                border: none;
+                border-radius: vars.$radius-full;
+                cursor: pointer;
+            }
+        }
+
+        .edit {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size-20;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+                .inputs {
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: vars.$size-20;
+                    height: auto;
+                    
+                    .other-inputs {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: vars.$size-20;
+
+                        text-input, date-input {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .buttons {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: vars.$size-12;
+
+                    button {
+                        width: 100%;
+                        align-self: center;
+                        padding: vars.$size-12 vars.$size-24;
+                        border: none;
+                        border-radius: vars.$radius-sm;
+                        background: vars.$color-yellow;
+                        font-weight: 700;
+                        font-size: vars.$font-md;
+                    }
+                    
+                    .delete-button {
+                        align-self: center;
+                        margin-bottom: vars.$size-20;
+                        padding: vars.$size-12 vars.$size-24;
+                        border: none;
+                        border-radius: vars.$radius-sm;
+                        background: vars.$color-red;
+                        font-weight: 600;
+                        font-size: vars.$font-md;
+                    }
+                }
+            }
+        }
+    }
+  }
+}

@@ -57,3 +57,13 @@
         align-items: center;
     }
 }
+
+
+
+@media (max-width: 768px) {
+  .spending-block {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$size-40;
+  }
+}

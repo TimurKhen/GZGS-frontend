@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
 import { LoginUserInterface } from '../../../../interfaces/user/login-user-interface';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,11 +13,14 @@ import { LoginUserInterface } from '../../../../interfaces/user/login-user-inter
 })
 export class SignIn {
   userAPIservice = inject(UserApiService)
+  isLoading = signal<boolean>(false)
 
   signInForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   })
+
+  constructor(private router: Router) {}
 
   signIn($event: Event) {
     $event.preventDefault()
@@ -31,8 +35,19 @@ export class SignIn {
       password: String(values.password)
     }
 
-    this.userAPIservice.login(loginObject).subscribe((data) => {
+    this.isLoading.set(true)
+    
+    this.userAPIservice.login(loginObject)
+    .pipe(
+      catchError((err) => {
+        this.isLoading.set(false)
+        console.log(err)
+        return throwError(err)
+      })
+    ).subscribe((data) => {
+      this.isLoading.set(false)
       console.log(data)
+      this.router.navigate(['/'])
     })
   }
 }
