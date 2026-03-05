@@ -17,8 +17,10 @@
 
         .image {
             img {
-                width: vars.$size-40;
-                height: vars.$size-40;
+                max-width: vars.$size-80;
+                max-height: vars.$size-80;
+                border-radius: vars.$radius-full;
+                background: vars.$color-black;
             }
         }
     }

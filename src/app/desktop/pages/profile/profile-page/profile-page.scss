@@ -6,7 +6,7 @@
     height: 100%;
 
     .content {
-        width: 60%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -27,11 +27,11 @@
             
 
             button {
-                width: 60%;
+                width: 80%;
                 padding: vars.$size-12;
                 border-radius: vars.$radius-lg;
                 border: none;
-                color: vars.$color-black !important;
+                color: vars.$color-white;
                 font-weight: 800;
 
                 transition: background-color 0.3s, color 0.3s, font-size 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -59,4 +59,29 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+
+    .content {
+        width: 100%;
+
+        .form {
+            width: calc(100% - vars.$size-20);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .ymoney {
+                width: 100%;
+                h2 {
+                    text-align: center;
+                }
+            }
+        }
+    }
+  }
 }

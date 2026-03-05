@@ -107,7 +107,7 @@ export class Subscription implements OnInit {
         })
       )
       .subscribe((data) => {  
-        console.log(data)
+        this.updateStatusField('status')
       }
     )
 
@@ -118,14 +118,45 @@ export class Subscription implements OnInit {
         })
       )
       .subscribe((data) => {  
-        console.log(data)
+        this.updateStatusField('use_in_this_month')
       }
     )
+  }
+
+  private updateStatusField(field: 'status' | 'use_in_this_month'): void {
+    const currentData = this.subscriptionData();
+    if (!currentData) return;
+
+    const changes: any = {
+      [field]: !currentData[field]
+    }
+
+    this.subscriptionsService.updateSubscription(currentData, changes)
+      .pipe(
+        catchError((err) => {
+          this.showError(`${err.statusText}: ${err.status}`)
+
+          const statusBlock = field === 'status' ? this.isPaidStatusBlock : this.usedStatusBlock;
+          statusBlock.update(data => ({
+            ...data,
+            isActive: currentData[field]
+          }));
+          return throwError(err)
+        })
+      )
+      .subscribe(() => {
+        this.subscriptionData.update(data => ({
+          ...data,
+          [field]: !currentData[field]
+        }))
+        this.showDialog(`Статус обновлен`)
+      });
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
+      console.log(id)
       if (id) {
         this.subscriptionId.set(id)
         this.loadSubscriptionById(id)
@@ -138,24 +169,17 @@ export class Subscription implements OnInit {
   }
 
   loadSubscriptionById(id: string) {
-    this.subscriptionsService.userSubscriptions.subscribe((data) => {
-      let finded = data.findIndex((value) => {
-        return value.subscription_id === id
-      }) 
-      if (finded === -1) {
-        this.subscriptionData.set(null)
-      } else {
-        const findedData = data[finded]
-        this.subscriptionData.set(findedData)
-        this.isPaidStatusBlock.update(currentData => ({
-          ...currentData, 
-          isActive: findedData.status
-        }))
-        this.usedStatusBlock.update(currentData => ({
-          ...currentData, 
-          isActive: findedData.use_in_this_month
-        }))
-      }
+    this.subscriptionsService.getSubscription(id).subscribe((data) => {
+      const findedData = data[0]
+      this.subscriptionData.set(findedData)
+      this.isPaidStatusBlock.update(currentData => ({
+        ...currentData, 
+        isActive: findedData.status
+      }))
+      this.usedStatusBlock.update(currentData => ({
+        ...currentData, 
+        isActive: findedData.use_in_this_month
+      }))
     })
   }
 

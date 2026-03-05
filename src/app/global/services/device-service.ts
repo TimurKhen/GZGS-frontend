@@ -17,7 +17,6 @@ export class DeviceService {
     );
 
   getIsMobile(): boolean {
-    console.log(window.innerWidth)
     return window.innerWidth <= 768
   }
 }

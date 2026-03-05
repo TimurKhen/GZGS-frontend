@@ -18,7 +18,7 @@ export class UserApiService {
   private router = inject(Router)
   private cookieService = inject(CookieService)
   private uuidService = inject(UuidService)
-   
+  
   private mainUrl = masterURL + '/' + 'api/user/'
   token: string | null = null
   refreshToken: string | null = null
@@ -32,8 +32,6 @@ export class UserApiService {
   }
 
   registration(userInformation: UserInterface) {
-    console.log(userInformation)
-    
     const formData = new FormData()
     formData.append('id', this.uuidService.generateUUID())
     formData.append('avatar', userInformation.avatar)
@@ -93,5 +91,9 @@ export class UserApiService {
 
     this.cookieService.set('token', this.token)
     this.cookieService.set('refreshToken', this.refreshToken)
+  }
+
+  getUser() {
+    return this.http.get(masterURL + 'user')
   }
 }

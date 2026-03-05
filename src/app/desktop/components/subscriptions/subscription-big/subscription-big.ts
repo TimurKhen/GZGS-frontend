@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
 import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
   imports: [IsPaidStatus, DatePipe],
   templateUrl: './subscription-big.html',
   styleUrl: './subscription-big.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubscriptionBig {
   readonly dateConverter = inject(DateConverter)

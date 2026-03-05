@@ -7,7 +7,7 @@
     // height: 100%;
 
     .content {
-        width: 60%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         margin-top: vars.$size-40;
@@ -75,6 +75,7 @@
         }
 
         .controls {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
             .buttons {
                 width: 100%;
                 display: flex;

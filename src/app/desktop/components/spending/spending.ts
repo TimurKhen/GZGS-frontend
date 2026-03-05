@@ -51,16 +51,10 @@ export class Spending implements OnChanges {
       isinvert = 1
     }
 
-    console.log(this.subscriptions())
-    console.log(this.currentSmalledSubscribtions())
-    console.log(isinvert)
-
     this.currentSmalledSubscribtions.set(
       this.subscriptions().filter(
         (value: SubscriptionInterface) => {
-          console.log(value)
           const isPaid = Number(value.status) 
-          console.log(isPaid - isinvert)
           return isPaid - isinvert
         }
       )

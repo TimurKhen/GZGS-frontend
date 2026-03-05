@@ -41,12 +41,10 @@ export class SignIn {
     .pipe(
       catchError((err) => {
         this.isLoading.set(false)
-        console.log(err)
         return throwError(err)
       })
     ).subscribe((data) => {
       this.isLoading.set(false)
-      console.log(data)
       this.router.navigate(['/'])
     })
   }

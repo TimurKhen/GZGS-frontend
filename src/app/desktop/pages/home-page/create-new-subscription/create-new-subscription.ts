@@ -47,7 +47,6 @@ export class CreateNewSubscription {
         })
       )
       .subscribe((data) => {
-        console.log(data)
         this.isLoading.set(false)
         this.router.navigate(['/'])
       })

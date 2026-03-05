@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, input, signal } from '@angular/core';
 import { TuiRingChart } from "@taiga-ui/addon-charts";
 import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
 import { AsyncPipe } from '@angular/common';
@@ -17,6 +17,12 @@ export class SpendingBlock {
 
   names = signal<string[]>([])
   prices = signal<number[]>([])
+  
+  total = computed(() => {
+    let sumValue = 0
+    this.prices().forEach(val => sumValue += val)
+    return sumValue
+  })
 
   constructor() {
     effect(() => {
@@ -30,12 +36,7 @@ export class SpendingBlock {
       this.prices.set(prices)
     })
   }
-
-  total = computed(() => {
-    let sumValue = 0
-    this.prices().forEach(val => sumValue += val)
-    return sumValue
-  })
+  
 
   protected index = NaN
 
@@ -47,3 +48,7 @@ export class SpendingBlock {
     return (Number.isNaN(this.index) ? 'В сумме' : this.names()[this.index]) ?? ''
   }
 }
+function takeUntilDestroyed(destroyRef: any): import("rxjs").OperatorFunction<unknown, unknown> {
+  throw new Error('Function not implemented.');
+}
+

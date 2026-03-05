@@ -69,23 +69,11 @@ export class AnalyticsPage implements OnInit {
   }
 
   recalculateCategories() {
-    const currentStates = this.checkboxStates()
     const array = this.realSubscriptions()
-    let filtered: SubscriptionInterface[] = []
-    
-    array.forEach((element: SubscriptionInterface, index: number) => {
-      if (currentStates[index]) {
-        filtered.push(element)
-      } else {
-        const copy = structuredClone(element) 
-        copy.cost = 0
-        filtered.push(copy)
-      }
-    })
     
     const categoriesMap = new Map<string, { cost: number, subscriptions: SubscriptionInterface[] }>()
 
-    filtered.forEach((subscription: SubscriptionInterface) => {
+    array.forEach((subscription: SubscriptionInterface) => {
       const categoryName = subscription.category
       const currentData = categoriesMap.get(categoryName) || { cost: 0, subscriptions: [] }
       

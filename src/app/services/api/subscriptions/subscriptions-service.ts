@@ -69,13 +69,17 @@ export class SubscriptionsService {
   private mainUrl = masterURL + '/' + 'api/subscriptions/'
   private currentUserSubscriptions = signal<SubscriptionInterface[]>([])
   
-  private addLocalhostPrefix(subscriptions: SubscriptionInterface[]): SubscriptionInterface[] {
+  private subscriptionDataChanger(subscriptions: SubscriptionInterface[]): SubscriptionInterface[] {
     return subscriptions.map(sub => ({
       ...sub,
+      next_billing: sub.next_billing 
+        ? `${sub.next_billing.split('T').at(0)}`
+        : sub.next_billing,
+      category: sub.category.toLocaleLowerCase(),
       subscription_avatar_url: sub.subscription_avatar_url 
         ? `${masterURL}${sub.subscription_avatar_url}`
-        : sub.subscription_avatar_url
-    }));
+        : sub.subscription_avatar_url,
+    }))
   }
 
   get userSubscriptions(): Observable<SubscriptionInterface[]> {
@@ -87,16 +91,16 @@ export class SubscriptionsService {
           }
           return throwError(() => err)
         }),
-        map(val => this.addLocalhostPrefix(val))
+        map(val => this.subscriptionDataChanger(val)),
       )
     }
 
-    return of(this.currentUserSubscriptions())
+    return of(this.currentUserSubscriptions()).pipe(
+      map(val => this.subscriptionDataChanger(val))
+    )
   }
 
   createSubscription(subscriptionData: SubscriptionInterface) {
-    console.log(subscriptionData)
-    
     const formData = new FormData()
     formData.append('subscription_id', this.uuidService.generateUUID())
     formData.append('user_id', this.uuidService.generateUUID())
@@ -116,6 +120,17 @@ export class SubscriptionsService {
     )
   }
 
+  getSubscription(id: string) {
+    return this.http.get<SubscriptionInterface>(
+      this.mainUrl + `${id}`
+    ).pipe(
+      map((val: SubscriptionInterface) => {
+        const arr: SubscriptionInterface[] = [val]
+        return this.subscriptionDataChanger(arr)
+      })
+    )
+  }
+
   getSubscriptions() {
     return this.http.get<SubscriptionInterface[]>(
       this.mainUrl + 'all'
@@ -126,10 +141,29 @@ export class SubscriptionsService {
     )
   }
 
-  updateSubscription(currentData: SubscriptionInterface, changes: SubscriptionInterface) {
+  private getDiff(objectA: SubscriptionInterface, objectB: any): FormData {
+    const formData = new FormData()
+    
+    Object.keys(objectB).forEach((key) => {
+      const keyTyped = key as keyof SubscriptionInterface
+      
+      if (keyTyped === 'subscription_id' || keyTyped === 'user_id') {
+        return
+      }
+      
+      if (objectA[keyTyped] !== objectB[keyTyped]) {
+        const value = objectB[keyTyped]
+        formData.append(keyTyped as string, value !== null && value !== undefined ? String(value) : '')
+      }
+    })
+    
+    return formData
+  }
+
+  updateSubscription(currentData: SubscriptionInterface, changes: any) {
     return this.http.patch(
       this.mainUrl + `update/${currentData.subscription_id}`,
-      changes
+      this.getDiff(currentData, changes)
     )
   }
 
