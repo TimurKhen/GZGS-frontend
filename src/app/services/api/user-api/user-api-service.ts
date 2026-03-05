@@ -3,12 +3,25 @@ import { inject, Injectable } from '@angular/core';
 import { masterURL } from '../masterURL';
 import { UserInterface } from '../../../interfaces/user/user-interface';
 import { RegistrationResponseInterface } from './interfaces/registration-response-interface';
-import { catchError, pipe, tap, throwError } from 'rxjs';
+import { catchError, of, pipe, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service'
 import { LoginUserInterface } from '../../../interfaces/user/login-user-interface';
 import { Router } from '@angular/router'
 import { TokenInterface } from './interfaces/token-interface';
 import { UuidService } from '../../uuid/uuid-service';
+
+
+interface UserInformation {
+  avatatar_url: string,
+  email: string,
+  fullname: string,
+  id: string,
+  username: string
+}
+
+interface serverAnswer {
+  user: UserInformation
+}
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +35,7 @@ export class UserApiService {
   private mainUrl = masterURL + '/' + 'api/user/'
   token: string | null = null
   refreshToken: string | null = null
+  userData: serverAnswer | null = null
 
   get isAuth() {
     if (!this.token) {
@@ -29,6 +43,18 @@ export class UserApiService {
       this.refreshToken = this.cookieService.get('refreshToken')
     }
     return !!this.token
+  }
+
+  get userInfo(): serverAnswer | null {
+    if (!this.userData) {
+      this.userData = JSON.parse(this.cookieService.get('user'))
+    }
+
+    if (!this.userData) {
+      return null
+    }
+
+    return this.userData
   }
 
   registration(userInformation: UserInterface) {
@@ -93,7 +119,16 @@ export class UserApiService {
     this.cookieService.set('refreshToken', this.refreshToken)
   }
 
+  saveUser(val: serverAnswer) {
+    this.userData = val
+    this.cookieService.set('user', JSON.stringify(this.userData))
+  }
+
   getUser() {
-    return this.http.get(masterURL + 'user')
+    if (this.userData !== null) return of(this.userData)
+    
+    return this.http.get<serverAnswer>(masterURL + '/api/' + 'user').pipe(
+      tap(val => this.saveUser(val))
+    )
   }
 }

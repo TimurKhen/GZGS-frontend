@@ -1,7 +1,8 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
+import { UserApiService } from '../../../services/api/user-api/user-api-service';
 
 const urls = [
   {
@@ -24,10 +25,12 @@ const urls = [
   templateUrl: './navigation.html',
   styleUrl: './navigation.scss',
 })
-export class Navigation {
+export class Navigation implements OnInit {
   private router = inject(Router)
+  private userHandler = inject(UserApiService)
   
   activePageIndex = signal<number>(0)
+  userName = signal<string>('Вы')
   
   public paths = urls
   
@@ -44,8 +47,17 @@ export class Navigation {
       if (findedIndex !== -1) {
         this.activePageIndex.set(findedIndex)
       }
-
     })
   }
 
+  ngOnInit() {
+    const userData = this.userHandler.userInfo
+    if (userData === null) {
+      this.userHandler.getUser().subscribe((data) => {
+        this.userName.set(String(data.user.fullname.split(' ').at(0)))
+      })      
+    } else {
+      this.userName.set(String(userData.user.fullname.split(' ').at(0)))
+    }
+  }
 }
