@@ -13,9 +13,9 @@
         <div class="subscriptions">
             @for (item of filteredSubscriptions(); track item) {
                 <subscription-big 
+                    [routerLink]="['../subscription', item.subscription_id]"
                     [subscribtionData]="item"
                     animate.enter="appear"
-                    [routerLink]="['subscription', item.subscription_id]"
                 ></subscription-big>
             }
         </div>

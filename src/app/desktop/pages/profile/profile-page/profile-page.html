@@ -2,7 +2,12 @@
     <div class="content">
         <h2>Ваш аккаунт</h2>
         <div class="form">
-            <h2>Акакакий</h2>
+            <div class="user-information">
+                <span class="image">
+                    <img width="100" [src]="userAvatarUrl()">
+                </span>
+                <h2>{{userName()}}</h2>
+            </div>
             
             <div class="ymoney">
                 <h2>Тут возможно будет тип подключение юмоней</h2>

@@ -24,7 +24,22 @@
             border-radius: vars.$radius-lg;
             min-height: 50%;
             justify-content: space-between;
-            
+
+            .user-information {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .image {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        border-radius: vars.$radius-lg;
+                    }
+                }
+            }
 
             button {
                 width: 80%;
