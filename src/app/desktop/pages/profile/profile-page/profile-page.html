@@ -7,19 +7,28 @@
                     <img width="100" [src]="userAvatarUrl()">
                 </span>
                 <h2>{{userName()}}</h2>
-            </div>
-            
-            <div class="ymoney">
-                <h2>Тут возможно будет тип подключение юмоней</h2>
+                <div class="edit">
+                    <status-block
+                        [blockData]="notificationBlock()"
+                        (statusChange)="changeStatus(notificationBlock)"
+                    ></status-block>
+                </div>
             </div>
 
-            <button
-                size="m"
-                tuiButton
-                type="button"
-            >
-                Выйти из аккаунта
-            </button>
+            <div class="ymoney">
+                <h2 class="title">Подключение юмоней</h2>
+                <div class="ymoney-setup">
+                    <h2>Ну тут фигня эта</h2>
+                </div>
+            </div>
         </div>
+
+        <button
+            size="m"
+            tuiButton
+            type="button"
+        >
+            Выйти из аккаунта
+        </button>
     </div>
 </div>
