@@ -86,7 +86,7 @@ export class Subscription implements OnInit {
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    cost: new FormControl(0, [Validators.required, Validators.min(0)]),
+    cost: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]),
     next_billing: new FormControl('', [Validators.required]),
     url_service: new FormControl(''),
     cancellation_link: new FormControl(''),
