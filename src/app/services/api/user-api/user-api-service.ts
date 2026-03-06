@@ -3,7 +3,7 @@ import { ErrorHandler, inject, Injectable } from '@angular/core';
 import { masterURL } from '../masterURL';
 import { UserInterface } from '../../../interfaces/user/user-interface';
 import { RegistrationResponseInterface } from './interfaces/registration-response-interface';
-import { catchError, Observable, of, pipe, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, of, pipe, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service'
 import { LoginUserInterface } from '../../../interfaces/user/login-user-interface';
 import { Router } from '@angular/router'
@@ -13,7 +13,7 @@ import { ErrorCatcherService } from '../../rxjs/error-catcher/error-catcher-serv
 
 
 interface UserInformation {
-  avatatar_url: string,
+  avatar_url: string,
   email: string,
   fullname: string,
   id: string,
@@ -146,9 +146,17 @@ export class UserApiService {
     this.cookieService.set('user', JSON.stringify(this.userData))
   }
 
+  dataChanger(value: serverAnswer): serverAnswer {
+    let cloned = structuredClone(value)
+    cloned.user.avatar_url = `${masterURL}/${value.user.avatar_url}`    
+    console.log(cloned)
+    return cloned
+  }
+
   getUser() {
     if (this.userData !== null) return of(this.userData)
     return this.http.get<serverAnswer>(masterURL + '/api/' + 'user').pipe(
+      map(val => this.dataChanger(val)),
       tap(val => this.saveUser(val))
     ) 
   }

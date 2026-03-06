@@ -1,0 +1,43 @@
+@use './_variables.scss' as vars;
+
+@mixin skeleton-wrapper {
+  .skeleton-wrapper {
+    display: flex;
+    gap: 10px;
+      
+    .skeleton-avatar, .skeleton-text, .skeleton-text.short {
+        background-color: vars.$color-gray; 
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(52, 52, 52, 0.6) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        background-repeat: no-repeat;
+        background-size: 200px 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 4px;
+    }
+    
+    .skeleton-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+      
+    .skeleton-text {
+      min-width: vars.$size-120;
+      padding: vars.$size-12 vars.$size-40;
+    }
+  }
+}
+
+
+@keyframes loading {
+  0% {
+    background-position: -150px 0;
+  }
+  100% {
+    background-position: calc(200px + 150px) 0;
+  }
+}

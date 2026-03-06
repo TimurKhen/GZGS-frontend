@@ -8,10 +8,16 @@
             <div class="main">
                 <div class="left">
                     <div class="text">
-                        <h1>{{subscriptionData().name}}</h1>
-                        <div class="is-paid-container">
-                            <is-paid-status [isPaid]="isPaidStatusBlock().isActive"></is-paid-status>
-                        </div>
+                        @if (subscriptionData()) {
+                            <h1>{{subscriptionData().name}}</h1>
+                            <div class="is-paid-container">
+                                <is-paid-status [isPaid]="isPaidStatusBlock().isActive"></is-paid-status>
+                            </div>
+                        } @else {
+                            <div class="skeleton-wrapper">
+                                <div class="skeleton-text"></div>
+                            </div>
+                        }
                     </div>
                     <div class="image">
                         <img width="40" [src]="subscriptionData()?.subscription_avatar_url">
@@ -19,10 +25,22 @@
                 </div>
                 <div class="right">
                     <div class="price-and-date">
-                        <h3>{{subscriptionData()?.cost}}₽ в месяц</h3>
+                        @if (subscriptionData()) {
+                            <h3>{{subscriptionData()?.cost}}₽ в месяц</h3>
+                        } @else {
+                            <div class="skeleton-wrapper">
+                                <div class="skeleton-text"></div>
+                            </div>
+                        }
                         <div class="bottom">
                             <h3>списание:</h3>
-                            <h3>{{dateConverter.parseDate(subscriptionData()?.next_billing) | date:'longDate'}}</h3>
+                            @if (subscriptionData()) {
+                                <h3>{{dateConverter.parseDate(subscriptionData()?.next_billing) | date:'longDate'}}</h3>
+                            } @else {
+                                <div class="skeleton-wrapper">
+                                    <div class="skeleton-text"></div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
