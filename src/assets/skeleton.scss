@@ -4,7 +4,6 @@
   .skeleton-wrapper {
     display: flex;
     gap: 10px;
-    padding: 10px;
       
     .skeleton-avatar, .skeleton-text, .skeleton-text.short {
         background-color: vars.$color-gray; 
@@ -27,8 +26,8 @@
     }
       
     .skeleton-text {
-        min-width: vars.$size-120;
-        padding: vars.$size-12;
+      min-width: vars.$size-120;
+      padding: vars.$size-12 vars.$size-40;
     }
   }
 }
