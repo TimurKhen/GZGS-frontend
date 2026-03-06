@@ -52,12 +52,9 @@ export class Navigation implements OnInit {
 
   ngOnInit() {
     const userData = this.userHandler.userInfo
-    if (userData === null) {
-      this.userHandler.getUser().subscribe((data) => {
-        this.userName.set(String(data.user.fullname.split(' ').at(0)))
-      })      
-    } else {
-      this.userName.set(String(userData.user.fullname.split(' ').at(0)))
-    }
+    userData.subscribe((data) => {
+      console.log(data)
+      this.userName.set(String(data.user.fullname.split(' ').at(0)))
+    })
   }
 }

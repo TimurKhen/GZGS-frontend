@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { ErrorHandler, inject, Injectable } from '@angular/core';
 import { masterURL } from '../masterURL';
 import { UserInterface } from '../../../interfaces/user/user-interface';
 import { RegistrationResponseInterface } from './interfaces/registration-response-interface';
-import { catchError, of, pipe, tap, throwError } from 'rxjs';
+import { catchError, Observable, of, pipe, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service'
 import { LoginUserInterface } from '../../../interfaces/user/login-user-interface';
 import { Router } from '@angular/router'
 import { TokenInterface } from './interfaces/token-interface';
 import { UuidService } from '../../uuid/uuid-service';
+import { ErrorCatcherService } from '../../rxjs/error-catcher/error-catcher-service';
 
 
 interface UserInformation {
@@ -31,7 +32,8 @@ export class UserApiService {
   private router = inject(Router)
   private cookieService = inject(CookieService)
   private uuidService = inject(UuidService)
-  
+  private errorHandler = inject(ErrorCatcherService)
+
   private mainUrl = masterURL + '/' + 'api/user/'
   token: string | null = null
   refreshToken: string | null = null
@@ -45,16 +47,24 @@ export class UserApiService {
     return !!this.token
   }
 
-  get userInfo(): serverAnswer | null {
+  get userInfo(): Observable<serverAnswer> {
     if (!this.userData) {
-      this.userData = JSON.parse(this.cookieService.get('user'))
+      return this.getUser()
     }
 
-    if (!this.userData) {
-      return null
-    }
+    return of(this.userData)
+  }
 
-    return this.userData
+  protected showError(message: string): void {
+    this.errorHandler.showAlert(
+      `${message}`,
+      {
+        appearance: 'negative',
+        data: {
+          theme: 'dark'
+        }
+      }
+    )
   }
 
   registration(userInformation: UserInterface) {
@@ -70,6 +80,12 @@ export class UserApiService {
         this.mainUrl + 'register',
         formData
       ).pipe(
+        catchError((val) => 
+          {
+            this.showError(`${val.status}: ${JSON.stringify(val.error)}`)
+            return throwError(val)
+          }
+        ),
         tap(val => this.saveTokens(val.tokens))
       )
   }
@@ -85,6 +101,12 @@ export class UserApiService {
         headers: headers
       }
     ).pipe(
+      catchError((val) => 
+        {
+          this.showError(`${val.status}: ${JSON.stringify(val.error)}`)
+          return throwError(val)
+        }
+      ),
       tap(val => this.saveTokens(val.tokens))
     )
   }
@@ -126,9 +148,8 @@ export class UserApiService {
 
   getUser() {
     if (this.userData !== null) return of(this.userData)
-    
     return this.http.get<serverAnswer>(masterURL + '/api/' + 'user').pipe(
       tap(val => this.saveUser(val))
-    )
+    ) 
   }
 }
