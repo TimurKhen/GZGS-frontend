@@ -1,15 +1,14 @@
 @use '../../../../assets/_variables.scss' as vars;
 
 .status {
-    padding: vars.$size-20;
-    
+    height: vars.$size-120;
     display: flex;
     align-items: center;
     
+    padding: vars.$size-20;
     gap: vars.$size-24;
     border-radius: vars.$radius-lg;
     background-color: vars.$color-surface;
-    height: vars.$size-120;
 
     .image {
         width: vars.$size-60;
