@@ -1,70 +1,68 @@
-# GzgMoney
+# __GzgSubscriptions__ _by GZG Team_
 
-This project was created by Angular 21.1.2
+Front-end для [Технострелки](https://tehnostrelka52.ru/) 
+    [цифровой вызов - Fullstack](https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2FkyMYUnZfI5zgDrUEhH1pCU3ce7SURPn7ylVK9G47ncL26Xa2KjeoxvokjBFFCW2gq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2F%D0%A6%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2.%20%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%8D%D1%82%D0%B0%D0%BF%D0%B0%20%C2%AB%D0%9E%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%A4%D1%83%D0%BB%D1%81%D1%82%D1%8D%D0%BA%C2%BB%202026%20%D0%B3..pdf&name=%D0%A6%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2.%20%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%8D%D1%82%D0%B0%D0%BF%D0%B0%20%C2%AB%D0%9E%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%A4%D1%83%D0%BB%D1%81%D1%82%D1%8D%D0%BA%C2%BB%202026%20%D0%B3..pdf)
 
-Run
+Создано благодаря Angular 21.1.2, TaigaUI и Capacitor
+
+Процесс запуска.
+
+Установите зависимости:
 ```bash
 npm install
 ```
 
-How to compile and run web version:
+Компиляция и запуск веб версии:
 ---
-## Development server
-
-To start a local dev server, run:
+## Dev
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`.
+Сервер будет запущен на `http://localhost:4200/`.
 
-## Building
+## Build 
 
-To build the project run:
+Для билда проекта:
 
 ```bash
 ng build
 ```
 
-After you need to install http server.
+Необходимо установить angular-http-server.
 
 ```bash
 npm install -g angular-http-server
 ```
 
-go to compiled app by
+Перейдите в папку с приложением 
 ``` bash
 cd dist/gzg-money/browser
 ``` 
-and run
+Запустите
 ``` bash
-angular-http-server
+angular-http-server --open
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory.
-
-
-How to compile and run android version:
+Компиляция и запуск версии под телефоны:
 ---
-`You need installed Android Studio`
+`Необходимо иметь android studio`
 
-Install capacitor if it isn't installed 
+Если `capacitor` не установлен:
 
 ``` bash
 npm install @capacitor/core @capacitor/cli
 ```
 
-``` bash
-npx cap init GZGS
-```
+## Android
 
 ``` bash
 npx cap add android
 ```
 
 ``` bash
-ng build --prod
+ng build
 ```
 
 ``` bash
@@ -79,4 +77,34 @@ npx cap sync
 npx cap open android
 ```
 
-`After you need to compile app your self.`
+`Дальше компиляция через android studio.`
+
+
+## IOS
+`Необходимо иметь mac и XCode`
+
+``` bash
+brew install cocoapods
+```
+
+``` bash
+npx cap add ios
+```
+
+``` bash
+ng build
+```
+
+``` bash
+npx cap copy
+```
+
+``` bash
+npx cap sync ios
+```
+
+``` bash
+npx cap open ios
+```
+
+`Дальше компиляция через Xcode.`
