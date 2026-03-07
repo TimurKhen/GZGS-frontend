@@ -1,2 +1,7 @@
-<navigation></navigation>
-<router-outlet></router-outlet>
+@if (!isMobile()) {
+    <navigation></navigation>
+    <router-outlet></router-outlet>
+} @else {
+    <router-outlet></router-outlet>
+    <mobile-navigation></mobile-navigation>
+}

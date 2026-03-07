@@ -14,9 +14,5 @@ export class DeviceService {
       map(result => result.matches),
       distinctUntilChanged(),
       shareReplay(1)
-    );
-
-  getIsMobile(): boolean {
-    return window.innerWidth <= 768
-  }
+    )
 }

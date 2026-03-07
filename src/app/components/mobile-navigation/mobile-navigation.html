@@ -1,0 +1,9 @@
+<div class="navigation">
+    <div class="links">
+        @for (item of paths; track item; let i = $index) {
+            <span class="link-span" [ngClass]="{'active': i == activePageIndex()}">
+                <a [routerLink]="item.address">{{item.icon}}</a>
+            </span>
+        }
+    </div>
+</div>

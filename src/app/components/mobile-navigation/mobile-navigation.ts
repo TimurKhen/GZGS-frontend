@@ -1,0 +1,55 @@
+import { NgClass } from '@angular/common';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter } from 'rxjs';
+
+const urls = [
+  {
+    icon: 'home',
+    address: '/'
+  },
+  {
+    icon: 'subscriptions',
+    address: '/subscriptions'
+  },
+  {
+    icon: 'analytics',
+    address: '/analytics'
+  },
+  {
+    icon: 'profile',
+    address: '/profile'
+  }
+]
+
+
+@Component({
+  selector: 'mobile-navigation',
+  imports: [RouterLink, NgClass],
+  templateUrl: './mobile-navigation.html',
+  styleUrl: './mobile-navigation.scss',
+})
+export class MobileNavigation {
+  private router = inject(Router)
+  
+  activePageIndex = signal<number>(0)
+  userName = signal<string>('Вы')
+  
+  public paths = urls
+  
+  constructor() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const url = event.url
+
+      const findedIndex = urls.findIndex((val) => {
+        return val.address == url
+      })
+
+      if (findedIndex !== -1) {
+        this.activePageIndex.set(findedIndex)
+      }
+    })
+  }
+}
