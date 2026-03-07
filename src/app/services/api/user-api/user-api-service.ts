@@ -57,6 +57,9 @@ export class UserApiService {
   }
 
   protected showError(message: string): void {
+    if (message == '{"isTrusted":true}') {
+      message = 'Server offline'
+    }
     this.errorHandler.showAlert(
       `${message}`,
       {
@@ -156,6 +159,12 @@ export class UserApiService {
   getUser() {
     if (this.userData !== null) return of(this.userData)
     return this.http.get<serverAnswer>(masterURL + '/api/' + 'user').pipe(
+      catchError((val) => 
+        {
+          this.showError(`${JSON.stringify(val.error)}`)
+          return throwError(val)
+        }
+      ),
       map(val => this.dataChanger(val)),
       tap(val => this.saveUser(val))
     ) 
