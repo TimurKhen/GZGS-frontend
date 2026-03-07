@@ -161,7 +161,9 @@ export class UserApiService {
     return this.http.get<serverAnswer>(masterURL + '/api/' + 'user').pipe(
       catchError((val) => 
         {
-          this.showError(`${JSON.stringify(val.error)}`)
+          if (val.status !== 401) {
+            this.showError(`${JSON.stringify(val.error)}`)
+          }
           return throwError(val)
         }
       ),

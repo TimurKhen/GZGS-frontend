@@ -180,7 +180,20 @@ export class Subscription implements OnInit {
         ...currentData, 
         isActive: findedData.use_in_this_month
       }))
+      
+      this.patchFormValues(findedData)
     })
+  }
+
+  private patchFormValues(data: SubscriptionInterface): void {
+    this.editForm.patchValue({
+      name: data.name,
+      cost: data.cost,
+      next_billing: data.next_billing,
+      url_service: data.url_service || '',
+      cancellation_link: data.cancellation_link || '',
+      category: data.category,
+    });
   }
 
   changeStatus(changingSignal: WritableSignal<StatusBlockInterface>) {
