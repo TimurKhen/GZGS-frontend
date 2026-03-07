@@ -1,64 +1,110 @@
-# GzgMoney
+# __GzgSubscriptions__ _by GZG Team_
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+Front-end для [Технострелки](https://tehnostrelka52.ru/) 
+    [цифровой вызов - Fullstack](https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2FkyMYUnZfI5zgDrUEhH1pCU3ce7SURPn7ylVK9G47ncL26Xa2KjeoxvokjBFFCW2gq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2F%D0%A6%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2.%20%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%8D%D1%82%D0%B0%D0%BF%D0%B0%20%C2%AB%D0%9E%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%A4%D1%83%D0%BB%D1%81%D1%82%D1%8D%D0%BA%C2%BB%202026%20%D0%B3..pdf&name=%D0%A6%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2.%20%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%8D%D1%82%D0%B0%D0%BF%D0%B0%20%C2%AB%D0%9E%D1%82%D0%B1%D0%BE%D1%80%D0%BE%D1%87%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%A4%D1%83%D0%BB%D1%81%D1%82%D1%8D%D0%BA%C2%BB%202026%20%D0%B3..pdf)
 
-Run
+Создано благодаря Angular 21.1.2, TaigaUI и Capacitor
+
+Процесс запуска.
+
+Установите зависимости:
 ```bash
 npm install
 ```
 
-## Development server
-
-To start a local development server, run:
+Компиляция и запуск веб версии:
+---
+## Dev
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Сервер будет запущен на `http://localhost:4200/`.
 
-## Code scaffolding
+## Build 
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Для билда проекта:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Необходимо установить angular-http-server.
 
 ```bash
-ng test
+npm install -g angular-http-server
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+Перейдите в папку с приложением 
+``` bash
+cd dist/gzg-money/browser
+``` 
+Запустите
+``` bash
+angular-http-server --open
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Компиляция и запуск версии под телефоны:
+---
+`Необходимо иметь android studio`
 
-## Additional Resources
+Если `capacitor` не установлен:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+``` bash
+npm install @capacitor/core @capacitor/cli
+```
+
+## Android
+
+``` bash
+npx cap add android
+```
+
+``` bash
+ng build
+```
+
+``` bash
+npx cap copy
+```
+
+``` bash
+npx cap sync
+```
+
+``` bash
+npx cap open android
+```
+
+`Дальше компиляция через android studio.`
+
+
+## IOS
+`Необходимо иметь mac и XCode`
+
+``` bash
+brew install cocoapods
+```
+
+``` bash
+npx cap add ios
+```
+
+``` bash
+ng build
+```
+
+``` bash
+npx cap copy
+```
+
+``` bash
+npx cap sync ios
+```
+
+``` bash
+npx cap open ios
+```
+
+`Дальше компиляция через Xcode.`
