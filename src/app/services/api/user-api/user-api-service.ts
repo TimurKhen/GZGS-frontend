@@ -17,7 +17,8 @@ interface UserInformation {
   email: string,
   fullname: string,
   id: string,
-  username: string
+  username: string,
+  notifications: boolean
 }
 
 interface serverAnswer {
@@ -115,7 +116,7 @@ export class UserApiService {
     this.cookieService.deleteAll()
     this.token = null
     this.refreshToken = null
-    this.router.navigate(['/login'])
+    this.router.navigate(['/reg'])
   }
 
   refreshAuthToken() {
@@ -149,7 +150,6 @@ export class UserApiService {
   dataChanger(value: serverAnswer): serverAnswer {
     let cloned = structuredClone(value)
     cloned.user.avatar_url = `${masterURL}/${value.user.avatar_url}`    
-    console.log(cloned)
     return cloned
   }
 
@@ -159,5 +159,38 @@ export class UserApiService {
       map(val => this.dataChanger(val)),
       tap(val => this.saveUser(val))
     ) 
+  }
+
+  private getDiff(objectA: UserInformation, objectB: any): FormData {
+    const formData = new FormData()
+    
+    Object.keys(objectB).forEach((key) => {
+      const keyTyped = key as keyof UserInformation
+      
+      if (keyTyped === 'id' || keyTyped === 'email') {
+        return
+      }
+      
+      if (objectA[keyTyped] !== objectB[keyTyped]) {
+        const value = objectB[keyTyped]
+        formData.append(keyTyped as string, value !== null && value !== undefined ? String(value) : '')
+      }
+    })
+    
+    return formData
+  }
+  
+  updateUser(currentUser: any, changes: any) {
+    return this.http.patch(
+      this.mainUrl + `update`,
+      this.getDiff(currentUser, changes)
+    ).pipe(
+      catchError((val) => 
+        {
+          this.showError(`${val.status}: ${JSON.stringify(val.error)}`)
+          return throwError(val)
+        }
+      ),
+    )
   }
 }

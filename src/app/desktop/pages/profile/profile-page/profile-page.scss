@@ -113,16 +113,22 @@
 @media (max-width: 768px) {
   .container {
     width: 100%;
-    margin-bottom: vars.$size-120;
 
     .content {
         width: 100%;
 
         .form {
             width: calc(100% - vars.$size-20);
+            height: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            .user-information {
+                display: flex;
+                flex-direction: column;
+                border-right: 0 solid vars.$color-white;
+            }
 
             .ymoney {
                 width: 100%;
@@ -130,6 +136,21 @@
                     text-align: center;
                 }
             }
+        }
+        
+        button {
+            align-self: flex-start;
+            width: min-content;
+            padding: vars.$size-12 vars.$size-40;
+            border-radius: vars.$radius-lg;
+            border: none;
+            color: vars.$color-white;
+            font-weight: 800;
+
+            transition: background-color 0.3s, color 0.3s, font-size 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: vars.$font-md;
+            background: vars.$color-black;
+            color: vars.$color-gray;                
         }
     }
   }
