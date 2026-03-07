@@ -1,10 +1,10 @@
 import { TuiRoot } from "@taiga-ui/core";
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DesktopHandler } from "./desktop/desktop-handler/desktop-handler";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TuiRoot, TuiRoot],
+  imports: [TuiRoot, TuiRoot, DesktopHandler],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

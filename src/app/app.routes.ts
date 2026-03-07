@@ -12,52 +12,46 @@ import { canActivateAuth } from './services/api/user-api/guards/token-guard-guar
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./desktop/desktop-handler/desktop-handler').then(m => m.DesktopHandler),
-        children: [
-            {
-                path: '',
-                component: HomePage,
-                canActivate: [canActivateAuth]
-            },
-            {
-                path: 'subscription',
-                component: Subscription,
-                canActivate: [canActivateAuth]
-            },
-            {
-                path: 'subscription/:id',
-                component: Subscription,
-                canActivate: [canActivateAuth]
-            },
-            {
-                path: 'add',
-                component: CreateNewSubscription,
-                canActivate: [canActivateAuth]
-            },
-            {
-                path: 'subscriptions',
-                component: SubscriptionsPage,
-                canActivate: [canActivateAuth]
-            },
-            {
-                path: 'analytics',
-                component: AnalyticsPage,
-                canActivate: [canActivateAuth]
-            },
-            {
-                path: 'reg',
-                component: Registration
-            },
-            {
-                path: 'sign',
-                component: SignIn
-            },
-            {
-                path: 'profile',
-                component: ProfilePage,
-                canActivate: [canActivateAuth]
-            }
-        ]
+        component: HomePage,
+        canActivate: [canActivateAuth]
+    },
+    {
+        path: 'subscription',
+        component: Subscription,
+        canActivate: [canActivateAuth]
+    },
+    {
+        path: 'subscription/:id',
+        component: Subscription,
+        canActivate: [canActivateAuth]
+    },
+    {
+        path: 'add',
+        component: CreateNewSubscription,
+        canActivate: [canActivateAuth]
+    },
+    {
+        path: 'subscriptions',
+        component: SubscriptionsPage,
+        canActivate: [canActivateAuth]
+    },
+    {
+        path: 'analytics',
+        component: AnalyticsPage,
+        canActivate: [canActivateAuth]
+    },
+    {
+        path: 'reg',
+        component: Registration
+    },
+    {
+        path: 'sign',
+        component: SignIn
+    },
+    {
+        path: 'profile',
+        component: ProfilePage,
+        canActivate: [canActivateAuth]
     }
 ];
  
