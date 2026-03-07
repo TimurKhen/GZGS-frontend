@@ -47,7 +47,6 @@ angular-http-server --open
 
 Компиляция и запуск версии под телефоны:
 ---
-`Необходимо иметь android studio`
 
 Если `capacitor` не установлен:
 
@@ -56,6 +55,7 @@ npm install @capacitor/core @capacitor/cli
 ```
 
 ## Android
+`Необходимо иметь android studio`
 
 ``` bash
 npx cap add android
