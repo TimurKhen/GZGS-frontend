@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomePage } from './home-page';
+import { MobileNavigation } from './mobile-navigation';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('MobileNavigation', () => {
+  let component: MobileNavigation;
+  let fixture: ComponentFixture<MobileNavigation>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomePage]
+      imports: [MobileNavigation]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(MobileNavigation);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

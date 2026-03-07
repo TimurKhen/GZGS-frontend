@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { DeviceService } from './global/services/device-service';
-import { inject } from '@angular/core';
 import { HomePage } from './desktop/pages/home-page/home-page';
 import { SubscriptionsPage } from './desktop/pages/subscriptions-page/subscriptions-page';
 import { AnalyticsPage } from './desktop/pages/analytics-page/analytics-page';
@@ -60,11 +58,6 @@ export const routes: Routes = [
                 canActivate: [canActivateAuth]
             }
         ]
-    },
-    {
-        path: '',
-        loadComponent: () => import('./mobile/pages/home-page/home-page').then(m => m.HomePage),
-        canMatch: [() => inject(DeviceService).getIsMobile()]
     }
 ];
  

@@ -1,0 +1,51 @@
+@use '../../../assets/_variables.scss' as vars;
+
+.navigation {
+    width: 95%;
+    height: vars.$size-60;
+    position: fixed;
+    bottom: vars.$size-8;
+    left: 50%;
+    transform: translateX(-50%);
+    background: vars.$color-black;
+    border-radius: vars.$radius-full;
+    padding: 0 vars.$size-40;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .links {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+
+        .link-span {
+                a {
+                    position: relative;
+                    padding-bottom: vars.$size-4; 
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 50%; 
+                        bottom: calc(vars.$size-4 * -1);
+                        width: 100%;
+                        height: calc(vars.$size-4 / 2);
+                        background-color: vars.$color-yellow;
+                        border-radius: vars.$radius-lg;
+                        
+                        transform: translateX(-50%) scaleX(0);
+                        opacity: 0;
+                        
+                        transition: transform 0.3s ease, opacity 0.3s ease;
+                    }
+                }
+                
+                &.active a::after {
+                    transform: translateX(-50%) scaleX(1);
+                    opacity: 1;
+                }
+            }
+    }
+}
