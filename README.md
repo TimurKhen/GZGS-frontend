@@ -1,35 +1,23 @@
 # GzgMoney
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+This project was created by Angular 21.1.2
 
 Run
 ```bash
 npm install
 ```
 
+How to compile and run web version:
+---
 ## Development server
 
-To start a local development server, run:
+To start a local dev server, run:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
+Once the server is running, open your browser and navigate to `http://localhost:4200/`.
 
 ## Building
 
@@ -39,26 +27,56 @@ To build the project run:
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+After you need to install http server.
 
 ```bash
-ng test
+npm install -g angular-http-server
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+go to compiled app by
+``` bash
+cd dist/gzg-money/browser
+``` 
+and run
+``` bash
+angular-http-server
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+This will compile your project and store the build artifacts in the `dist/` directory.
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+How to compile and run android version:
+---
+`You need installed Android Studio`
+
+Install capacitor if it isn't installed 
+
+``` bash
+npm install @capacitor/core @capacitor/cli
+```
+
+``` bash
+npx cap init GZGS
+```
+
+``` bash
+npx cap add android
+```
+
+``` bash
+ng build --prod
+```
+
+``` bash
+npx cap copy
+```
+
+``` bash
+npx cap sync
+```
+
+``` bash
+npx cap open android
+```
+
+`After you need to compile app your self.`
