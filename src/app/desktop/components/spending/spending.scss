@@ -66,8 +66,40 @@
     flex-direction: column;
     gap: vars.$size-40;
 
+    .information {
+        .title {           
+            .buttons {
+                button {
+                    padding: vars.$size-4 vars.$size-12;
+                    border: none;
+                    border-radius: vars.$radius-md;
+                    font-size: vars.$font-sm;
+                    background: none;
+                    border: 2px solid vars.$color-gray;
+                    color: vars.$color-white;
+                    transition: border 0.4s;
+                }
+
+                .active {
+                    border: 2px solid vars.$color-yellow;
+                }
+            }
+        }
+
+        .subscribtions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
+            gap: vars.$size-12;
+        }
+    }
+
     .ring {
-        padding-bottom: vars.$size-40;
+        padding-bottom: vars.$size-20;
+
+        tui-ring-chart {
+            --t-size: 12rem;
+            --tui-font-text-m: vars.$font-sm;
+        }
     }
   }
 }

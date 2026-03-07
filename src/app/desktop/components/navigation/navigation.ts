@@ -38,23 +38,26 @@ export class Navigation implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      const url = event.url
-
-      const findedIndex = urls.findIndex((val) => {
-        return val.address == url
-      })
-
-      if (findedIndex !== -1) {
-        this.activePageIndex.set(findedIndex)
-      }
+      this.updateActivePage(event.url)
     })
   }
 
   ngOnInit() {
+    const currentUrl = this.router.url
+    this.updateActivePage(currentUrl)
+    
     const userData = this.userHandler.userInfo
     userData.subscribe((data) => {
-      console.log(data)
       this.userName.set(String(data.user.fullname.split(' ').at(0)))
     })
+  }
+
+  private updateActivePage(url: string) {
+    const findedIndex = urls.findIndex((val) => {
+      return val.address == url
+    })
+    if (findedIndex !== -1) {
+      this.activePageIndex.set(findedIndex)
+    }
   }
 }

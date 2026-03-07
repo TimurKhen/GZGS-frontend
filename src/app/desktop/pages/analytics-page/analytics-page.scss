@@ -92,9 +92,9 @@
 
 @media (max-width: 768px) {
     .container {
+        height: auto;
         width: 100%;
-        margin-bottom: vars.$size-120;
-
+        
         .content {
             width: calc(100% - vars.$size-20);
             
