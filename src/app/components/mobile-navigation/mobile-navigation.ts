@@ -5,19 +5,19 @@ import { filter } from 'rxjs';
 
 const urls = [
   {
-    icon: 'home',
+    icon: 'главная',
     address: '/'
   },
   {
-    icon: 'subscriptions',
+    icon: 'подписки',
     address: '/subscriptions'
   },
   {
-    icon: 'analytics',
+    icon: 'аналитика',
     address: '/analytics'
   },
   {
-    icon: 'profile',
+    icon: 'профиль',
     address: '/profile'
   }
 ]
