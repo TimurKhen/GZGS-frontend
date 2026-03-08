@@ -31,7 +31,6 @@ export class HomePage implements OnInit, OnChanges {
 
     const userData = this.userHandler.userInfo
     userData.subscribe((data) => {
-      console.log(data)
       this.userName.set(String(data.user.fullname))
     })
   }

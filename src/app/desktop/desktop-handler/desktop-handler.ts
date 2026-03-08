@@ -12,12 +12,10 @@ import { MobileNavigation } from "../../components/mobile-navigation/mobile-navi
   styleUrl: './desktop-handler.scss',
 })
 export class DesktopHandler implements OnInit {
-  private userHandler = inject(UserApiService)
   private deviceHandler = inject(DeviceService)
   isMobile = signal<boolean>(false)
 
   ngOnInit(): void {
-    this.userHandler.getUser().subscribe()
     this.deviceHandler.isMobile$.subscribe((val) => {
       this.isMobile.set(val)
     })

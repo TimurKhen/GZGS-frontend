@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { TuiAlertService, TuiDialogService, TuiIcon } from "@taiga-ui/core";
+import { TuiAlertService, TuiIcon } from "@taiga-ui/core";
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
-import { DatePipe, JsonPipe } from '@angular/common';
-import { ActivatedRoute, isActive, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
 import { ActionButtonInterface } from '../../../../interfaces/action-button/action-button-interface';
@@ -59,15 +59,25 @@ export class Subscription implements OnInit {
     {
       name: 'Перейти к сервису',
       action: () => {
-        const url = this.subscriptionData().url_service
-        window.open(url, '_blank')
+        let url: string = this.subscriptionData().url_service
+        if (url.includes('http')) {
+          window.open(url, '_blank')
+        } else {
+          url = `https://${url}`
+          window.open(url, '_blank')
+        }
       }
     },
     {
       name: 'Перейти к отмене подписки',
       action: () => {
-        const url = this.subscriptionData().cancellation_link
-        window.open(url, '_blank')
+        let url = this.subscriptionData().cancellation_link
+        if (url.includes('http')) {
+          window.open(url, '_blank')
+        } else {
+          url = `https://${url}`
+          window.open(url, '_blank')
+        }
       }
     },
     {
@@ -156,7 +166,6 @@ export class Subscription implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
-      console.log(id)
       if (id) {
         this.subscriptionId.set(id)
         this.loadSubscriptionById(id)
