@@ -8,11 +8,15 @@ export class ErrorCatcherService {
   private readonly alerts = inject(TuiAlertService)
 
   showAlert(message: string, settings: any): void {
-        this.alerts
-            .open(
-                `${message}`,
-                settings
-            )
-            .subscribe()  
+    if (message.includes('{"isTrusted":true}')) {
+      message = 'Server offline'
+    }
+
+    this.alerts
+        .open(
+            `${message}`,
+            settings
+        )
+        .subscribe()  
   }
 }
