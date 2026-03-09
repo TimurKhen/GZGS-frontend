@@ -32,6 +32,8 @@
                 a {
                     position: relative;
                     padding-bottom: vars.$size-4; 
+                    user-select: none;
+                    cursor: pointer;
                     
                     &::after {
                         content: '';
@@ -59,6 +61,8 @@
 
         .account {
             display: flex;
+            user-select: none;
+            cursor: pointer;
 
             span {
                 height: 100%;

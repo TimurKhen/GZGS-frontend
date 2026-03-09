@@ -151,7 +151,6 @@ export class UserApiService {
   }
 
   dataChanger(value: serverAnswer): serverAnswer {
-    console.log(value)
     let cloned = structuredClone(value)
     cloned.user.avatar_url = `${masterURL}${value.user.avatar_url}`    
     return cloned

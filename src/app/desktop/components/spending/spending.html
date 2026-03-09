@@ -1,25 +1,32 @@
 <div class="spending-block">
     <div class="information">
-        <div class="title">
-            <h2>Оплата в феврале:</h2>
-            <div class="buttons">
-                <button 
-                    [ngClass]="{'active': activeButtonIndex() === 0}"
-                    (click)="changeActiveButtonIndex(0)"
-                    >Оплачено</button>
-                <button 
-                    [ngClass]="{'active': activeButtonIndex() === 1}"
-                    (click)="changeActiveButtonIndex(1)"
-                    >Запланированные</button>
+        @if (subscriptions().length > 0) {
+            <div class="title">
+                <h2>Оплата в феврале:</h2>
+                <div class="buttons">
+                    <button 
+                        [ngClass]="{'active': activeButtonIndex() === 0}"
+                        (click)="changeActiveButtonIndex(0)"
+                        >Оплачено</button>
+                    <button 
+                        [ngClass]="{'active': activeButtonIndex() === 1}"
+                        (click)="changeActiveButtonIndex(1)"
+                        >Запланированные</button>
+                </div>
             </div>
-        </div>
-        <div class="subscribtions">
-            @for (item of currentSmalledSubscribtions(); track item) {
-                <app-mini-information-block
-                    [information]="item"
-                ></app-mini-information-block>
-            }
-        </div>
+            <div class="subscribtions">
+                    @for (item of currentSmalledSubscribtions(); track item) {
+                        <app-mini-information-block
+                            [information]="item"
+                        ></app-mini-information-block>
+                    }
+            </div>
+        } @else {
+            <div class="no-subscriptions">
+                <p>У вас пока нет подписок.</p>
+                <a routerLink="add">Добавим новую?</a>
+            </div>
+        }
     </div>
     <div class="ring">
         <tui-ring-chart

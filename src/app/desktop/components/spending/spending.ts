@@ -4,10 +4,11 @@ import {TuiAmountPipe} from '@taiga-ui/addon-commerce';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { MiniInformationBlock } from "../../../components/mini-information-block/mini-information-block";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-spending',
-  imports: [AsyncPipe, TuiAmountPipe, TuiRingChart, MiniInformationBlock, NgClass],
+  imports: [AsyncPipe, TuiAmountPipe, TuiRingChart, MiniInformationBlock, NgClass, RouterLink],
   templateUrl: './spending.html',
   styleUrl: './spending.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

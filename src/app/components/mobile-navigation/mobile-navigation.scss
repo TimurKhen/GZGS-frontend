@@ -22,6 +22,8 @@
 
         .link-span {
                 a {
+                    user-select: none;
+                    cursor: pointer;
                     position: relative;
                     padding-bottom: vars.$size-4; 
                     
