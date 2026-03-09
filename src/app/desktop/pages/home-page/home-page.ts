@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnChanges, OnInit, signal, 
 import { Subscribtion } from "../../../components/subscribtion/subscribtion";
 import { Spending } from "../../components/spending/spending";
 import { ButtonWithImage } from "../../../components/button-with-image/button-with-image";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { RouterLink } from "@angular/router";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { SubscriptionsService } from '../../../services/api/subscriptions/subscriptions-service';
 import { UserApiService } from '../../../services/api/user-api/user-api-service';

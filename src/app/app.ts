@@ -4,7 +4,7 @@ import { DesktopHandler } from "./desktop/desktop-handler/desktop-handler";
 
 @Component({
   selector: 'app-root',
-  imports: [TuiRoot, TuiRoot, DesktopHandler],
+  imports: [TuiRoot, DesktopHandler],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

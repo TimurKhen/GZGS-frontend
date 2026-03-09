@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {TUI_FALSE_HANDLER} from '@taiga-ui/cdk';
 import {TuiChip} from '@taiga-ui/kit';
 import {TuiItemGroup} from '@taiga-ui/layout';
-import { debounceTime, Subject, switchMap, timeout } from 'rxjs';
+import { debounceTime, Subject, switchMap } from 'rxjs';
  
 @Component({
   selector: 'filters',

@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ErrorHandler, inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { masterURL } from '../masterURL';
 import { UserInterface } from '../../../interfaces/user/user-interface';
 import { RegistrationResponseInterface } from './interfaces/registration-response-interface';
-import { catchError, map, Observable, of, pipe, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service'
 import { LoginUserInterface } from '../../../interfaces/user/login-user-interface';
 import { Router } from '@angular/router'

@@ -14,7 +14,7 @@ import { DateInput } from "../../../components/form/inputs/date-input/date-input
 import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
 import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
-import { catchError, debounceTime, delay, Observable, of, Subject, switchMap, throwError } from 'rxjs';
+import { catchError, debounceTime, of, Subject, switchMap, throwError } from 'rxjs';
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
 import { NumberInput } from '../../../components/form/inputs/number-input/number-input';
 

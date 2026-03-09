@@ -1,4 +1,4 @@
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 
 export interface StatusBlockInterface {
   icon: string | null;

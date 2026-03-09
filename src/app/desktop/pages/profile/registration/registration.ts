@@ -7,7 +7,6 @@ import { Router, RouterLink } from "@angular/router";
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
 import { UserInterface } from '../../../../interfaces/user/user-interface';
 import { catchError, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',

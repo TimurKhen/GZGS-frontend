@@ -3,7 +3,7 @@ import { TuiButton } from '@taiga-ui/core';
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
-import { debounceTime, of, single, Subject, switchMap, timer } from 'rxjs';
+import { debounceTime, of, Subject, switchMap } from 'rxjs';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
 import { Router } from '@angular/router';
