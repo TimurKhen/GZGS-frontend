@@ -17,3 +17,8 @@ p, h1, h2, h3, h4, h5, h6, a {
 body {
     background-color: #222222;
 }
+
+tui-loader {
+    min-inline-size: 3.5rem;
+    --tui-thickness: 0.5rem;
+}

@@ -1,6 +1,6 @@
 <div class="spending-block">
     <div class="information">
-        @if (subscriptions().length > 0 || isLoading()) {
+        @if (subscriptions().length > 0) {
             <div class="title">
                 <h2>Оплата в феврале:</h2>
                 <div class="buttons">
@@ -23,10 +23,16 @@
                     }
             </div>
         } @else {
-            <div class="no-subscriptions">
-                <p>У вас пока нет подписок.</p>
-                <a routerLink="add">Добавим новую?</a>
-            </div>
+            @if (isLoading()) {
+                <div class="loading">
+                    <tui-loader />
+                </div>
+            } @else {
+                <div class="no-subscriptions">
+                    <p>У вас пока нет подписок.</p>
+                    <a routerLink="add">Добавим новую?</a>
+                </div>
+            }
         }
     </div>
     <div class="ring">

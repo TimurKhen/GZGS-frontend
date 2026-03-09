@@ -3,7 +3,7 @@
         <span class="back">
             <h2>Подписки</h2>
         </span>
-        @if (realSubscriptions().length !== 0 || isLoading()) {
+        @if (realSubscriptions().length !== 0) {
             <div class="filters">
                 <filters 
                     [filters]="['Оплаченные', 'Не оплаченные']" 
@@ -21,10 +21,16 @@
                     }
             </div>
         } @else {
-            <div class="no-subscriptions">
-                <p>У вас нет подписок.</p>
-                <a [routerLink]="['../add']">Добавить подписку</a>
-            </div>
+            @if (isLoading()) {
+                <div class="loading">
+                    <tui-loader />
+                </div>
+            } @else {
+                <div class="no-subscriptions">
+                    <p>У вас пока нет подписок.</p>
+                    <a routerLink="add">Добавим новую?</a>
+                </div>
+            }
         }
     </div>
 </div>

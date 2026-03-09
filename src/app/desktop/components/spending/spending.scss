@@ -17,7 +17,7 @@
         gap: vars.$size-20;
         position: relative;
 
-        .no-subscriptions {
+        .no-subscriptions, .loading {
             height: 100%;
             @include vars.noSubscriptions;
         }

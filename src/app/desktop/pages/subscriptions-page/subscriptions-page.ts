@@ -4,11 +4,12 @@ import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscri
 import { Filters } from "../../components/subscriptions/filters/filters";
 import { RouterLink } from "@angular/router";
 import { SubscriptionsService } from '../../../services/api/subscriptions/subscriptions-service';
+import { TuiLoader } from "@taiga-ui/core";
 
 
 @Component({
   selector: 'app-subscriptions-page',
-  imports: [SubscriptionBig, Filters, RouterLink],
+  imports: [SubscriptionBig, Filters, RouterLink, TuiLoader],
   templateUrl: './subscriptions-page.html',
   styleUrl: './subscriptions-page.scss',
 })

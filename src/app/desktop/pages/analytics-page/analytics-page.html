@@ -12,14 +12,27 @@
             </div>
         </div>
         <div class="subscriptions">
-            <div class="filters">
-                <filters [isMultiple]="false" [filters]="types" (changedFilters)="changeFilter($event)"></filters>
-                <p>Использовать в прогнозе:</p>
-            </div>
-            @if (this.selectedGroup() === this.types[0]) {
-                <ng-container *ngTemplateOutlet="services"></ng-container>
-            } @else if (this.selectedGroup() === this.types[1]) {
-                <ng-container *ngTemplateOutlet="categoryBlock"></ng-container>
+            @if (realSubscriptions().length !== 0) {
+                <div class="filters">
+                    <filters [isMultiple]="false" [filters]="types" (changedFilters)="changeFilter($event)"></filters>
+                    <p>Использовать в прогнозе:</p>
+                </div>
+                @if (this.selectedGroup() === this.types[0]) {
+                    <ng-container *ngTemplateOutlet="services"></ng-container>
+                } @else if (this.selectedGroup() === this.types[1]) {
+                    <ng-container *ngTemplateOutlet="categoryBlock"></ng-container>
+                }
+            } @else {
+                @if (isLoading()) {
+                    <div class="loading">
+                        <tui-loader />
+                    </div>
+                } @else {
+                    <div class="no-subscriptions">
+                        <p>У вас пока нет подписок.</p>
+                        <a routerLink="add">Добавим новую?</a>
+                    </div>
+                }
             }
         </div>
     </div>

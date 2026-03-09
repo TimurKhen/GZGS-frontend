@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { TuiRingChart } from "@taiga-ui/addon-charts";
 import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
 import { AsyncPipe } from '@angular/common';

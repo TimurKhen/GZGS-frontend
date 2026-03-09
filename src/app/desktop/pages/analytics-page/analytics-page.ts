@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { SubscriptionBig } from "../../components/subscriptions/subscription-big/subscription-big";
 import { RouterLink } from '@angular/router';
@@ -10,14 +10,14 @@ import { SubscriptionsService } from '../../../services/api/subscriptions/subscr
 import { Categoryinterface } from '../../../interfaces/category/categoryinterface';
 import { SubscriptionCategory } from "../../components/subscriptions/subscription-category/subscription-category";
 import { NgTemplateOutlet } from '@angular/common';
+import { TuiLoader } from "@taiga-ui/core";
 
 @Component({
   selector: 'app-analytics-page',
-  imports: [SubscriptionBig, 
-    RouterLink, Filters, SpendingBlock, 
+  imports: [SubscriptionBig,
+    RouterLink, Filters, SpendingBlock,
     TuiCheckbox, FormsModule, SubscriptionCategory,
-    NgTemplateOutlet
-  ],
+    NgTemplateOutlet, TuiLoader],
   templateUrl: './analytics-page.html',
   styleUrl: './analytics-page.scss',
 })
@@ -29,6 +29,7 @@ export class AnalyticsPage implements OnInit {
   usingForAnalityics = signal<SubscriptionInterface[]>(this.realSubscriptions())
   categories = signal<Categoryinterface[]>([])
   
+  isLoading = signal<boolean>(true)
   selectedGroup = signal<string>('Сервисы')
   types = ['Сервисы', 'Категории']
 
@@ -38,6 +39,7 @@ export class AnalyticsPage implements OnInit {
       this.checkboxStates.set(new Array(this.realSubscriptions().length).fill(true))
       this.recalculateAnalitycs()
       this.recalculateCategories()
+      this.isLoading.set(false)
     })
   }
 
