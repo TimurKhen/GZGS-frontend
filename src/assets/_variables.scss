@@ -44,10 +44,6 @@ $font-lg: 24px;
     radial-gradient(at left top, #5059de, #b243c3 50%, #f6a429 100%);
 }
 
-@mixin shadow {
-  box-shadow: 0 12px 12px 0 rgba(19, 19, 19, 0.1);
-}
-
 @mixin textSettings {
   font-family: 'Inter', sans-serif;
   font-weight: 700;

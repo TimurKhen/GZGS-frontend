@@ -10,7 +10,6 @@
 
     border-radius: vars.$radius-lg;
     padding: vars.$size-20;
-    @include vars.shadow;
 
     .image-container {
         display: flex;

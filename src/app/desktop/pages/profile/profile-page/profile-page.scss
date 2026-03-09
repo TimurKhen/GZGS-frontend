@@ -38,6 +38,8 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    background: vars.$color-white;
+                    border-radius: vars.$radius-full;
 
                     img {
                         border-radius: vars.$radius-full;

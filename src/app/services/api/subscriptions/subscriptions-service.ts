@@ -45,14 +45,8 @@ export class SubscriptionsService {
   }
 
   get userSubscriptions(): Observable<SubscriptionInterface[]> {
-    if (this.currentUserSubscriptions().length === 0) {
-      return this.getSubscriptions().pipe(
-        map(val => this.subscriptionDataChanger(val)),
-      )
-    }
-
-    return of(this.currentUserSubscriptions()).pipe(
-      map(val => this.subscriptionDataChanger(val))
+    return this.getSubscriptions().pipe(
+      map(val => this.subscriptionDataChanger(val)),
     )
   }
 

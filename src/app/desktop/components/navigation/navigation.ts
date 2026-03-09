@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { UserApiService } from '../../../services/api/user-api/user-api-service';
@@ -25,7 +25,7 @@ const urls = [
   templateUrl: './navigation.html',
   styleUrl: './navigation.scss',
 })
-export class Navigation implements OnInit {
+export class Navigation implements AfterViewInit {
   private router = inject(Router)
   private userHandler = inject(UserApiService)
   
@@ -42,7 +42,7 @@ export class Navigation implements OnInit {
     })
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     const currentUrl = this.router.url
     this.updateActivePage(currentUrl)
     

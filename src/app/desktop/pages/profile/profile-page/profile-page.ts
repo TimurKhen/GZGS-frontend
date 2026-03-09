@@ -70,6 +70,7 @@ export class ProfilePage implements OnInit {
   ngOnInit(): void {
     const userData = this.userHandler.userInfo
     userData.subscribe((data) => {
+      console.log(data)
       this.userName.set(String(data.user.fullname))
       this.userAvatarUrl.set(String(data.user.avatar_url))
       this.notificationStatus.set(data.user.notifications)
@@ -79,6 +80,7 @@ export class ProfilePage implements OnInit {
         isActive: this.notificationStatus()
       }))
     })
+
   }
 
   showError(message: string): void {
