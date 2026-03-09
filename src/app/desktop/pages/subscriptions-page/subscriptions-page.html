@@ -3,7 +3,7 @@
         <span class="back">
             <h2>Подписки</h2>
         </span>
-        @if (realSubscriptions().length !== 0) {
+        @if (realSubscriptions().length !== 0 || isLoading()) {
             <div class="filters">
                 <filters 
                     [filters]="['Оплаченные', 'Не оплаченные']" 

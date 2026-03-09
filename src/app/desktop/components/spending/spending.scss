@@ -76,7 +76,20 @@
     }
 }
 
+.enter {
+    animation: show 0.3s;
+}
 
+@keyframes show {
+    from {
+        transform: translateY(vars.$size-12);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
 @media (max-width: 768px) {
   .spending-block {

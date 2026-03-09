@@ -17,6 +17,7 @@ export class Spending implements OnChanges {
   subscriptions = input<SubscriptionInterface[]>([])
   names = signal<string[]>([])
   prices = signal<number[]>([])
+  isLoading = signal<boolean>(true)
   
   currentSmalledSubscribtions = signal<SubscriptionInterface[]>(
     this.subscriptions().filter((value: SubscriptionInterface) => {

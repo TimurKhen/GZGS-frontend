@@ -1,6 +1,6 @@
 <div class="spending-block">
     <div class="information">
-        @if (subscriptions().length > 0) {
+        @if (subscriptions().length > 0 || isLoading()) {
             <div class="title">
                 <h2>Оплата в феврале:</h2>
                 <div class="buttons">
@@ -17,6 +17,7 @@
             <div class="subscribtions">
                     @for (item of currentSmalledSubscribtions(); track item) {
                         <app-mini-information-block
+                            animate.enter="enter"
                             [information]="item"
                         ></app-mini-information-block>
                     }

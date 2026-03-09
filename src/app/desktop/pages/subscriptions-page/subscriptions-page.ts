@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SubscriptionBig } from "../../components/subscriptions/subscription-big/subscription-big";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { Filters } from "../../components/subscriptions/filters/filters";
@@ -16,12 +16,14 @@ export class SubscriptionsPage implements OnInit {
   private subscriptionsService = inject(SubscriptionsService)
   
   realSubscriptions = signal<SubscriptionInterface[]>([])
+  isLoading = signal<boolean>(true)
   filters = signal<boolean[]>([])
   filteredSubscriptions = signal<SubscriptionInterface[]>([])
 
   ngOnInit(): void {
     this.subscriptionsService.userSubscriptions.subscribe((data: SubscriptionInterface[]) => {
       this.realSubscriptions.set(data)
+      this.isLoading.set(false)
       this.filterSubscriptions()
     })
   }
