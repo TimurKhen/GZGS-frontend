@@ -122,6 +122,10 @@
             grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
             gap: vars.$size-12;
         }
+
+        &::after {
+            display: none;
+        }
     }
 
     .ring {
