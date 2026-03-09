@@ -3,21 +3,28 @@
         <span class="back">
             <h2>Подписки</h2>
         </span>
-        <div class="filters">
-            <filters 
-                [filters]="['Оплаченные', 'Не оплаченные']" 
-                (changedFilters)="changeFilter($event)"
-                [isMultiple]="true"
-                ></filters>
-        </div>
-        <div class="subscriptions">
-            @for (item of filteredSubscriptions(); track item) {
-                <subscription-big 
-                    [routerLink]="['../subscription', item.subscription_id]"
-                    [subscribtionData]="item"
-                    animate.enter="appear"
-                ></subscription-big>
-            }
-        </div>
+        @if (realSubscriptions().length !== 0) {
+            <div class="filters">
+                <filters 
+                    [filters]="['Оплаченные', 'Не оплаченные']" 
+                    (changedFilters)="changeFilter($event)"
+                    [isMultiple]="true"
+                    ></filters>
+            </div>
+            <div class="subscriptions">
+                    @for (item of filteredSubscriptions(); track item) {
+                        <subscription-big 
+                            [routerLink]="['../subscription', item.subscription_id]"
+                            [subscribtionData]="item"
+                            animate.enter="appear"
+                        ></subscription-big>
+                    }
+            </div>
+        } @else {
+            <div class="no-subscriptions">
+                <p>У вас нет подписок</p>
+                <a [routerLink]="['../add']">Добавить подписку</a>
+            </div>
+        }
     </div>
 </div>

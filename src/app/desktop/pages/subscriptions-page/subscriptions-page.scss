@@ -12,6 +12,10 @@
         margin-top: vars.$size-40;
         gap: vars.$size-40;
 
+        .no-subscriptions {
+            @include vars.noSubscriptions;
+        }
+
         .back {
             display: flex;
             align-items: center;
