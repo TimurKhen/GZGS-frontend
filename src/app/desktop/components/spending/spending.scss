@@ -15,8 +15,10 @@
         display: flex;
         flex-direction: column;
         gap: vars.$size-20;
+        position: relative;
 
         .no-subscriptions {
+            height: 100%;
             @include vars.noSubscriptions;
         }
 
@@ -50,6 +52,19 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
             gap: vars.$size-12;
+        }
+
+        
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: vars.$size-12;
+            width: 2px;
+            height: 80%;
+            background: vars.$color-background;
+            border-radius: vars.$radius-full;
         }
     }
     .ring {
