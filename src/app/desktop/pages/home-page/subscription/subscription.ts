@@ -83,10 +83,10 @@ export class Subscription implements OnInit {
     {
       name: 'Скопировать письмо для отмены',
       action: () => {
-        this.clipboard.copy('Текст для копирования')
+        this.clipboard.copy(`Здравствуйте, я желаю прекратить использование сервиса: "${this.subscriptionData().name}" по собственному желанию.`)
 
         this.errorHandler.showAlert(
-          '<strong>Письмо было скопированно</strong>',
+          `Текст был скопирован`,
           {}
         )
       }
@@ -96,7 +96,7 @@ export class Subscription implements OnInit {
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    cost: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]),
+    cost: new FormControl(1, [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]),
     next_billing: new FormControl('', [Validators.required]),
     url_service: new FormControl(''),
     cancellation_link: new FormControl(''),

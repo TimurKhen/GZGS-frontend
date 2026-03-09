@@ -77,16 +77,19 @@
                             [control]="editForm.get('name')"
                             [placeholderText]="'Название сервиса'"
                             [isRequred]="true"
-                            ></text-input>
+                        ></text-input>
+
                         <number-input 
                             [control]="editForm.get('cost')"
                             [placeholderText]="'Цена в месяц'"
+                            [lastValue]="subscriptionData()?.cost"
                             [isRequred]="true"
                         ></number-input>
-                            
+
                         <date-input
                             [control]="editForm.get('next_billing')"
                             [placeholderText]="'Дата списания'"
+                            [currentDate]="subscriptionData()?.next_billing"
                         ></date-input>
 
                         <text-input 

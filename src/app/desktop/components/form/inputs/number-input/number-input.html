@@ -9,20 +9,24 @@
             tuiLabel
         >{{placeholderText()}}</label>
         <input
+            type="number"
+            [min]="1"
             tuiInputNumber
             [formControl]="control()"
-        />
-    </tui-textfield>
-} @else {
-    <tui-textfield 
+            />
+        </tui-textfield>
+    } @else {
+        <tui-textfield 
         class="textfield-container" 
         [attr.tuiTheme]="'dark'"
         [ngClass]="{'error': !control().valid && control().touched}"
-    >
+        >
         <label
-            tuiLabel
+        tuiLabel
         >{{placeholderText()}}</label>
         <input
+            type="number"
+            [min]="1"
             tuiInputNumber
             [formControl]="control()"
         />

@@ -7,7 +7,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NumberInput } from "../../../components/form/inputs/number-input/number-input";
 import { Router, RouterLink } from "@angular/router";
 import { SubscriptionsService } from '../../../../services/api/subscriptions/subscriptions-service';
-import { Subscribtion } from '../../../../components/subscribtion/subscribtion';
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { catchError, throwError } from 'rxjs';
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
@@ -25,7 +24,7 @@ export class CreateNewSubscription {
   subscriptionForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    cost: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]),
+    cost: new FormControl(parseInt(''), [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]),
     next_billing: new FormControl('', [Validators.required]),
     url_service: new FormControl(''),
     cancellation_link: new FormControl(''),

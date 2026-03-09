@@ -10,6 +10,9 @@
     border-radius: vars.$radius-lg;
     padding: vars.$size-20;
 
+    user-select: none;
+    cursor: pointer;
+
     .image-container {
         display: flex;
 

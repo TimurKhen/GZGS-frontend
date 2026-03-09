@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, input, signal } from '@angular/core';
+import { Component, effect, input, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiTextfieldComponent, TuiError } from "@taiga-ui/core";
 
@@ -13,10 +13,11 @@ export class NumberInput {
   placeholderText = input<string>()
   control = input<any>()
   isRequred = input<boolean>(false)
+  lastValue = input<number>(1)
 
-  lastValue = signal<string>('')
-
-  ngOnInit(): void {
-    this.lastValue.set(this.control().value)
+  constructor() {
+    effect(() => {
+      this.control().value = this.lastValue() 
+    })
   }
 }

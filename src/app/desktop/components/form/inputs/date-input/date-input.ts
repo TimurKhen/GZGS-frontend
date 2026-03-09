@@ -15,26 +15,22 @@ export class DateInput implements OnInit {
   placeholderText = input<string>()
   control = input<any>()
   isRequired = input<boolean>(false)
+  currentDate = input<string>('')
 
   dateValue: TuiDay | null = null
   protected readonly today = TuiDay.currentLocal()
 
   constructor() {
     effect(() => {
-      const controlValue = this.control()?.value
-      if (controlValue) {
-        this.updateDateValueFromISO(controlValue)
-      } else {
-        this.dateValue = null
-      }
-    });
+      this.updateDateValueFromISO(this.currentDate())
+    })
   }
 
   ngOnInit(): void {
     const initialValue = this.control()?.value;
     if (initialValue) {
-      this.updateDateValueFromISO(initialValue)
-    }
+      this.updateDateValueFromISO(this.currentDate())
+    } 
   }
 
   onDateChange(): void {

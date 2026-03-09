@@ -55,7 +55,7 @@ export class SubscriptionsService {
     formData.append('subscription_id', this.uuidService.generateUUID())
     formData.append('user_id', this.uuidService.generateUUID())
     formData.append('name', subscriptionData.name)
-    formData.append('cost', String(subscriptionData.cost))
+    formData.append('cost', String(subscriptionData.cost).replace(/^0+/, ''))
     formData.append('next_billing', subscriptionData.next_billing)
     formData.append('status', 'false')
     formData.append('subscription_avatar', subscriptionData.subscription_avatar_url)
