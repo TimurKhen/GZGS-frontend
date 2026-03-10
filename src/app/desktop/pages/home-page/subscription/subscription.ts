@@ -244,6 +244,7 @@ export class Subscription implements OnInit {
           return throwError(err)
         })
       ).subscribe(() => {
+        this.subscriptionsService.clearSubscriptions()
         this.router.navigate(['/'])
       }
     )
