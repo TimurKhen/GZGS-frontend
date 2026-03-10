@@ -160,7 +160,6 @@ export class Subscription implements OnInit {
           [field]: !currentData[field]
         }))
         this.showDialog(`Статус обновлен`)
-        this.subscriptionsService.clearSubscriptions()
       })
   }
 
@@ -228,7 +227,7 @@ export class Subscription implements OnInit {
         })
       ).subscribe((data) => {
         this.showDialog('Изменения сохранены')
-        this.subscriptionsService.clearSubscriptions()
+        
       }
     )
   }
@@ -244,7 +243,7 @@ export class Subscription implements OnInit {
           return throwError(err)
         })
       ).subscribe(() => {
-        this.subscriptionsService.clearSubscriptions()
+        
         this.router.navigate(['/'])
       }
     )

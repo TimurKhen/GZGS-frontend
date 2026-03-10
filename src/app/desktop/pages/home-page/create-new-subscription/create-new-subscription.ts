@@ -46,7 +46,6 @@ export class CreateNewSubscription {
         })
       )
       .subscribe((data) => {
-        this.subcsriptionService.clearSubscriptions()
         this.isLoading.set(false)
         this.router.navigate(['/'])
       })

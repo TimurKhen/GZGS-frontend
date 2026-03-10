@@ -74,6 +74,7 @@ export class SubscriptionsService {
     formData.append('use_in_this_month', 'false')
     formData.append('cancellation_link', subscriptionData.cancellation_link)
     
+    this.clearSubscriptions()
     return this.http.post(
       this.mainUrl + 'create',
       formData
@@ -127,6 +128,8 @@ export class SubscriptionsService {
   }
 
   updateSubscription(currentData: SubscriptionInterface, changes: any) {
+    this.clearSubscriptions()
+
     return this.http.patch(
       this.mainUrl + `update/${currentData.subscription_id}`,
       this.getDiff(currentData, changes)
@@ -134,6 +137,8 @@ export class SubscriptionsService {
   }
 
   deleteSubscription(currentData: SubscriptionInterface) {
+    this.clearSubscriptions()
+
     return this.http.delete(
       this.mainUrl + `delete/${currentData.subscription_id}`
     )
