@@ -160,7 +160,8 @@ export class Subscription implements OnInit {
           [field]: !currentData[field]
         }))
         this.showDialog(`Статус обновлен`)
-      });
+        this.subscriptionsService.clearSubscriptions()
+      })
   }
 
   ngOnInit() {
@@ -227,6 +228,7 @@ export class Subscription implements OnInit {
         })
       ).subscribe((data) => {
         this.showDialog('Изменения сохранены')
+        this.subscriptionsService.clearSubscriptions()
       }
     )
   }

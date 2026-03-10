@@ -44,10 +44,20 @@ export class SubscriptionsService {
     }))
   }
 
+  clearSubscriptions() {
+    this.currentUserSubscriptions.set([])
+  }
+
   get userSubscriptions(): Observable<SubscriptionInterface[]> {
-    return this.getSubscriptions().pipe(
-      map(val => this.subscriptionDataChanger(val)),
-    )
+    if (this.currentUserSubscriptions().length == 0) {
+      return this.getSubscriptions().pipe(
+        map(val => this.subscriptionDataChanger(val)),
+      )
+    } else {
+      return of(this.currentUserSubscriptions()).pipe(
+        map(val => this.subscriptionDataChanger(val)),
+      )
+    }
   }
 
   createSubscription(subscriptionData: SubscriptionInterface) {
