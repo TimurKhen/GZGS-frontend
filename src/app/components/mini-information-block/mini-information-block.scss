@@ -1,8 +1,7 @@
 @use '../../../assets/_variables.scss' as vars;
 
 .block {
-    max-width: vars.$size-280;
-    
+    // max-width: vars.$size-280;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,14 +12,13 @@
     @include vars.basicGradient;
     
     .main-information {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        display: flex;
         align-items: center;
         gap: vars.$size-8;
 
         img {
-            width: 100%;
-            height: auto;
+            // width: 100%;
+            // height: auto;
             aspect-ratio: 1/1;
             object-fit: cover;
             border-radius: vars.$radius-full;
