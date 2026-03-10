@@ -27,7 +27,7 @@ ng serve
 Для билда проекта:
 
 ```bash
-ng build
+npm run build
 ```
 
 Необходимо установить angular-http-server.
