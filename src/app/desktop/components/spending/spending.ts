@@ -62,6 +62,7 @@ export class Spending implements OnChanges {
         }
       )
     )
+    this.isLoading.set(false)
   }
 
   total = computed(() => {
