@@ -2,27 +2,38 @@
 
 .block {
     max-width: vars.$size-280;
-    // max-width: vars.$size-360;
     
     display: flex;
     align-items: center;
     justify-content: space-between;
     
-    gap: vars.$size-16;
+    gap: vars.$size-8;
     padding: vars.$size-4 vars.$size-12 vars.$size-4 vars.$size-8;
     border-radius: vars.$radius-full;
     @include vars.basicGradient;
     
     .main-information {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
         gap: vars.$size-8;
-        
+
         img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
             border-radius: vars.$radius-full;
         }
 
         .icon-block {
+            justify-self: flex-end;
+            max-height: vars.$size-28;
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: vars.$radius-full;
         }
         .paid-icon {

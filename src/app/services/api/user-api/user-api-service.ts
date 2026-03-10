@@ -147,7 +147,6 @@ export class UserApiService {
 
   saveUser(val: serverAnswer) {
     this.userData = val
-    this.cookieService.set('user', JSON.stringify(this.userData))
   }
 
   dataChanger(value: serverAnswer): serverAnswer {
