@@ -49,8 +49,9 @@
         }
 
         .subscribtions {
+            width: 90%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
             gap: vars.$size-12;
         }
 

@@ -52,7 +52,15 @@
                     class="create-button" 
                     (click)="createSubscription($event)"
                     [disabled]="!subscriptionForm.valid || isLoading()"
-                >Создать</button>
+                >
+                    @if (isLoading()) {
+                        <div class="loading">
+                            <tui-loader />
+                        </div>
+                    } @else {
+                        Создать
+                    }   
+                </button>
             </form>
         </div>
     </div>

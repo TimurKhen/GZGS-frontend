@@ -40,8 +40,11 @@
                     align-items: center;
                     background: vars.$color-white;
                     border-radius: vars.$radius-full;
-
+                    aspect-ratio: 1/1;
+                    
                     img {
+                        object-fit: cover;
+                        aspect-ratio: 1/1;
                         border-radius: vars.$radius-full;
                     }
                 }

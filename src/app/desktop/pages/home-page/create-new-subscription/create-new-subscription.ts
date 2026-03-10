@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { TuiIcon } from "@taiga-ui/core";
+import { TuiIcon, TuiLoader } from "@taiga-ui/core";
 import { FileInput } from "../../../components/form/inputs/file-input/file-input";
 import { TextInput } from "../../../components/form/inputs/text-input/text-input";
 import { DateInput } from "../../../components/form/inputs/date-input/date-input";
@@ -13,7 +13,7 @@ import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/err
 
 @Component({
   selector: 'app-create-new-subscription',
-  imports: [TuiIcon, FileInput, TextInput, DateInput, NumberInput, RouterLink],
+  imports: [TuiIcon, FileInput, TextInput, DateInput, NumberInput, RouterLink, TuiLoader],
   templateUrl: './create-new-subscription.html',
   styleUrl: './create-new-subscription.scss',
 })
@@ -46,6 +46,7 @@ export class CreateNewSubscription {
         })
       )
       .subscribe((data) => {
+        this.subcsriptionService.clearSubscriptions()
         this.isLoading.set(false)
         this.router.navigate(['/'])
       })
