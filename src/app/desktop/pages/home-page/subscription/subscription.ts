@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { TuiAlertService, TuiIcon } from "@taiga-ui/core";
+import { TuiAlertService, TuiIcon, TuiLoader } from "@taiga-ui/core";
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,7 +21,7 @@ import { NumberInput } from '../../../components/form/inputs/number-input/number
 
 @Component({
   selector: 'app-subscription',
-  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput],
+  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput, TuiLoader],
   templateUrl: './subscription.html',
   styleUrl: './subscription.scss',
 })
@@ -32,6 +32,9 @@ export class Subscription implements OnInit {
   private readonly errorHandler = inject(ErrorCatcherService)
   paidStatusSubject = new Subject<any>()
   usedStatusSubject = new Subject<any>()
+
+  isUpdating = signal<boolean>(false)
+  isDeleting = signal<boolean>(false)
 
   subscriptionData = signal<any>(null)
   subscriptionId = signal<string | null>(null)
@@ -141,24 +144,27 @@ export class Subscription implements OnInit {
       [field]: !currentData[field]
     }
 
+    this.isUpdating.set(true)
+    
     this.subscriptionsService.updateSubscription(currentData, changes)
-      .pipe(
-        catchError((err) => {
-          this.showError(`${err.statusText}: ${err.status}`)
-
-          const statusBlock = field === 'status' ? this.isPaidStatusBlock : this.usedStatusBlock;
-          statusBlock.update(data => ({
-            ...data,
-            isActive: currentData[field]
-          }));
-          return throwError(err)
-        })
-      )
-      .subscribe(() => {
-        this.subscriptionData.update(data => ({
+    .pipe(
+      catchError((err) => {
+        this.showError(`${err.statusText}: ${err.status}`)
+        
+        const statusBlock = field === 'status' ? this.isPaidStatusBlock : this.usedStatusBlock;
+        statusBlock.update(data => ({
+          ...data,
+          isActive: currentData[field]
+        }));
+        return throwError(err)
+      })
+    )
+    .subscribe(() => {
+      this.subscriptionData.update(data => ({
           ...data,
           [field]: !currentData[field]
         }))
+        this.isUpdating.set(false)
         this.showDialog(`Статус обновлен`)
       })
   }
@@ -217,6 +223,7 @@ export class Subscription implements OnInit {
   saveChanges($event: Event) {
     $event.preventDefault()
     
+    this.isUpdating.set(true)
     this.subscriptionsService.updateSubscription(
       this.subscriptionData(), 
       this.editForm.value as SubscriptionInterface)
@@ -227,7 +234,7 @@ export class Subscription implements OnInit {
         })
       ).subscribe((data) => {
         this.showDialog('Изменения сохранены')
-        
+        this.isUpdating.set(false)
       }
     )
   }
@@ -235,6 +242,7 @@ export class Subscription implements OnInit {
   deleteSubscription($event: Event) {
     $event.preventDefault()
     
+    this.isDeleting.set(true)
     this.subscriptionsService.deleteSubscription(
       this.subscriptionData())
       .pipe(
@@ -243,7 +251,7 @@ export class Subscription implements OnInit {
           return throwError(err)
         })
       ).subscribe(() => {
-        
+        this.isDeleting.set(false)
         this.router.navigate(['/'])
       }
     )

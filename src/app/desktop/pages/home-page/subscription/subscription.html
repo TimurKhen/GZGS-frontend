@@ -111,8 +111,31 @@
                 </div>
 
                 <div class="buttons">
-                    <button (click)="saveChanges($event)">Подтвердить изменения</button>
-                    <button class="delete-button" (click)="deleteSubscription($event)">Удалить подписку</button>
+                    <button 
+                        [disabled]="isDeleting() || isUpdating()"
+                        (click)="saveChanges($event)"
+                    >
+                        @if (isUpdating()) {
+                            <div class="loading">
+                                <tui-loader />
+                            </div>
+                        } @else {
+                            Подтвердить изменения
+                        }   
+                    </button>
+                    <button 
+                        class="delete-button" 
+                        [disabled]="isDeleting() || isUpdating()"
+                        (click)="deleteSubscription($event)"
+                    >
+                        @if (isDeleting()) {
+                            <div class="loading">
+                                <tui-loader />
+                            </div>
+                        } @else {
+                            Удалить подписку
+                        }   
+                    </button>
                 </div>
             </form>
         </div>
