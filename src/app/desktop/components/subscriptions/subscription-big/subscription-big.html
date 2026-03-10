@@ -12,7 +12,14 @@
                 <h3 class="category">{{subscribtionData()?.category}}</h3>
             </span>
             <div class="paid-container">
-                <is-paid-status [isPaid]="subscribtionData()?.status"></is-paid-status>
+                <div class="paid-statuses">
+                    <is-paid-status [isPaid]="subscribtionData()?.status"></is-paid-status>
+                    <is-paid-status 
+                        [isPaid]="subscribtionData()?.use_in_this_month"
+                        [text]="'Использовано'"
+                        [secondText]="'Не использовано'"   
+                    ></is-paid-status>
+                </div>
                 @if (subscribtionData()?.status) {
                     <p>до {{dateConverter.parseDate(subscribtionData()?.next_billing) | date:'longDate'}}</p>
                 }

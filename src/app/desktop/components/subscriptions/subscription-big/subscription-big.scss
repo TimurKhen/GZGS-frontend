@@ -45,6 +45,7 @@
                     @include vars.basicGradient;
                     padding: 0 vars.$size-20;
                     color: vars.$color-black !important;
+                    font-weight: 900;
                 }
             }
 
@@ -55,6 +56,12 @@
                 color: vars.$color-white;
                 font-size: vars.$font-sm;
                 justify-content: space-between;
+
+                .paid-statuses {
+                    display: flex;
+                    align-items: center;
+                    gap: vars.$size-12;
+                }
 
                 p {
                     text-align: right;

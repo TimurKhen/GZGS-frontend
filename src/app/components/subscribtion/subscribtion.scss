@@ -34,6 +34,7 @@
             gap: vars.$size-12;
 
             .paid-container {
+                display: flex;
                 color: white;
             }
         }

@@ -9,4 +9,6 @@ import { TuiIcon } from "@taiga-ui/core";
 })
 export class IsPaidStatus {
   isPaid = input<boolean>()
+  text = input<string>('Оплачено')
+  secondText = input<string>('Не оплачено')
 }
