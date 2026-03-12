@@ -1,0 +1,118 @@
+@use '../../../../../../../assets/_variables.scss' as vars;
+
+.email-setup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: vars.$size-40;
+
+    .title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .inputs {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        label { 
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: vars.$size-8 vars.$size-12;
+            color: vars.$color-white;
+            align-items: center;
+            justify-content: space-between;
+            gap: vars.$size-12;
+            
+            p {
+                align-self: flex-start;
+            }
+
+            input {
+                width: 100%;
+                border: none;
+                border-radius: vars.$radius-lg;
+                color: vars.$color-white;
+                padding: vars.$size-8;
+                background: vars.$color-black;
+            }
+        }
+    }
+}
+
+button {
+    width: 100%;
+    padding: vars.$size-12;
+    border-radius: vars.$radius-lg;
+    border: none;
+    background: vars.$color-yellow;
+    color: vars.$color-black;
+    font-weight: 800;
+    
+    transition: background-color 0.3s, color 0.3s, font-size 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: vars.$font-md;
+    
+    &:disabled {
+        background: vars.$color-black;
+        color: vars.$color-gray;
+        font-weight: normal;
+        font-size: vars.$font-sm;
+    }
+}
+
+.email-added {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: vars.$size-20;
+    width: 100%;
+    height: 100%;
+
+    .mark {
+        width: 40%;
+        height: auto;
+        aspect-ratio: 1/1;
+        
+        border-radius: vars.$radius-full;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        background: vars.$color-green;
+
+        .icon {
+            font-size: 8em;
+            color: vars.$color-white;
+        }
+    }
+}
+
+.enter {
+    animation: slide-fade 0.3s cubic-bezier(.17,.67,.69,1.49);
+}
+
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translateY(vars.$size-12);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

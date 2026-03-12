@@ -1,16 +1,17 @@
 import { Component, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { TuiButton } from '@taiga-ui/core';
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
 import { debounceTime, of, Subject, switchMap } from 'rxjs';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
 import { Router } from '@angular/router';
+import { AddEmail } from "./assets/add-email/add-email";
 
 @Component({
   selector: 'app-profile-page',
-  imports: [TuiButton, StatusBlock],
+  imports: [TuiButton, StatusBlock, ReactiveFormsModule, AddEmail],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })
@@ -22,6 +23,8 @@ export class ProfilePage implements OnInit {
   userAvatarUrl = signal<string>('')
   userName = signal<string>('')
   notificationStatus = signal<boolean>(false)
+  isConnectedEmail = signal<boolean>(false)
+
   notificationsSubject = new Subject()
 
   editUserForm = new FormGroup({
@@ -74,6 +77,7 @@ export class ProfilePage implements OnInit {
       this.userName.set(String(data.user.fullname))
       this.userAvatarUrl.set(String(data.user.avatar_url))
       this.notificationStatus.set(data.user.notifications)
+      this.isConnectedEmail.set(data.user.is_connected_email || false)
       this.userData.set(data.user)
       this.notificationBlock.update((val) => ({
         ...val,
