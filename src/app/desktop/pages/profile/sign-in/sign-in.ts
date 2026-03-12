@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
 import { LoginUserInterface } from '../../../../interfaces/user/login-user-interface';
@@ -7,7 +7,7 @@ import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.scss',
 })

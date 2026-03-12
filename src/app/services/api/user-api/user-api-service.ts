@@ -18,7 +18,8 @@ interface UserInformation {
   fullname: string,
   id: string,
   username: string,
-  notifications: boolean
+  notifications: boolean,
+  is_connected_email: boolean | undefined
 }
 
 interface serverAnswer {
@@ -201,6 +202,21 @@ export class UserApiService {
           return throwError(val)
         }
       ),
+    )
+  }
+
+  connectEmail(emailPassword: string) {
+    return this.http.post(
+      masterURL + '/api/email/parse',
+      JSON.stringify({
+        password: emailPassword
+      })
+    ).pipe(
+      catchError(err => {
+        console.log(err)
+        this.showError(`${err.status}: ${err.statusText}`)
+        return throwError(err)
+      })
     )
   }
 }
