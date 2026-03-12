@@ -6,7 +6,13 @@
                 <span class="image">
                     <img width="100" [src]="userAvatarUrl()">
                 </span>
-                <h2>{{userName()}}</h2>
+                @if (userName()) {
+                    <h2>{{userName()}}</h2>
+                } @else {
+                    <div class="skeleton-wrapper">
+                        <div class="skeleton-text"></div>
+                    </div>
+                }
                 <p class="email-text">{{userData().email}}</p>
                 <div class="edit">
                     <status-block
