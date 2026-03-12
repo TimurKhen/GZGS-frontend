@@ -38,6 +38,10 @@
             flex-direction: column;
             gap: vars.$size-12;
 
+            .no-subscriptions, .loading {
+                @include vars.noSubscriptions;
+            }
+
             .filters {
                 display: flex;
                 align-items: center;
