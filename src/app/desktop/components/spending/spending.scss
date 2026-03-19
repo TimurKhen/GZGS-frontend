@@ -3,7 +3,7 @@
 .spending-block {
     width: 100%;
     min-height: vars.$size-400;
-    
+
     display: grid;
     grid-template-columns: 2fr 1fr;
 
@@ -26,7 +26,7 @@
             display: flex;
             flex-direction: column;
             gap: vars.$size-12;
-            
+
             .buttons {
                 display: flex;
                 gap: vars.$size-8;
@@ -61,23 +61,10 @@
                 @include vars.basicGradient;
             }
         }
-
-        
-        &::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: vars.$size-12;
-            width: 2px;
-            height: 80%;
-            background: vars.$color-background;
-            border-radius: vars.$radius-full;
-        }
     }
     .ring {
         width: 100%;
-    
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -106,7 +93,7 @@
     gap: vars.$size-40;
 
     .information {
-        .title {           
+        .title {
             .buttons {
                 button {
                     padding: vars.$size-4 vars.$size-12;
