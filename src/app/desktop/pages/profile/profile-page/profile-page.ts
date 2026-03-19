@@ -37,7 +37,7 @@ export class ProfilePage implements OnInit {
     effect(() => {
       this.notificationsSubject
         .pipe(
-          debounceTime(500),
+          debounceTime(250),
           switchMap((val: any) => {
             return val
           })
