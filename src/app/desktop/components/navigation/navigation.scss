@@ -27,49 +27,50 @@
                 height: 100%;
             }
 
-            .link-span {
-                a {
-                    position: relative;
-                    padding-bottom: vars.$size-4;
-                    user-select: none;
-                    cursor: pointer;
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        left: 50%;
-                      width: 100%;
-                        height: calc(vars.$size-4 / 2);
-                        background-color: vars.$color-yellow;
-                        border-radius: vars.$radius-lg;
-
-                        transform: translateX(-50%) scaleX(0);
-                        opacity: 0;
-
-                        transition: transform 0.3s ease, opacity 0.3s ease;
-                    }
-
-                  &::after {
-                    bottom: calc(vars.$size-4 * -1);
-                  }
-                }
-
-                &.active a::after {
-                    transform: translateX(-50%) scaleX(1);
-                    opacity: 1;
-                }
-            }
         }
-
+        
         .account {
             display: flex;
             user-select: none;
             cursor: pointer;
-
+            
             span {
                 height: 100%;
                 font-size: vars.$font-lg;
             }
         }
+    }
+}
+
+.link-span {
+    a {
+        position: relative;
+        padding-bottom: vars.$size-4;
+        user-select: none;
+        cursor: pointer;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 150%;
+            height: calc(vars.$size-4 / 2);
+            background-color: vars.$color-yellow;
+            border-radius: vars.$radius-lg;
+
+            transform: translateX(-50%) scaleX(0);
+            opacity: 0;
+
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+      &::after {
+        bottom: calc(vars.$size-4 * -1);
+      }
+    }
+
+    &.active a::after {
+        transform: translateX(-50%) scaleX(1);
+        opacity: 1;
     }
 }

@@ -5,14 +5,17 @@
                 <img src="icons/GZGS.svg" width="80"/>
             </span>
             @for (item of paths; track item; let i = $index) {
-                <span class="link-span" [ngClass]="{'active': i == activePageIndex()}">
+                <span class="link-span" [ngClass]="{'active': i == activePageIndex() && activePageIndex() !== 4}">
                     <a [routerLink]="item.address">{{item.name}}</a>
                 </span>
             }
         </div>
         <div class="account">
-            <span>
-                <a [routerLink]="'profile'">{{userName()}}</a>
+            <span class="link-span" [ngClass]="{'active': 4 == activePageIndex()}">
+                <a 
+                    [routerLink]="'profile'">
+                    {{userName()}}
+                </a>
             </span>
         </div>
     </nav>

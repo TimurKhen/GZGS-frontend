@@ -25,7 +25,7 @@ const urls = [
   templateUrl: './navigation.html',
   styleUrl: './navigation.scss',
 })
-export class Navigation implements AfterViewInit {
+export class Navigation implements OnInit {
   private router = inject(Router)
   private userHandler = inject(UserApiService)
   
@@ -42,13 +42,15 @@ export class Navigation implements AfterViewInit {
     })
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     const currentUrl = this.router.url
     this.updateActivePage(currentUrl)
     
     const userData = this.userHandler.userInfo
     userData.subscribe((data) => {
-      this.userName.set(String(data.user.fullname.split(' ').at(0)))
+      if (data) {
+        this.userName.set(String(data.user.fullname.split(' ').at(0)))
+      }
     })
   }
 
@@ -58,6 +60,10 @@ export class Navigation implements AfterViewInit {
     })
     if (findedIndex !== -1) {
       this.activePageIndex.set(findedIndex)
+    } else {
+      if (url.includes('profile')) {
+        this.activePageIndex.set(4) 
+      }
     }
   }
 }
