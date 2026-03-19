@@ -19,7 +19,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
         .pipe(
             catchError(err => {
                 if (err.status === 401) {
-                    userApi.logout()
+                    // userApi.logout()
                     // return refreshAndProceed(userApi, req, next)
                 }
 
@@ -29,13 +29,13 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
 }
 
 const refreshAndProceed = (
-    service: UserApiService, 
-    req: HttpRequest<any>, 
+    service: UserApiService,
+    req: HttpRequest<any>,
     next: HttpHandlerFn
 ) => {
     if (!isRefreshing) {
         isRefreshing = true
-        
+
         return service.refreshAuthToken()
             .pipe(
                 switchMap((res) => {

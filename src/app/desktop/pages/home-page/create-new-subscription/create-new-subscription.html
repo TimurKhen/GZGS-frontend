@@ -9,9 +9,17 @@
             <h2>Создать подписку:</h2>
             <form>
                 <div class="inputs">
-                    <file-input 
-                        [control]="subscriptionForm.get('subscription_avatar_url')"
-                    ></file-input>
+                    <div class="image">
+                        <file-input 
+                            [control]="subscriptionForm.get('subscription_avatar_url')"
+                        ></file-input>
+                        @if (!subscriptionForm.get('subscription_avatar_url')?.value) {
+                            <tui-icon 
+                                animate.enter="enter" animate.leave="leave" 
+                                class="icon" icon="@tui.badge-alert">
+                            </tui-icon>
+                        } 
+                    </div>
                     <div class="other-inputs">
                         <text-input 
                             [control]="subscriptionForm.get('name')"

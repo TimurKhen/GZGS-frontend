@@ -21,7 +21,7 @@ export class Registration {
     name: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
   isLoading = signal<boolean>(false)

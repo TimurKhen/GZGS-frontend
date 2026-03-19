@@ -52,13 +52,13 @@ export class CreateNewSubscription {
   }  
   showError(message: string) {
     this.errorHandler.showAlert(
-            `${message}`,
-            {
-              appearance: 'negative',
-              data: {
-                theme: 'dark'
-              }
-            }
-          )
+      `${message}`,
+      {
+        appearance: 'negative',
+        data: {
+          theme: 'dark'
+        }
+      }
+    )
   }
 }

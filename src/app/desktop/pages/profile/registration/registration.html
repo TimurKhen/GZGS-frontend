@@ -54,7 +54,7 @@
                         <p *ngIf="registrationForm.get('email')?.errors?.['required']">
                             Почта обязательна.
                         </p>
-                        <p *ngIf="registrationForm.get('email')?.errors?.['email']">
+                        <p *ngIf="registrationForm.get('email')?.errors?.['pattern']">
                             Email неверен.
                         </p>
                     </div>
