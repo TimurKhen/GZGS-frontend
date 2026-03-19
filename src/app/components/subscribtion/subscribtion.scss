@@ -8,7 +8,7 @@
     background-color: vars.$color-surface;
 
     border-radius: vars.$radius-lg;
-    padding: vars.$size-20;
+    padding: vars.$size-12;
 
     user-select: none;
     cursor: pointer;
@@ -32,7 +32,7 @@
         .main {
             display: flex;
             flex-direction: column;
-            gap: vars.$size-12;
+            gap: vars.$size-16;
 
             .paid-container {
                 display: flex;

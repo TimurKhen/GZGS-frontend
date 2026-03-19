@@ -21,38 +21,46 @@
                         } 
                     </div>
                     <div class="other-inputs">
-                        <text-input 
-                            [control]="subscriptionForm.get('name')"
-                            [placeholderText]="'Название сервиса'"
-                            [isRequred]="true"
-                            ></text-input>
-                        <number-input 
-                            [control]="subscriptionForm.get('cost')"
-                            [placeholderText]="'Цена в месяц'"
-                            [lastValue]="1"
-                            [isRequred]="true"
-                        ></number-input>
+                        <div class="double">
+                            <text-input 
+                                [control]="subscriptionForm.get('name')"
+                                [placeholderText]="'Название сервиса'"
+                                [isRequred]="true"
+                                ></text-input>
+                            <number-input 
+                                [control]="subscriptionForm.get('cost')"
+                                [placeholderText]="'Цена в месяц'"
+                                [lastValue]="1"
+                                [isRequred]="true"
+                            ></number-input>
+                        </div>
                             
-                        <date-input
-                            [control]="subscriptionForm.get('next_billing')"
-                            [placeholderText]="'Дата списания'"
-                        ></date-input>
+                        <div class="double">
+                            <date-input
+                                [control]="subscriptionForm.get('next_billing')"
+                                [placeholderText]="'Дата списания'"
+                            ></date-input>
+    
+                            <text-input 
+                                [control]="subscriptionForm.get('url_service')"
+                                [placeholderText]="'Ссылка на сервис'"
+                                [isRequred]="true"
+                            ></text-input>
+                        </div>
 
-                        <text-input 
-                            [control]="subscriptionForm.get('url_service')"
-                            [placeholderText]="'Ссылка на сервис'"
-                            [isRequred]="true"
-                        ></text-input>
-                        <text-input 
-                            [control]="subscriptionForm.get('cancellation_link')"
-                            [placeholderText]="'Ссылка на отмену'"
-                            [isRequred]="true"
-                        ></text-input>
-                        <text-input 
-                            [control]="subscriptionForm.get('category')"
-                            [placeholderText]="'Категория'"
-                            [isRequred]="true"
-                        ></text-input>
+                        <div class="double">
+                            <text-input 
+                                [control]="subscriptionForm.get('cancellation_link')"
+                                [placeholderText]="'Ссылка на отмену'"
+                                [isRequred]="true"
+                            ></text-input>
+                            
+                            <text-input 
+                                [control]="subscriptionForm.get('category')"
+                                [placeholderText]="'Категория'"
+                                [isRequred]="true"
+                            ></text-input>
+                        </div>
                     </div>
                 </div>
 

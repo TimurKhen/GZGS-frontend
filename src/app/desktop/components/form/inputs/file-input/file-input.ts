@@ -1,4 +1,4 @@
-import {NgIf} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import {ChangeDetectionStrategy, Component, input, output, signal} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiFiles } from '@taiga-ui/kit';
@@ -6,7 +6,7 @@ import { TuiIcon } from "@taiga-ui/core";
 
 @Component({
   selector: 'file-input',
-  imports: [NgIf, ReactiveFormsModule, TuiFiles, TuiIcon],
+  imports: [NgIf, ReactiveFormsModule, TuiFiles, TuiIcon, NgClass],
   templateUrl: './file-input.html',
   styleUrl: './file-input.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

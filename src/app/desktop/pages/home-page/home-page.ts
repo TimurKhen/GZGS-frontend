@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { Subscribtion } from "../../../components/subscribtion/subscribtion";
 import { Spending } from "../../components/spending/spending";
 import { ButtonWithImage } from "../../../components/button-with-image/button-with-image";
@@ -20,6 +20,11 @@ export class HomePage implements OnInit, OnChanges {
   userName = signal<string>('')
   realSubscriptions = signal<SubscriptionInterface[]>([])
   
+  maxSubscriptionsOnScreenCount = signal<number>(3)
+  smalledCountOfSubscriptions = computed(() => {
+    return this.realSubscriptions().slice(0, this.maxSubscriptionsOnScreenCount())
+  })
+
   ngOnChanges(changes: SimpleChanges): void {
     this.ngOnInit()
   }

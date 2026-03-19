@@ -15,12 +15,18 @@
                 </div>
             </div>
             <div class="subscribtions">
-                    @for (item of currentSmalledSubscribtions(); track item) {
-                        <app-mini-information-block
-                            animate.enter="enter"
-                            [information]="item"
-                        ></app-mini-information-block>
-                    }
+                @for (item of smalledCountOfSubscriptions(); track item) {
+                    <app-mini-information-block
+                        animate.enter="enter"
+                        [information]="item"
+                    ></app-mini-information-block>
+                }
+                @if (currentSmalledSubscribtions().length > maxSubscriptionsOnScreenCount()) {
+                    <button 
+                        routerLink="subscriptions"
+                        class="more-button" size="m" tuiButton
+                        >Ещё {{subscriptions().length - smalledCountOfSubscriptions().length}}</button>
+                }
             </div>
         } @else {
             @if (isLoading()) {

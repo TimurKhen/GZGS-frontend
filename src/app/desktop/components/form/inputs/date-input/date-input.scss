@@ -11,3 +11,11 @@
         background: vars.$color-surface;
     }
 }
+
+.error {
+   border: 3px dashed vars.$color-red;
+}
+
+.error-message {
+    color: vars.$color-red;
+}

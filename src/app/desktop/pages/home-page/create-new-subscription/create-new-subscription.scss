@@ -52,11 +52,23 @@
                     height: 16em;
                     
                     .other-inputs {
-                        display: grid;
-                        grid-template-columns: repeat(3, 300px);
+                        display: flex;
                         grid-auto-flow: dense;
                         gap: vars.$size-20;
                         align-items: center;
+                        height: 100%;
+
+                        .double {
+                            width: vars.$size-280;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            height: 100%;
+
+                            text-input, number-input, date-input {
+                                max-height: vars.$size-64;
+                            }
+                        }
                     }
                 }
 
@@ -85,9 +97,9 @@
 }
 
 @media (max-width: 768px) {
-
     .container {
         width: 100%;
+        margin-bottom: vars.$size-440;
 
         .content {
             width: calc(100% - vars.$size-20);
@@ -97,6 +109,7 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    gap: vars.$size-40;
                 
                     .inputs {
                         width: 80%;
@@ -110,25 +123,30 @@
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            gap: vars.$size-20;
+                            gap: vars.$size-40;
+
+                            .double {
+                                gap: vars.$size-40;
+                            }
 
                             text-input, date-input, number-input {
                                 width: 100%;
                             }
                         }
                     }
+
+                    .create-button {
+                        width: 100%;
+                        align-self: center;
+                        padding: vars.$size-24;
+                        border: none;
+                        border-radius: vars.$radius-sm;
+                        background: vars.$color-yellow;
+                        font-weight: 700;
+                        font-size: vars.$font-md;
+                    }
                 }
 
-                button {
-                    width: 100%;
-                    align-self: center;
-                    padding: vars.$size-12 vars.$size-24;
-                    border: none;
-                    border-radius: vars.$radius-sm;
-                    background: vars.$color-yellow;
-                    font-weight: 700;
-                    font-size: vars.$font-md;
-                }
             }
         }
     }

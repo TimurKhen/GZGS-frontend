@@ -5,11 +5,11 @@ import { AsyncPipe, NgClass } from '@angular/common';
 import { MiniInformationBlock } from "../../../components/mini-information-block/mini-information-block";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { RouterLink } from "@angular/router";
-import { TuiLoader } from "@taiga-ui/core";
+import { TuiLoader, TuiButton } from "@taiga-ui/core";
 
 @Component({
   selector: 'app-spending',
-  imports: [AsyncPipe, TuiAmountPipe, TuiRingChart, MiniInformationBlock, NgClass, RouterLink, TuiLoader],
+  imports: [AsyncPipe, TuiAmountPipe, TuiRingChart, MiniInformationBlock, NgClass, RouterLink, TuiLoader, TuiButton],
   templateUrl: './spending.html',
   styleUrl: './spending.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,8 +23,13 @@ export class Spending implements OnChanges {
   currentSmalledSubscribtions = signal<SubscriptionInterface[]>(
     this.subscriptions().filter((value: SubscriptionInterface) => {
       return value.status
-    }))
+  }))
+  
   activeButtonIndex = signal<number>(0)
+  maxSubscriptionsOnScreenCount = signal<number>(5)
+  smalledCountOfSubscriptions = computed(() => {
+    return this.currentSmalledSubscribtions().slice(0, this.maxSubscriptionsOnScreenCount())
+  })
 
   constructor() {
     effect(() => {

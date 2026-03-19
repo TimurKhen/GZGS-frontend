@@ -12,13 +12,17 @@
             <div class="subscribtions-container">
                 <h2>Ваши подписки:</h2>
                 <div class="subscribtions">
-                    @for (item of realSubscriptions(); track item; let i = $index) {
-                        @if (i < 6) {
-                            <assets-subscribtion
-                                [routerLink]="['subscription', item.subscription_id]"
-                                [subscribtionData]="item"
-                            ></assets-subscribtion>
-                        }
+                    @for (item of smalledCountOfSubscriptions(); track item; let i = $index) {
+                        <assets-subscribtion
+                            [routerLink]="['subscription', item.subscription_id]"
+                            [subscribtionData]="item"
+                        ></assets-subscribtion>
+                    }
+                    @if (realSubscriptions().length > maxSubscriptionsOnScreenCount()) {
+                        <button 
+                            routerLink="subscriptions"
+                            class="more-button" size="m" tuiButton
+                            >Ещё {{realSubscriptions().length - smalledCountOfSubscriptions().length}}</button>
                     }
                     <button routerLink="add">
                         Добавить подписку

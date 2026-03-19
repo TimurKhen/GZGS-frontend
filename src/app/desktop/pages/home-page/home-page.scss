@@ -35,6 +35,10 @@
                     flex-direction: column;
                     gap: vars.$size-20;
 
+                    .more-button {
+                        @include vars.basicGradient;
+                    }
+
                     button {
                         border: none;
                         padding: vars.$size-20;
