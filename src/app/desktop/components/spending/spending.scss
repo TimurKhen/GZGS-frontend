@@ -50,8 +50,7 @@
 
         .subscribtions {
             width: 90%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
+            display: flex;
             gap: vars.$size-12;
         }
 
