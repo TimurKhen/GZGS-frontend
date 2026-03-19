@@ -1,6 +1,6 @@
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {provideRouter, withInMemoryScrolling, withViewTransitions} from '@angular/router';
 import { routes } from './app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import { registerLocaleData } from "@angular/common";
@@ -10,14 +10,21 @@ import { provideEventPlugins } from "@taiga-ui/event-plugins";
 
 registerLocaleData(localeRu)
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
-        provideAnimations(),
-        provideBrowserGlobalErrorListeners(),
-        provideRouter(routes),
-        provideHttpClient(withInterceptors([authTokenInterceptor])),
-        provideEventPlugins(),
+    provideAnimations(),
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled',
+      }),
+      withViewTransitions()
+    ),
+    provideHttpClient(withInterceptors([authTokenInterceptor])),
+    provideEventPlugins(),
 
-        { provide: LOCALE_ID, useValue: 'ru' }
-    ]
+    { provide: LOCALE_ID, useValue: 'ru' }
+  ]
 }
