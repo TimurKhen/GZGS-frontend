@@ -8,6 +8,12 @@
                     [control]="registrationForm.get('user_avatar_url')"
                     (fileSelect)="setFile($event)"
                 ></file-input>
+                @if (!registrationForm.get('user_avatar_url')?.value) {
+                    <tui-icon 
+                        animate.enter="enter" animate.leave="leave" 
+                        class="icon" icon="@tui.badge-alert">
+                    </tui-icon>
+                } 
             </div>
             <div class="inputs">
                 <label>
@@ -62,7 +68,7 @@
                             Пароль обязателен.
                         </p>
                         <p *ngIf="registrationForm.get('password')?.errors?.['minlength']">
-                            Длина пароля минимум 8
+                            длина пароля минимум 8 символов.
                         </p>
                     </div>
                 </label>

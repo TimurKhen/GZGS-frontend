@@ -42,7 +42,7 @@ export class ProfilePage implements OnInit {
             return val
           })
         )
-        .subscribe((data) => {  
+        .subscribe((data) => {
           if (data) {
             this.updateUserNotificationsStatus(data)
           }
@@ -50,7 +50,7 @@ export class ProfilePage implements OnInit {
       )
     })
   }
-  
+
   notificationBlock = signal<StatusBlockInterface>({
     icon: 'bell',
     text: 'Уведомления включены',
@@ -64,7 +64,7 @@ export class ProfilePage implements OnInit {
   changeStatus(changingSignal: WritableSignal<StatusBlockInterface>) {
     let value = !changingSignal().isActive
     changingSignal.update(currentData => ({
-      ...currentData, 
+      ...currentData,
       isActive: value
     }))
     changingSignal().subject.next(of([value]))
@@ -73,16 +73,17 @@ export class ProfilePage implements OnInit {
   ngOnInit(): void {
     const userData = this.userHandler.userInfo
     userData.subscribe((data) => {
-      console.log(data)
-      this.userName.set(String(data.user.fullname))
-      this.userAvatarUrl.set(String(data.user.avatar_url))
-      this.notificationStatus.set(data.user.notifications)
-      this.isConnectedEmail.set(data.user.is_connected_email || false)
-      this.userData.set(data.user)
-      this.notificationBlock.update((val) => ({
-        ...val,
-        isActive: this.notificationStatus()
-      }))
+      if (data) {
+        this.userName.set(String(data.user.fullname))
+        this.userAvatarUrl.set(String(data.user.avatar_url))
+        this.notificationStatus.set(data.user.notifications)
+        this.isConnectedEmail.set(data.user.is_connected_email || false)
+        this.userData.set(data.user)
+        this.notificationBlock.update((val) => ({
+          ...val,
+          isActive: this.notificationStatus()
+        }))
+      }
     })
   }
 
@@ -98,7 +99,7 @@ export class ProfilePage implements OnInit {
   }
 
   updateUserNotificationsStatus(type: any) {
-    const currentType = type[0] 
+    const currentType = type[0]
     if (this.notificationStatus() !== currentType) {
       this.notificationStatus.set(currentType)
       this.userHandler.updateUser(this.userData, {notifications: currentType})

@@ -1,16 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { FileInput } from "../../../components/form/inputs/file-input/file-input";
-import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
-import { TextInput } from "../../../components/form/inputs/text-input/text-input";
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router, RouterLink } from "@angular/router";
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
 import { UserInterface } from '../../../../interfaces/user/user-interface';
-import { catchError, throwError } from 'rxjs';
+import { TuiIcon } from "@taiga-ui/core";
 
 @Component({
   selector: 'app-registration',
-  imports: [NgIf, FileInput, ɵInternalFormsSharedModule, ReactiveFormsModule, RouterLink],
+  imports: [NgIf, FileInput, ReactiveFormsModule, RouterLink, TuiIcon],
   templateUrl: './registration.html',
   styleUrl: './registration.scss',
 })
