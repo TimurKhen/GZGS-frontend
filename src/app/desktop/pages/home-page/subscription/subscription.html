@@ -73,40 +73,47 @@
                         [control]="editForm.get('subscription_avatar_url')"
                     ></file-input>
                     <div class="other-inputs">
-                        <text-input 
-                            [control]="editForm.get('name')"
-                            [placeholderText]="'Название сервиса'"
-                            [isRequred]="true"
-                        ></text-input>
+                        <div class="double">
+                            <text-input 
+                                [control]="editForm.get('name')"
+                                [placeholderText]="'Название сервиса'"
+                                [isRequred]="true"
+                            ></text-input>
+    
+                            <number-input 
+                                [control]="editForm.get('cost')"
+                                [placeholderText]="'Цена в месяц'"
+                                [lastValue]="subscriptionData()?.cost"
+                                [isRequred]="true"
+                            ></number-input>
+                        </div>
 
-                        <number-input 
-                            [control]="editForm.get('cost')"
-                            [placeholderText]="'Цена в месяц'"
-                            [lastValue]="subscriptionData()?.cost"
-                            [isRequred]="true"
-                        ></number-input>
+                        <div class="double">
+                            <date-input
+                                [control]="editForm.get('next_billing')"
+                                [placeholderText]="'Дата списания'"
+                                [currentDate]="subscriptionData()?.next_billing"
+                            ></date-input>
+    
+                            <text-input 
+                                [control]="editForm.get('url_service')"
+                                [placeholderText]="'Ссылка на сервис'"
+                                [isRequred]="true"
+                            ></text-input>
+                        </div>
 
-                        <date-input
-                            [control]="editForm.get('next_billing')"
-                            [placeholderText]="'Дата списания'"
-                            [currentDate]="subscriptionData()?.next_billing"
-                        ></date-input>
-
-                        <text-input 
-                            [control]="editForm.get('url_service')"
-                            [placeholderText]="'Ссылка на сервис'"
-                            [isRequred]="true"
-                        ></text-input>
-                        <text-input 
-                            [control]="editForm.get('cancellation_link')"
-                            [placeholderText]="'Ссылка на отмену'"
-                            [isRequred]="true"
-                        ></text-input>
-                        <text-input 
-                            [control]="editForm.get('category')"
-                            [placeholderText]="'Категория'"
-                            [isRequred]="true"
-                        ></text-input>
+                        <div class="double">
+                            <text-input 
+                                [control]="editForm.get('cancellation_link')"
+                                [placeholderText]="'Ссылка на отмену'"
+                                [isRequred]="true"
+                            ></text-input>
+                            <text-input 
+                                [control]="editForm.get('category')"
+                                [placeholderText]="'Категория'"
+                                [isRequred]="true"
+                            ></text-input>
+                        </div>
                     </div>
                 </div>
 

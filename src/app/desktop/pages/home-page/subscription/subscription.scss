@@ -132,11 +132,23 @@
                     height: 16em;
                     
                     .other-inputs {
-                        display: grid;
-                        grid-template-columns: repeat(3, 300px);
+                        display: flex;
                         grid-auto-flow: dense;
-                        gap: vars.$size-12;
+                        gap: vars.$size-20;
                         align-items: center;
+                        height: 100%;
+
+                        .double {
+                            width: vars.$size-280;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            height: 100%;
+
+                            text-input, number-input, date-input {
+                                max-height: vars.$size-64;
+                            }
+                        }
                     }
                 }
 
