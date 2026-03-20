@@ -38,7 +38,7 @@ export class Subscription implements OnInit {
 
   subscriptionData = signal<any>(null)
   subscriptionId = signal<string | null>(null)
-  
+
   isPaidStatusBlock = signal<StatusBlockInterface>({
     icon: null,
     text: 'Подписка оплачена',
@@ -95,7 +95,7 @@ export class Subscription implements OnInit {
       }
     }
   ])
-  
+
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.maxLength(16)]),
@@ -106,7 +106,7 @@ export class Subscription implements OnInit {
     category: new FormControl('', [Validators.required, Validators.maxLength(16)])
   })
 
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -119,7 +119,7 @@ export class Subscription implements OnInit {
           return val
         })
       )
-      .subscribe((data) => {  
+      .subscribe((data) => {
         this.updateStatusField('status')
       }
     )
@@ -130,7 +130,7 @@ export class Subscription implements OnInit {
           return val
         })
       )
-      .subscribe((data) => {  
+      .subscribe((data) => {
         this.updateStatusField('use_in_this_month')
       }
     )
@@ -145,12 +145,12 @@ export class Subscription implements OnInit {
     }
 
     this.isUpdating.set(true)
-    
+
     this.subscriptionsService.updateSubscription(currentData, changes)
     .pipe(
       catchError((err) => {
         this.showError(`${err.statusText}: ${err.status}`)
-        
+
         const statusBlock = field === 'status' ? this.isPaidStatusBlock : this.usedStatusBlock;
         statusBlock.update(data => ({
           ...data,
@@ -188,14 +188,14 @@ export class Subscription implements OnInit {
       const findedData = data[0]
       this.subscriptionData.set(findedData)
       this.isPaidStatusBlock.update(currentData => ({
-        ...currentData, 
+        ...currentData,
         isActive: findedData.status
       }))
       this.usedStatusBlock.update(currentData => ({
-        ...currentData, 
+        ...currentData,
         isActive: findedData.use_in_this_month
       }))
-      
+
       this.patchFormValues(findedData)
     })
   }
@@ -214,7 +214,7 @@ export class Subscription implements OnInit {
   changeStatus(changingSignal: WritableSignal<StatusBlockInterface>) {
     let value = !changingSignal().isActive
     changingSignal.update(currentData => ({
-      ...currentData, 
+      ...currentData,
       isActive: value
     }))
     changingSignal().subject.next(of([value]))
@@ -222,10 +222,12 @@ export class Subscription implements OnInit {
 
   saveChanges($event: Event) {
     $event.preventDefault()
-    
+
+    console.log(this.editForm.value)
+
     this.isUpdating.set(true)
     this.subscriptionsService.updateSubscription(
-      this.subscriptionData(), 
+      this.subscriptionData(),
       this.editForm.value as SubscriptionInterface)
       .pipe(
         catchError((err) => {
@@ -238,10 +240,10 @@ export class Subscription implements OnInit {
       }
     )
   }
-  
+
   deleteSubscription($event: Event) {
     $event.preventDefault()
-    
+
     this.isDeleting.set(true)
     this.subscriptionsService.deleteSubscription(
       this.subscriptionData())

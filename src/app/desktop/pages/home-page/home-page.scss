@@ -8,7 +8,7 @@
     @include skeleton.skeleton-wrapper;
 
     .content {
-        width: 60%;
+        width: 70%;
         display: flex;
         flex-direction: column;
         margin-top: vars.$size-40;
@@ -24,7 +24,7 @@
             grid-template-columns: 1fr 2fr;
             height: 100%;
             gap: vars.$size-40;
-            
+
             .subscribtions-container {
                 display: flex;
                 flex-direction: column;
@@ -45,17 +45,17 @@
                         border-radius: vars.$radius-lg;
                         background: vars.$color-yellow;
                         font-size: vars.$font-md;
-                    
+
                         @include vars.textSettings;
                     }
                 }
             }
-    
+
             .controls {
                 display: flex;
                 flex-direction: column;
                 gap: vars.$size-20;
-                
+
                 .buttons {
                     display: flex;
                     gap: vars.$size-20;
@@ -73,7 +73,7 @@
 
     .content {
         width: calc(100% - vars.$size-20);
-        
+
         .grid {
             display: flex;
             flex-direction: column;
