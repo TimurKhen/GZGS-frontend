@@ -19,7 +19,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
         .pipe(
             catchError(err => {
                 if (err.status === 401) {
-                    // userApi.logout()
+                    userApi.logout()
                     // return refreshAndProceed(userApi, req, next)
                 }
 
