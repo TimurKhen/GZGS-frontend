@@ -94,12 +94,17 @@
 @media (max-width: 768px) {
   .container {
     width: 100%;
+    margin-bottom: vars.$size-200;
 
     .content {
         width: 100%;
 
         form {
             width: calc(100% - vars.$size-20);
+
+            .image {
+                width: auto;
+            }
 
             .inputs {
                 label {
