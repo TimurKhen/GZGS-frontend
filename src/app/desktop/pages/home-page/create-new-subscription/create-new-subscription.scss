@@ -37,6 +37,8 @@
                 
                 .image {
                     position: relative;
+                    display: flex;
+                    justify-content: center;
 
                     .icon {
                         position: absolute;
@@ -49,7 +51,7 @@
                 .inputs {
                     display: flex;
                     gap: vars.$size-20;
-                    height: 16em;
+                    height: auto;
                     
                     .other-inputs {
                         display: flex;

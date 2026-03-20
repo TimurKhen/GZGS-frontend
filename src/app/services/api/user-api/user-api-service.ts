@@ -162,7 +162,8 @@ export class UserApiService {
       catchError((val) => 
         {
           if (val.status !== 401) {
-            this.showError(`${JSON.stringify(val.error)}`)
+            this.showError(`Server error`)
+            this.logout()
           }
           return throwError(val)
         }
