@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnChanges, output } from '@angular/core';
 import { StatusBlockInterface } from '../../../interfaces/status-block/status-block-interface';
 import { TuiIcon } from "@taiga-ui/core";
 import { NgClass } from '@angular/common';
@@ -8,7 +8,6 @@ import { NgClass } from '@angular/common';
   imports: [TuiIcon, NgClass],
   templateUrl: './status-block.html',
   styleUrl: './status-block.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatusBlock {
   blockData = input<StatusBlockInterface>()

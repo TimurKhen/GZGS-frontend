@@ -75,6 +75,7 @@ export class ProfilePage implements OnInit {
         this.userName.set(String(data.user.fullname))
         this.userAvatarUrl.set(String(data.user.avatar_url))
         this.notificationStatus.set(data.user.notifications)
+        console.log(this.notificationStatus())
         this.isConnectedEmail.set(data.user.is_connected_email || false)
         this.userData.set(data.user)
         this.notificationBlock.update((val) => ({
