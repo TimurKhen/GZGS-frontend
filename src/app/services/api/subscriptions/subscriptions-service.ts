@@ -108,22 +108,24 @@ export class SubscriptionsService {
     )
   }
 
-  private getDiff(objectA: SubscriptionInterface, objectB: any): FormData {
+  getDiff(objectA: SubscriptionInterface, objectB: any): FormData {
     const formData = new FormData()
     
     Object.keys(objectB).forEach((key) => {
       const keyTyped = key as keyof SubscriptionInterface
       
-      if (keyTyped === 'subscription_id' || keyTyped === 'user_id') {
+      if (keyTyped === 'subscription_id' || keyTyped === 'user_id' || objectB[key] == '') {
         return
       }
       
       if (objectA[keyTyped] !== objectB[keyTyped]) {
         const value = objectB[keyTyped]
-        formData.append(keyTyped as string, value !== null && value !== undefined ? String(value) : '')
+        formData.append(keyTyped as string, value !== null && value !== undefined ? value : '')
       }
     })
-    
+
+    console.log(Object.fromEntries(formData.entries()))
+
     return formData
   }
 

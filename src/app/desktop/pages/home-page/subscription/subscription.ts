@@ -28,7 +28,6 @@ import { NumberInput } from '../../../components/form/inputs/number-input/number
 export class Subscription implements OnInit {
   readonly dateConverter = inject(DateConverter)
   private subscriptionsService = inject(SubscriptionsService)
-  private readonly alerts = inject(TuiAlertService)
   private readonly errorHandler = inject(ErrorCatcherService)
   paidStatusSubject = new Subject<any>()
   usedStatusSubject = new Subject<any>()
@@ -219,8 +218,6 @@ export class Subscription implements OnInit {
   saveChanges($event: Event) {
     $event.preventDefault()
 
-    console.log(this.editForm.value)
-
     this.isUpdating.set(true)
     this.subscriptionsService.updateSubscription(
       this.subscriptionData(),
@@ -228,11 +225,22 @@ export class Subscription implements OnInit {
       .pipe(
         catchError((err) => {
           this.showError(`${err.statusText}: ${err.status}`)
+          this.isUpdating.set(false)
           return throwError(err)
         })
-      ).subscribe((data) => {
+      ).subscribe(() => {
         this.showDialog('Изменения сохранены')
         this.isUpdating.set(false)
+        
+        let cleared = this.subscriptionsService.getDiff(this.subscriptionData(), this.editForm.value)
+        const formObject = Object.fromEntries(cleared.entries())
+        
+        this.subscriptionData.update(current => ({
+          ...current,
+          ...Object.fromEntries(
+            Object.entries(formObject).filter(([_, value]) => value !== undefined && value !== null)
+          )
+        }))
       }
     )
   }
