@@ -1,6 +1,6 @@
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
-import {provideRouter, withInMemoryScrolling, withViewTransitions} from '@angular/router';
+import {provideRouter, withHashLocation, withInMemoryScrolling, withViewTransitions} from '@angular/router';
 import { routes } from './app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import { registerLocaleData } from "@angular/common";
@@ -20,7 +20,8 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
-      withViewTransitions()
+      withViewTransitions(),
+      withHashLocation()
     ),
     provideHttpClient(withInterceptors([authTokenInterceptor])),
     provideEventPlugins(),
