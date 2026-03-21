@@ -3,7 +3,7 @@
         iconEnd="@tui.badge-alert" 
         class="textfield-container" 
         [attr.tuiTheme]="'dark'"
-        [ngClass]="{'error': !control().valid && control().touched}"
+        [ngClass]="{'error': !control().valid && control().dirty}"
     > 
         <label
             tuiLabel
@@ -19,7 +19,7 @@
         <tui-textfield 
         class="textfield-container" 
         [attr.tuiTheme]="'dark'"
-        [ngClass]="{'error': !control().valid && control().touched}"
+        [ngClass]="{'error': !control().valid && control().dirty}"
         >
         <label
         tuiLabel
@@ -32,7 +32,7 @@
         />
     </tui-textfield>
 } 
-@if (!control().valid && control().touched) {
+@if (!control().valid && control().dirty) {
     @if (control().errors['min']) {
         <tui-error [error]="'Минимальное значение - 0'" />
     } @else {
