@@ -1,4 +1,7 @@
-<div class="block" ClickEffect effectColor="#fff">
+<div class="block" 
+    ClickEffect effectColor="#fff"
+    [routerLink]="['subscription', information()?.subscription_id]"
+    >
     <span class="main-information">
         <img [src]="information()?.subscription_avatar_url" height="20">
         <h3 class="name">{{information()?.name}}</h3>

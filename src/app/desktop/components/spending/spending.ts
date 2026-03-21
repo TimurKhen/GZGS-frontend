@@ -26,7 +26,7 @@ export class Spending implements OnChanges {
   }))
   
   activeButtonIndex = signal<number>(0)
-  maxSubscriptionsOnScreenCount = signal<number>(5)
+  maxSubscriptionsOnScreenCount = signal<number>(4)
   smalledCountOfSubscriptions = computed(() => {
     return this.currentSmalledSubscribtions().slice(0, this.maxSubscriptionsOnScreenCount())
   })

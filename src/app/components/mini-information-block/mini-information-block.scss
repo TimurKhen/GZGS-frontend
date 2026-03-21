@@ -10,11 +10,14 @@
     padding: vars.$size-4 vars.$size-12 vars.$size-4 vars.$size-8;
     border-radius: vars.$radius-full;
     @include vars.basicGradient;
+    cursor: pointer;
+    user-select: none;
     
     .main-information {
         display: flex;
         align-items: center;
         gap: vars.$size-8;
+        width: 100%;
 
         img {
             aspect-ratio: 1/1;
@@ -23,14 +26,13 @@
         }
 
         .icon-block {
-            justify-self: flex-end;
             max-height: vars.$size-28;
-            width: 100%;
             aspect-ratio: 1/1;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: vars.$radius-full;
+            padding: vars.$size-12;
         }
         .paid-icon {
             background: vars.$color-green;
@@ -38,13 +40,16 @@
         .unpaid-icon {
             background: vars.$color-red;
         }
+
+        h3 {
+            color: black;
+            width: max-content;
+        }
     }
 
-    h3 {
-        color: black;
-    }
 
     .price {
+        color: black;
         justify-self: flex-end;
     }
 }

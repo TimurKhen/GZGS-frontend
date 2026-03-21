@@ -3,10 +3,11 @@ import { SubscriptionInterface } from '../../interfaces/subscribtions/subscripti
 import { TuiIcon } from "@taiga-ui/core";
 import { ShortNumberPipe } from '../../pipes/short-number-pipe-pipe';
 import { ClickEffect } from "../../directives/click-effect/click-effect";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-mini-information-block',
-  imports: [TuiIcon, ShortNumberPipe, ClickEffect],
+  imports: [TuiIcon, ShortNumberPipe, ClickEffect, RouterLink],
   templateUrl: './mini-information-block.html',
   styleUrl: './mini-information-block.scss',
 })
