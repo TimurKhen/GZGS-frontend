@@ -22,3 +22,8 @@ tui-loader {
     min-inline-size: 3.5rem;
     --tui-thickness: 0.5rem;
 }
+
+button {
+    cursor: pointer;
+    user-select: none;
+}
