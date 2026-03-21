@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { SubscriptionBig } from "../../components/subscriptions/subscription-big/subscription-big";
 import { RouterLink } from '@angular/router';
@@ -27,6 +27,10 @@ export class AnalyticsPage implements OnInit {
   checkboxStates = signal<boolean[]>([])
   realSubscriptions = signal<SubscriptionInterface[]>([])
   usingForAnalityics = signal<SubscriptionInterface[]>(this.realSubscriptions())
+  paidSubscriptions = computed(() => {
+    const subscriptions = this.realSubscriptions()
+    return subscriptions.filter((val: SubscriptionInterface) => val.status)
+  })
   categories = signal<Categoryinterface[]>([])
   
   isLoading = signal<boolean>(true)

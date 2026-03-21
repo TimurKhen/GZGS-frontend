@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { TuiAlertService, TuiIcon, TuiLoader } from "@taiga-ui/core";
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
 import { DatePipe } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { StatusBlockInterface } from '../../../../interfaces/status-block/status-block-interface';
 import { ActionButtonInterface } from '../../../../interfaces/action-button/action-button-interface';
@@ -21,7 +21,7 @@ import { NumberInput } from '../../../components/form/inputs/number-input/number
 
 @Component({
   selector: 'app-subscription',
-  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput, TuiLoader],
+  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput, TuiLoader, RouterLink],
   templateUrl: './subscription.html',
   styleUrl: './subscription.scss',
 })
@@ -177,10 +177,6 @@ export class Subscription implements OnInit {
         this.loadSubscriptionById(id)
       }
     })
-  }
-
-  returnBack() {
-    this.router.navigate(['/'])
   }
 
   loadSubscriptionById(id: string) {

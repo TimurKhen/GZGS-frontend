@@ -17,6 +17,10 @@
     .image {
         display: flex;
         align-items: center;    
+
+        img {
+            filter: invert(1);
+        }
     }
 
     h2 {

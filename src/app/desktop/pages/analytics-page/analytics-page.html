@@ -5,9 +5,9 @@
         </span>
         <div class="spending-container">
             <div class="spending">
-                <spending-block [descriptionText]="'Текущие траты'" [subscriptions]="realSubscriptions()"></spending-block>
+                <spending-block [descriptionText]="'Текущие траты'" [subscriptions]="paidSubscriptions()"></spending-block>
                 <spending-block [descriptionText]="'Прогноз трат'" [subscriptions]="usingForAnalityics()"></spending-block>
-                <spending-block [monthsToCalc]="12" [descriptionText]="'Текущие траты на год'" [subscriptions]="realSubscriptions()"></spending-block>
+                <spending-block [monthsToCalc]="12" [descriptionText]="'Текущие траты на год'" [subscriptions]="paidSubscriptions()"></spending-block>
                 <spending-block [monthsToCalc]="12" [descriptionText]="'Прогноз трат на год'" [subscriptions]="usingForAnalityics()"></spending-block>
             </div>
         </div>
