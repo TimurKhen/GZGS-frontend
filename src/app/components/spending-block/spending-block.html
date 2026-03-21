@@ -1,6 +1,6 @@
 <div class="block" [attr.tuiTheme]="'dark'">
     <tui-ring-chart
-        size="xl" 
+        [size]="isMobile() ? 'l' : 'xl'" 
         [value]="prices()"
         [(activeItemIndex)]="index"
         class="ring"

@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
 import { TuiRingChart } from "@taiga-ui/addon-charts";
 import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
 import { AsyncPipe } from '@angular/common';
@@ -9,11 +9,13 @@ import { SubscriptionInterface } from '../../interfaces/subscribtions/subscripti
   imports: [AsyncPipe, TuiAmountPipe, TuiRingChart],
   templateUrl: './spending-block.html',
   styleUrl: './spending-block.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpendingBlock {
   subscriptions = input<SubscriptionInterface[]>([])
   descriptionText = input<string>('')
   monthsToCalc = input<number>(1)
+  isMobile = input<boolean>(false)
 
   names = signal<string[]>([])
   prices = signal<number[]>([])

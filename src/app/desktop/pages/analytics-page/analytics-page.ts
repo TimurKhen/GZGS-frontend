@@ -11,6 +11,7 @@ import { Categoryinterface } from '../../../interfaces/category/categoryinterfac
 import { SubscriptionCategory } from "../../components/subscriptions/subscription-category/subscription-category";
 import { NgTemplateOutlet } from '@angular/common';
 import { TuiLoader } from "@taiga-ui/core";
+import { DeviceService } from '../../../global/services/device-service';
 
 @Component({
   selector: 'app-analytics-page',
@@ -23,6 +24,7 @@ import { TuiLoader } from "@taiga-ui/core";
 })
 export class AnalyticsPage implements OnInit {
   private subscriptionsService = inject(SubscriptionsService)
+  private deviceHandler = inject(DeviceService)
   
   checkboxStates = signal<boolean[]>([])
   realSubscriptions = signal<SubscriptionInterface[]>([])
@@ -36,6 +38,7 @@ export class AnalyticsPage implements OnInit {
   isLoading = signal<boolean>(true)
   selectedGroup = signal<string>('Сервисы')
   types = ['Сервисы', 'Категории']
+  isMobile = signal<boolean>(false)
 
   ngOnInit(): void {
     this.subscriptionsService.userSubscriptions.subscribe((data: SubscriptionInterface[]) => {
@@ -44,6 +47,10 @@ export class AnalyticsPage implements OnInit {
       this.recalculateAnalitycs()
       this.recalculateCategories()
       this.isLoading.set(false)
+    })
+
+    this.deviceHandler.isMobile$.subscribe((val) => {
+      this.isMobile.set(val)
     })
   }
 

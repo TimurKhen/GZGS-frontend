@@ -15,10 +15,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes,
+    provideRouter(
+      routes,
       withInMemoryScrolling({
-        scrollPositionRestoration: 'enabled',
-        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'top',
       }),
       withViewTransitions(),
       withHashLocation()
