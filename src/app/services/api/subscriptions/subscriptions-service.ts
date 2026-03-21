@@ -118,7 +118,7 @@ export class SubscriptionsService {
       
       let finalKey = key
       let oldValue: any
-      
+
       if (key === 'subscription_avatar_url') {
         finalKey = 'subscription_avatar'
         oldValue = objectA.subscription_avatar_url
@@ -126,24 +126,23 @@ export class SubscriptionsService {
         const keyTyped = key as keyof SubscriptionInterface
         oldValue = objectA[keyTyped]
       }
-      
+
       if (oldValue !== objectB[key]) {
         const value = objectB[key]
         formData.append(finalKey, value !== null && value !== undefined ? value : '')
       }
     })
     
-    console.log(Object.fromEntries(formData.entries()))
-    
     return formData
   }
 
-  updateSubscription(currentData: SubscriptionInterface, changes: any) {
+  updateSubscription(currentData: SubscriptionInterface, changes: any, calcDiff: boolean = true) {
     this.clearSubscriptions()
 
+    console.log(currentData, changes, calcDiff)
     return this.http.patch(
       this.mainUrl + `update/${currentData.subscription_id}`,
-      this.getDiff(currentData, changes)
+      calcDiff ? this.getDiff(currentData, changes) : changes
     )
   }
 

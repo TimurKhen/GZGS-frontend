@@ -24,12 +24,12 @@ export class CreateNewSubscription {
 
   subscriptionForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required, Validators.maxLength(16)]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(24)]),
     cost: new FormControl(parseInt(''), [Validators.required, Validators.min(0), Validators.max(10000000), Validators.pattern("^[0-9]*$")]),
     next_billing: new FormControl('', [Validators.required]),
     url_service: new FormControl('', Validators.required),
     cancellation_link: new FormControl('', Validators.required),
-    category: new FormControl('', [Validators.required, Validators.maxLength(16)])
+    category: new FormControl('', [Validators.required, Validators.maxLength(24)])
   })
   isLoading = signal<boolean>(false)
 

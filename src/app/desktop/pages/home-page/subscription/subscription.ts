@@ -98,12 +98,12 @@ export class Subscription implements OnInit {
 
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required, Validators.maxLength(16)]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(24)]),
     cost: new FormControl(1, [Validators.required, Validators.min(0), Validators.max(10000000), Validators.pattern("^[0-9]*$")]),
     next_billing: new FormControl('', Validators.required),
     url_service: new FormControl('', Validators.required),
     cancellation_link: new FormControl('', Validators.required),
-    category: new FormControl('', [Validators.required, Validators.maxLength(16)])
+    category: new FormControl('', [Validators.required, Validators.maxLength(24)])
   })
 
 
@@ -146,27 +146,30 @@ export class Subscription implements OnInit {
 
     this.isUpdating.set(true)
 
-    this.subscriptionsService.updateSubscription(currentData, changes)
-    .pipe(
-      catchError((err) => {
-        this.showError(`${err.statusText}: ${err.status}`)
+    // TODO
+    //  500 ошибка при изменении отдельных полей!!!!!! 
+    
+    this.subscriptionsService.updateSubscription(currentData, changes, false)
+      .pipe(
+        catchError((err) => {
+          this.showError(`${err.statusText}: ${err.status}`)
 
-        const statusBlock = field === 'status' ? this.isPaidStatusBlock : this.usedStatusBlock;
-        statusBlock.update(data => ({
-          ...data,
-          isActive: currentData[field]
-        }));
-        return throwError(err)
-      })
-    )
-    .subscribe(() => {
-      this.subscriptionData.update(data => ({
-          ...data,
-          [field]: !currentData[field]
-        }))
-        this.isUpdating.set(false)
-        this.showDialog(`Статус обновлен`)
-      })
+          const statusBlock = field === 'status' ? this.isPaidStatusBlock : this.usedStatusBlock;
+          statusBlock.update(data => ({
+            ...data,
+            isActive: currentData[field]
+          }));
+          return throwError(err)
+        })
+      )
+      .subscribe(() => {
+        this.subscriptionData.update(data => ({
+            ...data,
+            [field]: !currentData[field]
+          }))
+          this.isUpdating.set(false)
+          this.showDialog(`Статус обновлен`)
+        })
   }
 
   ngOnInit() {
@@ -183,7 +186,7 @@ export class Subscription implements OnInit {
     this.subscriptionsService.getSubscription(id).subscribe((data) => {
       const findedData = data[0]
       this.subscriptionData.set(findedData)
-      console.log(findedData)
+
       this.isPaidStatusBlock.update(currentData => ({
         ...currentData,
         isActive: findedData.status
