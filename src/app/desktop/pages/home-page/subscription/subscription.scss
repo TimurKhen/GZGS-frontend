@@ -114,7 +114,7 @@
                 font-weight: 700;
                 padding: vars.$size-8 vars.$size-20;
                 font-size: vars.$font-md;
-                border: none;
+                border: 2px solid rgba(0, 0, 0, 0);
                 border-radius: vars.$radius-full;
                 cursor: pointer;
             }

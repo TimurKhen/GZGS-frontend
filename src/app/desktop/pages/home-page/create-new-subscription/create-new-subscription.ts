@@ -10,10 +10,11 @@ import { SubscriptionsService } from '../../../../services/api/subscriptions/sub
 import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subscription-interface';
 import { catchError, throwError } from 'rxjs';
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
+import { ClickEffect } from "../../../../directives/click-effect/click-effect";
 
 @Component({
   selector: 'app-create-new-subscription',
-  imports: [TuiIcon, FileInput, TextInput, DateInput, NumberInput, RouterLink, TuiLoader],
+  imports: [TuiIcon, FileInput, TextInput, DateInput, NumberInput, RouterLink, TuiLoader, ClickEffect],
   templateUrl: './create-new-subscription.html',
   styleUrl: './create-new-subscription.scss',
 })

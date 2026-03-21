@@ -3,10 +3,11 @@ import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subs
 import { IsPaidStatus } from "../../../../components/is-paid-status/is-paid-status";
 import { DateConverter } from '../../../../services/converters/date-converter/date-converter';
 import { DatePipe } from '@angular/common';
+import { ClickEffect } from "../../../../directives/click-effect/click-effect";
 
 @Component({
   selector: 'subscription-big',
-  imports: [IsPaidStatus, DatePipe],
+  imports: [IsPaidStatus, DatePipe, ClickEffect],
   templateUrl: './subscription-big.html',
   styleUrl: './subscription-big.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

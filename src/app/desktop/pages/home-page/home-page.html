@@ -20,11 +20,12 @@
                     }
                     @if (realSubscriptions().length > maxSubscriptionsOnScreenCount()) {
                         <button 
+                            ClickEffect effectColor="#424242"
                             routerLink="subscriptions"
                             class="more-button" size="m" tuiButton
                             >Ещё {{realSubscriptions().length - smalledCountOfSubscriptions().length}}</button>
                     }
-                    <button routerLink="add">
+                    <button routerLink="add" ClickEffect effectColor="#424242">
                         Добавить подписку
                     </button>
                 </div>

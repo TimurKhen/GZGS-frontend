@@ -6,10 +6,11 @@ import { RouterLink } from "@angular/router";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { SubscriptionsService } from '../../../services/api/subscriptions/subscriptions-service';
 import { UserApiService } from '../../../services/api/user-api/user-api-service';
+import { ClickEffect } from '../../../directives/click-effect/click-effect';
 
 @Component({
   selector: 'app-home-page',
-  imports: [Subscribtion, Spending, ButtonWithImage, RouterLink],
+  imports: [Subscribtion, Spending, ButtonWithImage, RouterLink, ClickEffect],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })

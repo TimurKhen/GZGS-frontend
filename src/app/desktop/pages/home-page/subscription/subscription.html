@@ -58,7 +58,7 @@
         </div>
         <div class="actions-buttons">
             @for (item of actionButtons(); track item) {
-                <button class="action-button" (click)="item.action()">
+                <button class="action-button" (click)="item.action()" ClickEffect effectColor="#fff" effectBorderWidth="2px">
                     {{item.name}}
                 </button>
             }
@@ -121,6 +121,7 @@
                     <button 
                         [disabled]="isDeleting() || isUpdating()"
                         (click)="saveChanges($event)"
+                        ClickEffect effectColor="#fff"
                     >
                         @if (isUpdating()) {
                             <div class="loading">
@@ -134,6 +135,7 @@
                         class="delete-button" 
                         [disabled]="isDeleting() || isUpdating()"
                         (click)="deleteSubscription($event)"
+                        ClickEffect effectColor="#fff"
                     >
                         @if (isDeleting()) {
                             <div class="loading">

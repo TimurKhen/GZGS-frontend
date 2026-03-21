@@ -17,11 +17,12 @@ import { SubscriptionInterface } from '../../../../interfaces/subscribtions/subs
 import { catchError, debounceTime, of, Subject, switchMap, throwError } from 'rxjs';
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
 import { NumberInput } from '../../../components/form/inputs/number-input/number-input';
+import { ClickEffect } from "../../../../directives/click-effect/click-effect";
 
 
 @Component({
   selector: 'app-subscription',
-  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput, TuiLoader, RouterLink],
+  imports: [TuiIcon, IsPaidStatus, DatePipe, StatusBlock, FileInput, TextInput, DateInput, NumberInput, TuiLoader, RouterLink, ClickEffect],
   templateUrl: './subscription.html',
   styleUrl: './subscription.scss',
 })

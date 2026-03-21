@@ -68,6 +68,7 @@
                     class="create-button" 
                     (click)="createSubscription($event)"
                     [disabled]="!subscriptionForm.valid || isLoading()"
+                    ClickEffect effectColor="#fff"
                 >
                     @if (isLoading()) {
                         <div class="loading">
