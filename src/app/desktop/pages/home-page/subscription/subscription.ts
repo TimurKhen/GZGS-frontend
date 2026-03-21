@@ -182,6 +182,7 @@ export class Subscription implements OnInit {
     this.subscriptionsService.getSubscription(id).subscribe((data) => {
       const findedData = data[0]
       this.subscriptionData.set(findedData)
+      console.log(findedData)
       this.isPaidStatusBlock.update(currentData => ({
         ...currentData,
         isActive: findedData.status
