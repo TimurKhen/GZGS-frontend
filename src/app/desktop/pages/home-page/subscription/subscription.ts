@@ -98,7 +98,7 @@ export class Subscription implements OnInit {
   editForm = new FormGroup({
     subscription_avatar_url: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.maxLength(16)]),
-    cost: new FormControl(1, [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]),
+    cost: new FormControl(1, [Validators.required, Validators.min(0), Validators.max(10000000), Validators.pattern("^[0-9]*$")]),
     next_billing: new FormControl('', Validators.required),
     url_service: new FormControl('', Validators.required),
     cancellation_link: new FormControl('', Validators.required),
@@ -182,6 +182,7 @@ export class Subscription implements OnInit {
     this.subscriptionsService.getSubscription(id).subscribe((data) => {
       const findedData = data[0]
       this.subscriptionData.set(findedData)
+      console.log(findedData)
       this.isPaidStatusBlock.update(currentData => ({
         ...currentData,
         isActive: findedData.status

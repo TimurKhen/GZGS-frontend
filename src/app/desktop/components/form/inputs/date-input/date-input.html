@@ -1,7 +1,7 @@
 <tui-textfield 
     class="date-container" 
     [attr.tuiTheme]="'dark'"
-    [ngClass]="{'error': !control().valid && control().touched}"
+    [ngClass]="{'error': !control().valid && control().dirty}"
 >
     <label tuiLabel>{{placeholderText()}}</label>
     <input
@@ -13,6 +13,6 @@
     <tui-calendar *tuiTextfieldDropdown />
 </tui-textfield>
 
-@if (!control().valid && control().touched) {
+@if (!control().valid && control().dirty) {
     <tui-error [error]="'Обязательно'" />
 }

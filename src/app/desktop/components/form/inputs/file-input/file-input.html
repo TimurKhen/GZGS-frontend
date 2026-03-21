@@ -1,6 +1,6 @@
 @if (!control().value || control().value == '') {
     <label
-        [ngClass]="{'error': !control().valid && control().touched}"
+        [ngClass]="{'error': !control().valid && control().dirty}"
         *ngIf="!control().value"
         tuiInputFiles
         class="content"
