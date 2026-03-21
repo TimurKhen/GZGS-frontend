@@ -6,12 +6,10 @@ import { StatusBlockInterface } from '../../../../interfaces/status-block/status
 import { debounceTime, of, Subject, switchMap } from 'rxjs';
 import { StatusBlock } from "../../../components/status-block/status-block";
 import { ErrorCatcherService } from '../../../../services/rxjs/error-catcher/error-catcher-service';
-import { Router } from '@angular/router';
-import { AddEmail } from "./assets/add-email/add-email";
 
 @Component({
   selector: 'app-profile-page',
-  imports: [TuiButton, StatusBlock, ReactiveFormsModule, AddEmail],
+  imports: [TuiButton, StatusBlock, ReactiveFormsModule],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })

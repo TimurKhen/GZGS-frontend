@@ -44,14 +44,7 @@ export class Navigation implements OnInit {
 
   ngOnInit() {
     const currentUrl = this.router.url
-    this.updateActivePage(currentUrl)
-    
-    const userData = this.userHandler.userInfo
-    userData.subscribe((data) => {
-      if (data) {
-        this.userName.set(String(data.user.fullname.split(' ').at(0)))
-      }
-    })
+    this.updateActivePage(currentUrl)    
   }
 
   private updateActivePage(url: string) {
