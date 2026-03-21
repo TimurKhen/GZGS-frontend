@@ -13,4 +13,9 @@ import { RouterLink } from "@angular/router";
 })
 export class MiniInformationBlock {
   information = input<SubscriptionInterface>()
+  pathDepth = input<number>(0)
+
+  setPath(val: string) {
+    return '../'.repeat(this.pathDepth()) + val 
+  }
 }

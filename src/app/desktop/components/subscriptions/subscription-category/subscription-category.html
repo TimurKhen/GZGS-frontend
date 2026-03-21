@@ -12,6 +12,7 @@
     <div class="subscribes">
         @for (item of smalledSubscribtions(); track item) {
             <app-mini-information-block
+                [pathDepth]="1"
                 [information]="item"
             ></app-mini-information-block>
         }

@@ -1,6 +1,6 @@
 <div class="block" 
     ClickEffect effectColor="#fff"
-    [routerLink]="['subscription', information()?.subscription_id]"
+    [routerLink]="[setPath('subscription'), information()?.subscription_id]"
     >
     <span class="main-information">
         <img [src]="information()?.subscription_avatar_url" height="20">
