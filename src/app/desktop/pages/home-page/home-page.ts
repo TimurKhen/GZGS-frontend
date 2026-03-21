@@ -32,6 +32,7 @@ export class HomePage implements OnInit, OnChanges {
   ngOnInit(): void {
     this.subscriptionsService.userSubscriptions.subscribe((data: SubscriptionInterface[]) => {
       this.realSubscriptions.set(data)
+      console.log(this.realSubscriptions())
     })
 
     const userData = this.userHandler.userInfo

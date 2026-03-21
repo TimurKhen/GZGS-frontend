@@ -112,20 +112,29 @@ export class SubscriptionsService {
     const formData = new FormData()
     
     Object.keys(objectB).forEach((key) => {
-      const keyTyped = key as keyof SubscriptionInterface
-      
-      if (keyTyped === 'subscription_id' || keyTyped === 'user_id' || objectB[key] == '') {
+      if (key === 'subscription_id' || key === 'user_id' || objectB[key] == '') {
         return
       }
       
-      if (objectA[keyTyped] !== objectB[keyTyped]) {
-        const value = objectB[keyTyped]
-        formData.append(keyTyped as string, value !== null && value !== undefined ? value : '')
+      let finalKey = key
+      let oldValue: any
+      
+      if (key === 'subscription_avatar_url') {
+        finalKey = 'subscription_avatar'
+        oldValue = objectA.subscription_avatar_url
+      } else {
+        const keyTyped = key as keyof SubscriptionInterface
+        oldValue = objectA[keyTyped]
+      }
+      
+      if (oldValue !== objectB[key]) {
+        const value = objectB[key]
+        formData.append(finalKey, value !== null && value !== undefined ? value : '')
       }
     })
-
+    
     console.log(Object.fromEntries(formData.entries()))
-
+    
     return formData
   }
 
