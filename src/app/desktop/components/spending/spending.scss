@@ -95,16 +95,16 @@
     .information {
         .title {
             .buttons {
-                button {
-                    padding: vars.$size-4 vars.$size-12;
-                    border: none;
-                    border-radius: vars.$radius-md;
-                    font-size: vars.$font-sm;
-                    background: none;
-                    border: 2px solid vars.$color-gray;
-                    color: vars.$color-white;
-                    transition: border 0.4s;
-                }
+                // button {
+                //     padding: vars.$size-4 vars.$size-12;
+                //     border: none;
+                //     border-radius: vars.$radius-md;
+                //     font-size: vars.$font-sm;
+                //     background: none;
+                //     border: 2px solid vars.$color-gray;
+                //     color: vars.$color-white;
+                //     transition: border 0.4s;
+                // }
 
                 .active {
                     border: 2px solid vars.$color-yellow;
@@ -113,9 +113,10 @@
         }
 
         .subscribtions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
-            gap: vars.$size-12;
+            width: 100%;
+            // display: grid;
+            // grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
+            // gap: vars.$size-12;
         }
 
         &::after {

@@ -83,3 +83,15 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .subscribtion-block {
+        display: flex;
+        flex-direction: column;
+
+        .paid-container {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
