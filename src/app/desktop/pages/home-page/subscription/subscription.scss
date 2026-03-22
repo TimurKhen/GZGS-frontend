@@ -4,7 +4,6 @@
 .container {
     display: flex;
     justify-content: center;
-    height: 100%;
     @include skeleton.skeleton-wrapper;
 
     .content {
@@ -184,7 +183,7 @@
 @media (max-width: 768px) {
   .container {
     width: 100%;
-    margin-bottom: vars.$size-120;
+    margin-bottom: vars.$size-100;
 
     .content {
         width: calc(100% - vars.$size-20);
@@ -280,6 +279,12 @@
                         flex-direction: column;
                         align-items: center;
                         gap: vars.$size-20;
+
+                        .double {
+                            display: flex;
+                            flex-direction: column;
+                            gap: vars.$size-20;
+                        }
 
                         text-input, date-input,  number-input {
                             width: 100%;

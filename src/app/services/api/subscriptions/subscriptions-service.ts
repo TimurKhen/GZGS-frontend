@@ -112,8 +112,6 @@ export class SubscriptionsService {
     const formData = new FormData()
     
     Object.keys(objectB).forEach((key) => {
-        
-      
       if (key === 'subscription_id' || key === 'user_id' || (objectB[key] == '' && key == 'subscription_avatar_url')) {
         return
       }
@@ -121,7 +119,7 @@ export class SubscriptionsService {
       let finalKey = key
       let oldValue: any
       
-      if (key === 'subscription_avatar_url') {
+      if (key == 'subscription_avatar_url') {
         finalKey = 'subscription_avatar'
         oldValue = objectA.subscription_avatar_url
       } else {
@@ -129,8 +127,6 @@ export class SubscriptionsService {
         oldValue = objectA[keyTyped]
       }
 
-      console.log(finalKey, oldValue)
-      
       if (oldValue !== objectB[key]) {
         const value = objectB[key]
         formData.append(finalKey, value !== null && value !== undefined ? value : '')

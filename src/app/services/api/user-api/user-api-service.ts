@@ -10,6 +10,7 @@ import { Router } from '@angular/router'
 import { TokenInterface } from './interfaces/token-interface';
 import { UuidService } from '../../uuid/uuid-service';
 import { ErrorCatcherService } from '../../rxjs/error-catcher/error-catcher-service';
+import { SubscriptionsService } from '../subscriptions/subscriptions-service';
 
 
 interface UserInformation {
@@ -125,6 +126,7 @@ export class UserApiService {
     this.token = null
     this.refreshToken = null
     this.router.navigate(['/reg'])
+    inject(SubscriptionsService).clearSubscriptions()
   }
 
   refreshAuthToken() {
