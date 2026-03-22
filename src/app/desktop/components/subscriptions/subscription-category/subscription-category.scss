@@ -36,8 +36,12 @@
     }
 
     .subscribes {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(vars.$size-160, vars.$size-320));
+        display: flex;
         gap: vars.$size-12;
+        flex-wrap: wrap;
+
+        * {
+            min-width: vars.$size-320;
+        }
     }
 }
