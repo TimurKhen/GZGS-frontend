@@ -57,6 +57,10 @@ export class UserApiService {
     return of(this.userData)
   }
 
+  clearUser() {
+    this.userData = null
+  }
+
   protected showError(message: string): void {
     if (message == '{"isTrusted":true}') {
       message = 'Server offline'

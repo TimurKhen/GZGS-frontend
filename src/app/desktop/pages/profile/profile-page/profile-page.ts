@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, WritableSignal } from '@angular/core';
 import { TuiButton } from '@taiga-ui/core';
 import { UserApiService } from '../../../../services/api/user-api/user-api-service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ export class ProfilePage implements OnInit {
   userAvatarUrl = signal<string>('')
   userName = signal<string>('')
   notificationStatus = signal<boolean>(false)
-  isConnectedEmail = signal<boolean>(false)
+  isUpdating = signal<boolean>(false)
 
   notificationsSubject = new Subject()
 
@@ -69,21 +69,19 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit(): void {
-    const userData = this.userHandler.userInfo
-    userData.subscribe((data) => {
-      if (data) {
-        this.userName.set(String(data.user.fullname))
-        this.userAvatarUrl.set(String(data.user.avatar_url))
-        this.notificationStatus.set(data.user.notifications)
-        console.log(this.notificationStatus())
-        this.isConnectedEmail.set(data.user.is_connected_email || false)
-        this.userData.set(data.user)
-        this.notificationBlock.update((val) => ({
-          ...val,
-          isActive: this.notificationStatus()
-        }))
-      }
-    })
+    this.userHandler.getUser()
+      .subscribe((data) => {
+        if (data) {
+          this.userName.set(String(data.user.fullname))
+          this.userAvatarUrl.set(String(data.user.avatar_url))
+          this.notificationStatus.set(data.user.notifications)
+          this.userData.set(data.user)
+          this.notificationBlock.update((val) => ({
+            ...val,
+            isActive: this.notificationStatus()
+          }))
+        }
+      })
   }
 
   showError(message: string): void {
@@ -99,12 +97,13 @@ export class ProfilePage implements OnInit {
 
   updateUserNotificationsStatus(type: any) {
     const currentType = type[0]
+    this.isUpdating.set(true)
     if (this.notificationStatus() !== currentType) {
       this.notificationStatus.set(currentType)
       this.userHandler.updateUser(this.userData, {notifications: currentType})
-        .subscribe((data) => {
-          this.showError('Успешно изменено.')
-        })
+      .subscribe((data) => {
+        this.showError('Успешно изменено.')
+      })
     }
   }
 

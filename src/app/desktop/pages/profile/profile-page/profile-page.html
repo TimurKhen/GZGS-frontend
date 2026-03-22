@@ -13,7 +13,13 @@
                         <div class="skeleton-text"></div>
                     </div>
                 }
-                <p class="email-text">{{userData().email}}</p>
+                @if (userData().email) {
+                    <p class="email-text">{{userData().email}}</p>
+                } @else {
+                    <div class="skeleton-wrapper">
+                        <div class="skeleton-text"></div>
+                    </div>
+                }
                 <div class="edit">
                     <status-block
                         [blockData]="notificationBlock()"
