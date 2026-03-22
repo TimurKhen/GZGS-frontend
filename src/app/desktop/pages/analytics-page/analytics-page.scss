@@ -3,7 +3,7 @@
 .container {
     display: flex;
     justify-content: center;
-    height: 100%;
+    margin-bottom: vars.$size-120;
 
     .content {
         width: 60%;
