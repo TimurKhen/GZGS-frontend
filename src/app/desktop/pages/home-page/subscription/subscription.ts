@@ -145,10 +145,6 @@ export class Subscription implements OnInit {
     }
 
     this.isUpdating.set(true)
-
-    // TODO
-    //  500 ошибка при изменении отдельных полей!!!!!! 
-    
     this.subscriptionsService.updateSubscription(currentData, changes, false)
       .pipe(
         catchError((err) => {
@@ -233,19 +229,10 @@ export class Subscription implements OnInit {
           this.isUpdating.set(false)
           return throwError(err)
         })
-      ).subscribe(() => {
+      ).subscribe((data) => {
         this.showDialog('Изменения сохранены')
-        this.isUpdating.set(false)
-        
-        let cleared = this.subscriptionsService.getDiff(this.subscriptionData(), this.editForm.value)
-        const formObject = Object.fromEntries(cleared.entries())
-        
-        this.subscriptionData.update(current => ({
-          ...current,
-          ...Object.fromEntries(
-            Object.entries(formObject).filter(([_, value]) => value !== undefined && value !== null)
-          )
-        }))
+        this.isUpdating.set(false)        
+        this.loadSubscriptionById(this.subscriptionData()?.subscription_id)
       }
     )
   }
