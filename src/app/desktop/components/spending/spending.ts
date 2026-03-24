@@ -12,7 +12,7 @@ import { TuiLoader, TuiButton } from "@taiga-ui/core";
   imports: [AsyncPipe, TuiAmountPipe, TuiRingChart, MiniInformationBlock, NgClass, RouterLink, TuiLoader, TuiButton],
   templateUrl: './spending.html',
   styleUrl: './spending.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  
 })
 export class Spending implements OnChanges {
   subscriptions = input<SubscriptionInterface[]>([])

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnChanges, OnDestroy, OnInit, signal, SimpleChanges } from '@angular/core';
 import { Subscribtion } from "../../../components/subscribtion/subscribtion";
 import { Spending } from "../../components/spending/spending";
 import { ButtonWithImage } from "../../../components/button-with-image/button-with-image";
@@ -32,8 +32,8 @@ export class HomePage implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.subscriptionsService.userSubscriptions.subscribe((data: SubscriptionInterface[]) => {
+      console.log(data)
       this.realSubscriptions.set(data)
-      console.log(this.realSubscriptions())
     })
 
     const userData = this.userHandler.userInfo

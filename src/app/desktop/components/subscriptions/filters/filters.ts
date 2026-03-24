@@ -11,7 +11,7 @@ import { debounceTime, Subject, switchMap } from 'rxjs';
   imports: [FormsModule, NgForOf, TuiChip, TuiItemGroup],
   templateUrl: './filters.html',
   styleUrl: './filters.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class Filters implements OnInit {
   changedFilters = output<boolean[]>()

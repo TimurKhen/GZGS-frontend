@@ -9,7 +9,6 @@ import { SubscriptionInterface } from '../../interfaces/subscribtions/subscripti
   imports: [AsyncPipe, TuiAmountPipe, TuiRingChart],
   templateUrl: './spending-block.html',
   styleUrl: './spending-block.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpendingBlock {
   subscriptions = input<SubscriptionInterface[]>([])

@@ -8,7 +8,7 @@ import { TuiTextfield, TuiError } from "@taiga-ui/core";
   imports: [ReactiveFormsModule, TuiTextfield, NgClass, TuiError],
   templateUrl: './text-input.html',
   styleUrl: './text-input.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class TextInput implements OnInit {
   placeholderText = input<string>()

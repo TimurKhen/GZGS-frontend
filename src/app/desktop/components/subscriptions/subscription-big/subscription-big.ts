@@ -10,7 +10,7 @@ import { ClickEffect } from "../../../../directives/click-effect/click-effect";
   imports: [IsPaidStatus, DatePipe, ClickEffect],
   templateUrl: './subscription-big.html',
   styleUrl: './subscription-big.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  
 })
 export class SubscriptionBig {
   readonly dateConverter = inject(DateConverter)

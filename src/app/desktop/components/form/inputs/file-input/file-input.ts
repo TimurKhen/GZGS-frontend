@@ -9,7 +9,7 @@ import { TuiIcon } from "@taiga-ui/core";
   imports: [NgIf, ReactiveFormsModule, TuiFiles, TuiIcon, NgClass],
   templateUrl: './file-input.html',
   styleUrl: './file-input.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class FileInput {
   control = input<any>()

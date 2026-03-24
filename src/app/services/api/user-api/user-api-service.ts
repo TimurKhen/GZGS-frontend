@@ -36,6 +36,7 @@ export class UserApiService {
   private cookieService = inject(CookieService)
   private uuidService = inject(UuidService)
   private errorHandler = inject(ErrorCatcherService)
+  private subscriptionsService = inject(SubscriptionsService)
 
   private mainUrl = masterURL + '/' + 'api/user/'
   token: string | null = null
@@ -125,8 +126,9 @@ export class UserApiService {
     this.cookieService.deleteAll()
     this.token = null
     this.refreshToken = null
+    this.clearUser()
     this.router.navigate(['/reg'])
-    inject(SubscriptionsService).clearSubscriptions()
+    this.subscriptionsService.clearSubscriptions()
   }
 
   refreshAuthToken() {

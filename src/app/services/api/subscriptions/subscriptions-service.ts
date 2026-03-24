@@ -133,8 +133,6 @@ export class SubscriptionsService {
       }
     })
     
-    console.log(Object.fromEntries(formData.entries()))
-
     return formData
   }
 
