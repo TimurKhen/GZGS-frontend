@@ -93,6 +93,11 @@ npx cap open android
 Необходимо запускать команды из sudo.
 
 ``` bash
+npm install @capacitor/ios
+```
+
+
+``` bash
 brew install cocoapods
 ```
 
