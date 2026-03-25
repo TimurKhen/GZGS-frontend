@@ -54,12 +54,24 @@ angular-http-server --open
 npm install @capacitor/core @capacitor/cli
 ```
 
-Инициализируйте capacitor
+Инициализируйте capacitor, если он не инициализирован
 ``` bash 
 npx cap init
 ```
 Рекомендуемое название: `gzgs`
-`webDir: 'dist/gzg-money/browser'`
+
+Set it into capacitor.config.ts
+```
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.example.app',
+  appName: 'gzg-money',
+  webDir: 'dist/gzg-money/browser'
+};
+
+export default config;
+```
 
 (дальше просто нажимать enter)
 
