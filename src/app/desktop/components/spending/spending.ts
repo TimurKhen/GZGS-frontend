@@ -19,7 +19,6 @@ export class Spending implements OnChanges {
   names = signal<string[]>([])
   prices = signal<number[]>([])
   isLoading = signal<boolean>(true)
-  currentMonth = ''
 
   currentSmalledSubscribtions = signal<SubscriptionInterface[]>(
     this.subscriptions().filter((value: SubscriptionInterface) => {
@@ -32,7 +31,7 @@ export class Spending implements OnChanges {
     return this.currentSmalledSubscribtions().slice(0, this.maxSubscriptionsOnScreenCount())
   })
 
-  constructor(private datePipe: DatePipe) {
+  constructor() {
     effect(() => {
       let names: string[] = []
       let prices: number[] = []
@@ -43,7 +42,6 @@ export class Spending implements OnChanges {
       this.names.set(names)
       this.prices.set(prices)
     })
-    this.getCurrentMonth()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -89,7 +87,10 @@ export class Spending implements OnChanges {
   }
 
   getCurrentMonth() {
-    const now = new Date();
-    this.currentMonth = this.datePipe.transform(now, 'MMMM') || '';
+    const months = [
+      'январе', 'феврале', 'марте', 'апреле', 'мае', 'июне',
+      'июле', 'августе', 'сентябре', 'октябре', 'ноябре', 'декабре'
+    ];
+    return months[new Date().getMonth()];
   }
 }

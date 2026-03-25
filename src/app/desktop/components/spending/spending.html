@@ -2,7 +2,7 @@
     <div class="information">
         @if (subscriptions().length > 0) {
             <div class="title">
-                <h2>Оплата в {{ currentMonth }}:</h2>
+                <h2>Оплата в {{ getCurrentMonth() }}:</h2>
                 <div class="buttons">
                     <button 
                         [ngClass]="{'active': activeButtonIndex() === 0}"
