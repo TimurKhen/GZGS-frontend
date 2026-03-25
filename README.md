@@ -59,6 +59,7 @@ npm install @capacitor/core @capacitor/cli
 npx cap init
 ```
 Рекомендуемое название: `gzgs`
+`webDir: 'dist/gzg-money/browser'`
 
 (дальше просто нажимать enter)
 
