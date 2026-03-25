@@ -58,9 +58,10 @@ npm install @capacitor/core @capacitor/cli
 ``` bash 
 npx cap init
 ```
-Рекомендуемое название: `gzgs`
+Рекомендуемое название: `gzgs` <br>
+(дальше просто нажимать enter)
 
-Set it into capacitor.config.ts
+Вставьте в capacitor.config.ts
 ```
 import type { CapacitorConfig } from '@capacitor/cli';
 
@@ -72,8 +73,6 @@ const config: CapacitorConfig = {
 
 export default config;
 ```
-
-(дальше просто нажимать enter)
 
 ## Android
 `Необходимо иметь android studio`
