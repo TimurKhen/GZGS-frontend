@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, OnChanges, OnInit, signal, SimpleChange, SimpleChanges } from '@angular/core';
 import {TuiRingChart} from '@taiga-ui/addon-charts';
 import {TuiAmountPipe} from '@taiga-ui/addon-commerce';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
 import { MiniInformationBlock } from "../../../components/mini-information-block/mini-information-block";
 import { SubscriptionInterface } from '../../../interfaces/subscribtions/subscription-interface';
 import { RouterLink } from "@angular/router";
@@ -19,7 +19,8 @@ export class Spending implements OnChanges {
   names = signal<string[]>([])
   prices = signal<number[]>([])
   isLoading = signal<boolean>(true)
-  
+  currentMonth = ''
+
   currentSmalledSubscribtions = signal<SubscriptionInterface[]>(
     this.subscriptions().filter((value: SubscriptionInterface) => {
       return value.status
@@ -31,7 +32,7 @@ export class Spending implements OnChanges {
     return this.currentSmalledSubscribtions().slice(0, this.maxSubscriptionsOnScreenCount())
   })
 
-  constructor() {
+  constructor(private datePipe: DatePipe) {
     effect(() => {
       let names: string[] = []
       let prices: number[] = []
@@ -42,6 +43,7 @@ export class Spending implements OnChanges {
       this.names.set(names)
       this.prices.set(prices)
     })
+    this.getCurrentMonth()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -84,5 +86,10 @@ export class Spending implements OnChanges {
 
   protected get label(): string {
     return (Number.isNaN(this.index) ? 'В сумме' : this.names()[this.index]) ?? ''
+  }
+
+  getCurrentMonth() {
+    const now = new Date();
+    this.currentMonth = this.datePipe.transform(now, 'MMMM') || '';
   }
 }
